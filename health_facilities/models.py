@@ -174,7 +174,7 @@ class HealthFacility(models.Model):
     description = models.TextField(_("Description"), default="", blank=True)
 
     facility_code = models.PositiveIntegerField(_("Facility Code"), unique=True, blank=True, null=True, default=None)
-    facility_code = models.PositiveIntegerField(_("Facility Number"), unique=True, blank=True, null=True, default=None)
+    facility_number = models.PositiveIntegerField(_("Facility Number"), unique=True, blank=True, null=True, default=None)
     hmis = models.PositiveIntegerField(_("HMIS"), unique=True, blank=True, null=True, default=None)
 
     facility_type = models.PositiveIntegerField(_("Type"), choices=TYPE_CHOICES, default=OTHER)
