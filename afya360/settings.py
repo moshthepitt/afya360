@@ -42,6 +42,7 @@ INSTALLED_APPS = (
     'core',
     'users',
     'places',
+    'health_facilities',
     # third party
     'allauth',
     'allauth.account',
