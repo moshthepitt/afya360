@@ -69,8 +69,8 @@ MIDDLEWARE_CLASSES = (
 )
 
 
-ROOT_URLCONF = 'template.urls'
-WSGI_APPLICATION = 'template.wsgi.application'
+ROOT_URLCONF = 'afya360.urls'
+WSGI_APPLICATION = 'afya360.wsgi.application'
 
 
 # Internationalization
