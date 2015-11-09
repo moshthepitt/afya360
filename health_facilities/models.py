@@ -16,6 +16,7 @@ class GeoFacilityManager(models.GeoManager):
 
 @python_2_unicode_compatible
 class HealthFacility(models.Model):
+
     """
     This model stores info. abut health facilities
     """
@@ -148,7 +149,8 @@ class HealthFacility(models.Model):
         (COMPANY_MEDICAL_SERVICE, _('Company Medical Service')),
         (DEVELOPMENT_FUND, _('Development Fund')),
         (HUMANITARIAN_AGENCIES, _('Humanitarian Agencies')),
-        (KENYA_EPISCOPAL_CONFERENCE_CATHOLIC_SECRETARIAT, _('Kenya Episcopal Conference-Catholic Secretariat')),
+        (KENYA_EPISCOPAL_CONFERENCE_CATHOLIC_SECRETARIAT,
+         _('Kenya Episcopal Conference-Catholic Secretariat')),
         (LOCAL_AUTHORITY, _('Local Authority')),
         (MINISTRY_OF_HEALTH, _('Ministry of Health')),
         (NGO, _('Non-Governmental Organizations')),
@@ -173,16 +175,20 @@ class HealthFacility(models.Model):
     slug = AutoSlugField(verbose_name=_("Slug"), populate_from='name', unique=True)
     description = models.TextField(_("Description"), default="", blank=True)
 
-    facility_code = models.PositiveIntegerField(_("Facility Code"), unique=True, blank=True, null=True, default=None)
-    facility_number = models.PositiveIntegerField(_("Facility Number"), unique=True, blank=True, null=True, default=None)
+    facility_code = models.PositiveIntegerField(
+        _("Facility Code"), unique=True, blank=True, null=True, default=None)
+    facility_number = models.PositiveIntegerField(
+        _("Facility Number"), unique=True, blank=True, null=True, default=None)
     hmis = models.PositiveIntegerField(_("HMIS"), unique=True, blank=True, null=True, default=None)
 
     facility_type = models.PositiveIntegerField(_("Type"), choices=TYPE_CHOICES, default=OTHER)
     owner = models.PositiveIntegerField(_("Owner"), choices=OWNER_CHOICES, default=UNKOWN)
     level = models.PositiveIntegerField(_("KEPH Level"), choices=LEVEL_CHOICES, default=LEVEL2)
-    facility_class = models.PositiveIntegerField(_("Facility Classification"), unique=True, blank=True, null=True, default=None)
+    facility_class = models.PositiveIntegerField(
+        _("Facility Classification"), unique=True, blank=True, null=True, default=None)
     agency = models.PositiveIntegerField(_("Agency"), choices=AGENCY_CHOICES, default=NA)
-    status = models.PositiveIntegerField(_("Operational Status"), choices=STATUS_CHOICES, default=OPERATIONAL)
+    status = models.PositiveIntegerField(
+        _("Operational Status"), choices=STATUS_CHOICES, default=OPERATIONAL)
 
     county = models.ForeignKey(County, verbose_name=_("County"), on_delete=models.PROTECT)
     province = models.ForeignKey(
@@ -203,7 +209,8 @@ class HealthFacility(models.Model):
 
     landline = PhoneNumberField(_('Official Landline'), max_length=255, blank=True)
     mobile = PhoneNumberField(_('Official Mobile'), max_length=255, blank=True)
-    alternate_no = PhoneNumberField(_('Official Alternate Phone Number'), max_length=255, blank=True)
+    alternate_no = PhoneNumberField(
+        _('Official Alternate Phone Number'), max_length=255, blank=True)
     fax = models.CharField(_("Official Fax"), max_length=255, blank=True, default="")
 
     email = models.EmailField(_("Official Email"), max_length=255, blank=True)
@@ -213,7 +220,8 @@ class HealthFacility(models.Model):
     post_code = models.CharField(_("Post Code"), max_length=255, blank=True, default="")
 
     in_charge = models.CharField(_("In Charge"), max_length=255, blank=True, default="")
-    in_charge_title = models.CharField(_("Job Title of in Charge"), max_length=255, blank=True, default="")
+    in_charge_title = models.CharField(
+        _("Job Title of in Charge"), max_length=255, blank=True, default="")
 
     beds = models.PositiveIntegerField(_("Beds"), unique=True, blank=True, null=True, default=None)
     cots = models.PositiveIntegerField(_("Cots"), unique=True, blank=True, null=True, default=None)
