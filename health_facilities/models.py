@@ -31,6 +31,7 @@ class HealthFacility(models.Model):
     LEVEL3 = 3
     LEVEL4 = 4
     LEVEL5 = 5
+    LEVEL5 = 6
 
     LEVEL_CHOICES = [
         (LEVEL1, _("Level 1")),
@@ -38,6 +39,8 @@ class HealthFacility(models.Model):
         (LEVEL3, _("Level 3")),
         (LEVEL4, _("Level 4")),
         (LEVEL5, _("Level 5")),
+        (LEVEL6, _("Level 6")),
+        (UNKOWN, _("Not Classified")),
     ]
 
     BLOOD_BANK = 1
@@ -180,12 +183,11 @@ class HealthFacility(models.Model):
     facility_number = models.PositiveIntegerField(
         _("Facility Number"), unique=True, blank=True, null=True, default=None)
     hmis = models.PositiveIntegerField(_("HMIS"), unique=True, blank=True, null=True, default=None)
-
-    facility_type = models.PositiveIntegerField(_("Type"), choices=TYPE_CHOICES, default=OTHER)
-    owner = models.PositiveIntegerField(_("Owner"), choices=OWNER_CHOICES, default=UNKOWN)
-    level = models.PositiveIntegerField(_("KEPH Level"), choices=LEVEL_CHOICES, default=LEVEL2)
+    level = models.PositiveIntegerField(_("KEPH Level"), choices=LEVEL_CHOICES, default=UNKOWN)
     facility_class = models.PositiveIntegerField(
         _("Facility Classification"), unique=True, blank=True, null=True, default=None)
+    facility_type = models.PositiveIntegerField(_("Type"), choices=TYPE_CHOICES, default=OTHER)
+    owner = models.PositiveIntegerField(_("Owner"), choices=OWNER_CHOICES, default=UNKOWN)
     agency = models.PositiveIntegerField(_("Agency"), choices=AGENCY_CHOICES, default=NA)
     status = models.PositiveIntegerField(
         _("Operational Status"), choices=STATUS_CHOICES, default=OPERATIONAL)
@@ -211,7 +213,7 @@ class HealthFacility(models.Model):
     mobile = PhoneNumberField(_('Official Mobile'), max_length=255, blank=True)
     alternate_no = PhoneNumberField(
         _('Official Alternate Phone Number'), max_length=255, blank=True)
-    fax = models.CharField(_("Official Fax"), max_length=255, blank=True, default="")
+    fax = PhoneNumberField(_('Official Fax'), max_length=255, blank=True)
 
     email = models.EmailField(_("Official Email"), max_length=255, blank=True)
 
