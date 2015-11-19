@@ -118,7 +118,7 @@ class HealthFacility(models.Model):
         (NOT_OPERATIONAL, _('Not-Operational')),
         (OPERATIONAL, _('Operational')),
         (PENDING_OPENING, _('Pending Opening')),
-        (UNKOWN, _('Unkown')),
+        (UNKOWN, _('Unknown')),
     ]
 
     ACADEMIC = 1
@@ -166,10 +166,10 @@ class HealthFacility(models.Model):
         (PRIVATE_PRACTICE_MEDICAL_SPECIALIST, _('Private Practice - Medical Specialist')),
         (PRIVATE_PRACTICE_NURSE_MIDWIFE, _('Private Practice - Nurse / Midwife')),
         (PRIVATE_PRACTICE_UNSPECIFIED, _('Private Practice - Unspecified')),
-        (STATE_COORPORATION, _('State Coorporation')),
+        (STATE_COORPORATION, _('State Corporation')),
         (SUPKEM, _('Supreme Council for Kenya Muslims')),
         (T_FUND, _('T Fund')),
-        (UNKOWN, _('Unkown')),
+        (UNKOWN, _('Unknown')),
     ]
 
     created_on = models.DateTimeField(_("Created on"), auto_now_add=True)
@@ -209,7 +209,7 @@ class HealthFacility(models.Model):
     location_description = models.TextField(_("Description of Location"), default="", blank=True)
     nearest_town = models.CharField(_("Nearest Town"), max_length=255, blank=True, default="")
 
-    landline = PhoneNumberField(_('Official Landline'), max_length=255, blank=True)
+    landline = PhoneNumberField(_('Official Land-line'), max_length=255, blank=True)
     mobile = PhoneNumberField(_('Official Mobile'), max_length=255, blank=True)
     alternate_no = PhoneNumberField(
         _('Official Alternate Phone Number'), max_length=255, blank=True)
