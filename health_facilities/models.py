@@ -31,7 +31,7 @@ class HealthFacility(models.Model):
     LEVEL3 = 3
     LEVEL4 = 4
     LEVEL5 = 5
-    LEVEL5 = 6
+    LEVEL6 = 6
 
     LEVEL_CHOICES = [
         (LEVEL1, _("Level 1")),
