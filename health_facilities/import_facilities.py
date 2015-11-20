@@ -87,30 +87,29 @@ def import_health_facilities():
 
             if row[2]:
                 province, created = Province.objects.get_or_create(name=row[2].strip().upper())
+                facility.province = province
             if row[3]:
                 county, created = County.objects.get_or_create(name=row[3].strip().upper())
+                facility.county = county
             if row[4]:
                 district = District.objects.filter(name=row[4].strip().upper()).first()
                 if not district:
                     district, created = District.objects.get_or_create(name=row[4].strip().upper(), province=province)
+                facility.district = district
             if row[5]:
                 division, created = Division.objects.get_or_create(name=row[5].strip().upper(), district=district)
+                facility.division = division
             if row[11]:
                 constituency = Constituency.objects.filter(name=row[11].strip().upper()).first()
                 if not constituency:
                     constituency, created = Constituency.objects.get_or_create(name=row[11].strip().upper(), county=county)
+                facility.constituency = constituency
             if row[8]:
                 location, created = Location.objects.get_or_create(name=row[8].strip().upper(), division=division)
+                facility.location = location
             if row[9]:
                 sub_location, created = SubLocation.objects.get_or_create(name=row[9].strip().upper(), location=location)
-
-            facility.province = province
-            facility.county = county
-            facility.district = district
-            facility.division = division
-            facility.location = location
-            facility.sub_location = sub_location
-            facility.constituency = constituency
+                facility.sub_location = sub_location
 
             if row[6]:
                 facility.facility_type, created = FacilityType.objects.get_or_create(name=row[6].strip())
