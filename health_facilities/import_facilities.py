@@ -72,52 +72,51 @@ def import_health_facilities():
 
     with open(filename, "rb") as ifile:
         reader = csv.reader(ifile)
-        # other_type, created = FacilityType.objects.get_or_create(name="Other")
-        # other_owner, created = FacilityOwner.objects.get_or_create(name="Unknown")
+        other_type, created = FacilityType.objects.get_or_create(name="Other")
+        other_owner, created = FacilityOwner.objects.get_or_create(name="Unknown")
         for row in reader:
             print "{0} - {1}".format(row[0].strip(), row[1].strip())
-            # facility = HealthFacility.objects.get_or_create(int(row[0].strip())
             facility = HealthFacility()
 
             facility.facility_code = int(row[0].strip())
             facility.name = row[1].strip()
 
-            # if row[2]:
-            #     province, created = Province.objects.get_or_create(name=row[2].strip().upper())
-            # if row[3]:
-            #     county, created = County.objects.get_or_create(name=row[3].strip().upper())
-            # if row[4]:
-            #     district = District.objects.filter(name=row[4].strip().upper()).first()
-            #     if not district:
-            #         district, created = District.objects.get_or_create(name=row[4].strip().upper(), province=province)
-            # if row[5]:
-            #     division, created = Division.objects.get_or_create(name=row[5].strip().upper(), district=district)
-            # if row[11]:
-            #     constituency = Constituency.objects.filter(name=row[11].strip().upper()).first()
-            #     if not constituency:
-            #         constituency, created = Constituency.objects.get_or_create(name=row[11].strip().upper(), county=county)
-            # if row[8]:
-            #     location, created = Location.objects.get_or_create(name=row[8].strip().upper(), division=division)
-            # if row[9]:
-            #     sub_location, created = SubLocation.objects.get_or_create(name=row[9].strip().upper(), location=location)
+            if row[2]:
+                province, created = Province.objects.get_or_create(name=row[2].strip().upper())
+            if row[3]:
+                county, created = County.objects.get_or_create(name=row[3].strip().upper())
+            if row[4]:
+                district = District.objects.filter(name=row[4].strip().upper()).first()
+                if not district:
+                    district, created = District.objects.get_or_create(name=row[4].strip().upper(), province=province)
+            if row[5]:
+                division, created = Division.objects.get_or_create(name=row[5].strip().upper(), district=district)
+            if row[11]:
+                constituency = Constituency.objects.filter(name=row[11].strip().upper()).first()
+                if not constituency:
+                    constituency, created = Constituency.objects.get_or_create(name=row[11].strip().upper(), county=county)
+            if row[8]:
+                location, created = Location.objects.get_or_create(name=row[8].strip().upper(), division=division)
+            if row[9]:
+                sub_location, created = SubLocation.objects.get_or_create(name=row[9].strip().upper(), location=location)
 
-            # facility.province = province
-            # facility.county = county
-            # facility.district = district
-            # facility.division = division
-            # facility.location = location
-            # facility.sub_location = sub_location
-            # facility.constituency = constituency
+            facility.province = province
+            facility.county = county
+            facility.district = district
+            facility.division = division
+            facility.location = location
+            facility.sub_location = sub_location
+            facility.constituency = constituency
 
-            # if row[6]:
-            #     facility.facility_type, created = FacilityType.objects.get_or_create(name=row[6].strip())
-            # else:
-            #     facility.facility_type = other_type
+            if row[6]:
+                facility.facility_type, created = FacilityType.objects.get_or_create(name=row[6].strip())
+            else:
+                facility.facility_type = other_type
 
-            # if row[7]:
-            #     facility.owner, created = FacilityOwner.objects.get_or_create(name=row[7].strip())
-            # else:
-            #     facility.owner = other_owner
+            if row[7]:
+                facility.owner, created = FacilityOwner.objects.get_or_create(name=row[7].strip())
+            else:
+                facility.owner = other_owner
 
             if row[10]:
                 facility.location_description = row[10].strip()
@@ -184,3 +183,5 @@ def import_health_facilities():
             facility.tb_labs = prepare_null_bool(row[47].strip())
             facility.tb_treat = prepare_null_bool(row[48].strip())
             facility.youth = prepare_null_bool(row[49].strip())
+
+            facility.save()

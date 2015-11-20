@@ -44,15 +44,16 @@ def crawl():
             n += 1
             sleep(0.3)
             r = requests.get(url)
-            string = r.text
-            p = re.compile(r"GLatLng\(([0-9\.\-]+).*?([\.\-0-9]+)\)")
-            possible = p.findall(string)
-            if possible:
-                coordinate = possible[0]
-                point = Point(float(coordinate[1]), float(coordinate[0]))
-                result[code] = point
-            if n == 10:
-                break
+            if r.status_code == 200:
+                string = r.text
+                p = re.compile(r"GLatLng\(([0-9\.\-]+).*?([\.\-0-9]+)\)")
+                possible = p.findall(string)
+                if possible:
+                    coordinate = possible[0]
+                    point = Point(float(coordinate[1]), float(coordinate[0]))
+                    result[code] = point
+                # if n == 10:
+                #     break
     filename = "{}/documentation/data/coordinates.csv".format(settings.BASE_DIR)
     with open(filename, 'wb') as myfile:
         writer = csv.writer(myfile, quoting=csv.QUOTE_ALL)
