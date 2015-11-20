@@ -58,7 +58,7 @@ def prepare_null_bool(data):
 
 def import_health_facilities():
     """
-        IMport from laest ehealth.or.ke files
+        Import from laest ehealth.or.ke files
         Does not deal with:
             facility_number
             hmis
@@ -67,6 +67,10 @@ def import_health_facilities():
             agency
             plot_number
             description
+
+        Run:
+            from health_facilities.import_facilities import import_health_facilities
+            import_health_facilities()
     """
     filename = "{}/documentation/data/ehealth.csv".format(settings.BASE_DIR)
 

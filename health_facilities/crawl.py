@@ -35,6 +35,10 @@ def crawl():
         p = re.compile(r"GLatLng\(([0-9\.\-]+).*?([\.\-0-9]+)\)")
         p.findall(string)
         [('-3.38928', '38.56007'), ('-3.38928', '38.56007')]
+
+    Run:
+        from health_facilities.crawl import crawl
+        crawl()
     """
     result = {}
     urls = get_urls()

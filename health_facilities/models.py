@@ -224,10 +224,10 @@ class HealthFacility(models.Model):
         _("Facility Code"), unique=True, blank=True, null=True, default=None)
     facility_number = models.PositiveIntegerField(
         _("Facility Number"), unique=True, blank=True, null=True, default=None)
-    hmis = models.PositiveIntegerField(_("HMIS"), unique=True, blank=True, null=True, default=None)
+    hmis = models.PositiveIntegerField(_("HMIS"), blank=True, null=True, default=None)
     level = models.PositiveIntegerField(_("KEPH Level"), choices=LEVEL_CHOICES, default=UNKOWN)
     facility_class = models.PositiveIntegerField(
-        _("Facility Classification"), unique=True, blank=True, null=True, default=None)
+        _("Facility Classification"), blank=True, null=True, default=None)
     facility_type = models.ForeignKey(FacilityType, verbose_name=_("Type"), on_delete=models.PROTECT)
     owner = models.ForeignKey(FacilityOwner, verbose_name=_("Owner"), on_delete=models.PROTECT)
     agency = models.PositiveIntegerField(_("Agency"), choices=AGENCY_CHOICES, default=NA)
@@ -275,8 +275,8 @@ class HealthFacility(models.Model):
     in_charge_title = models.CharField(
         _("Job Title of in Charge"), max_length=255, blank=True, default="")
 
-    beds = models.PositiveIntegerField(_("Beds"), unique=True, blank=True, null=True, default=None)
-    cots = models.PositiveIntegerField(_("Cots"), unique=True, blank=True, null=True, default=None)
+    beds = models.PositiveIntegerField(_("Beds"), blank=True, null=True, default=None)
+    cots = models.PositiveIntegerField(_("Cots"), blank=True, null=True, default=None)
 
     twenty_four_hour = models.NullBooleanField(_("Open 24 Hours"), default=None)
     open_weekends = models.NullBooleanField(_("Open Weekends"), default=None)
