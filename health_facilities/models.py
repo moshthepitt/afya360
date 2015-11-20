@@ -14,13 +14,155 @@ class GeoFacilityManager(models.GeoManager):
     pass
 
 
+class FacilityOwner(models.Model):
+    """
+    Choice field converted to model as it was too dynamic
+    Previously:
+        ACADEMIC = 1
+        ARMED_FORCES = 2
+        CHRISTIAN_HEALTH_ASSOCIATION_OF_KENYA = 3
+        COMMUNITY = 4
+        COMPANY_MEDICAL_SERVICE = 5
+        DEVELOPMENT_FUND = 6
+        HUMANITARIAN_AGENCIES = 7
+        KENYA_EPISCOPAL_CONFERENCE_CATHOLIC_SECRETARIAT = 8
+        LOCAL_AUTHORITY = 9
+        MINISTRY_OF_HEALTH = 10
+        OTHER_FAITH_BASED = 12
+        OTHER_PUBLIC_INSTITUTION = 13
+        PARASTATAL = 14
+        PRIVATE_ENTERPRISE = 15
+        PRIVATE_PRACTICE_CLINICAL_OFFICER = 16
+        PRIVATE_PRACTICE_GENERAL_PRACTITIONER = 17
+        PRIVATE_PRACTICE_MEDICAL_SPECIALIST = 18
+        PRIVATE_PRACTICE_NURSE_MIDWIFE = 19
+        PRIVATE_PRACTICE_UNSPECIFIED = 20
+        STATE_COORPORATION = 21
+        SUPKEM = 22
+        T_FUND = 23
+        LOCAL_T_FUND = 24
+
+        OWNER_CHOICES = [
+            (ACADEMIC, _('Academic (if registered)')),
+            (ARMED_FORCES, _('Armed Forces')),
+            (CHRISTIAN_HEALTH_ASSOCIATION_OF_KENYA, _('Christian Health Association of Kenya')),
+            (COMMUNITY, _('Community')),
+            (CDF, _("Community Development Fund")),
+            (COMPANY_MEDICAL_SERVICE, _('Company Medical Service')),
+            (DEVELOPMENT_FUND, _('Development Fund')),
+            (HUMANITARIAN_AGENCIES, _('Humanitarian Agencies')),
+            (KENYA_EPISCOPAL_CONFERENCE_CATHOLIC_SECRETARIAT,
+             _('Kenya Episcopal Conference-Catholic Secretariat')),
+            (LOCAL_AUTHORITY, _('Local Authority')),
+            (MINISTRY_OF_HEALTH, _('Ministry of Health')),
+            (NGO, _('Non-Governmental Organizations')),
+            (OTHER_FAITH_BASED, _('Other Faith Based')),
+            (OTHER_PUBLIC_INSTITUTION, _('Other Public Institution')),
+            (PARASTATAL, _('Parastatal')),
+            (PRIVATE_ENTERPRISE, _('Private Enterprise (Institution)')),
+            (PRIVATE_PRACTICE_CLINICAL_OFFICER, _('Private Practice - Clinical Officer')),
+            (PRIVATE_PRACTICE_GENERAL_PRACTITIONER, _('Private Practice - General Practitioner')),
+            (PRIVATE_PRACTICE_MEDICAL_SPECIALIST, _('Private Practice - Medical Specialist')),
+            (PRIVATE_PRACTICE_NURSE_MIDWIFE, _('Private Practice - Nurse / Midwife')),
+            (PRIVATE_PRACTICE_UNSPECIFIED, _('Private Practice - Unspecified')),
+            (STATE_COORPORATION, _('State Coorporation')),
+            (SUPKEM, _('Supreme Council for Kenya Muslims')),
+            (T_FUND, _('T Fund')),
+            (LOCAL_T_FUND, _('Local Authority T Fund')),
+            (UNKOWN, _('Unknown')),
+        ]
+    """
+    created_on = models.DateTimeField(_("Created on"), auto_now_add=True)
+    updated_on = models.DateTimeField(_("Updated on"), auto_now=True)
+    name = models.CharField(_("Name"), max_length=255, blank=False)
+
+    class Meta:
+        verbose_name = _("Facility Owner")
+        verbose_name_plural = _("Facility Owners")
+
+    def __str__(self):
+        return self.name
+
+
+class FacilityType(models.Model):
+    """
+    Choice field converted to model as it was too dynamic
+
+    Previously:
+        BLOOD_BANK = 1
+        DENTAL_CLINIC = 2
+        DISPENSARY = 3
+        DISTRICT_HEALTH_OFFICE = 4
+        DISTRICT_HOSPITAL = 5
+        EYE_CENTRE = 6
+        EYE_CLINIC = 7
+        HEALTH_CENTRE = 8
+        HEALTH_PROGRAMME = 9
+        HEALTH_PROJECT = 10
+        LABORATORY = 11
+        MATERNITY_HOME = 12
+        MEDICAL_CENTRE = 13
+        MEDICAL_CLINIC = 14
+        MEDICAL_CLINIC = 15
+        NURSING_HOME = 16
+        OTHER_HOSPITAL = 18
+        PROVINCIAL_GENERAL_HOSPITAL = 19
+        RADIOLOGY_UNIT = 20
+        SUB_DISTRICT_HOSPITAL = 21
+        TRAINING_INSTITUTION_IN_HEALTH = 22
+        VCT_CENTRE = 23
+        NATIONAL_REFERRAL_HOSPITAL = 24
+        REGIONAL_BLOOD_TRANSFUSION_CENTRE = 25
+
+        TYPE_CHOICES = [
+            (BLOOD_BANK, _('Blood Bank')),
+            (CDF, _("Community Development Fund")),
+            (DENTAL_CLINIC, _('Dental Clinic')),
+            (DISPENSARY, _('Dispensary')),
+            (DISTRICT_HEALTH_OFFICE, _('District Health Office')),
+            (DISTRICT_HOSPITAL, _('District Hospital')),
+            (EYE_CENTRE, _('Eye Centre')),
+            (EYE_CLINIC, _('Eye Clinic')),
+            (HEALTH_CENTRE, _('Health Centre')),
+            (HEALTH_PROGRAMME, _('Health Programme')),
+            (HEALTH_PROJECT, _('Health Project')),
+            (LABORATORY, _('Laboratory (Stand-alone)')),
+            (MATERNITY_HOME, _('Maternity Home')),
+            (MEDICAL_CENTRE, _('Medical Centre')),
+            (MEDICAL_CLINIC, _('Medical Clinic')),
+            (MEDICAL_CLINIC, _('Medical Clinic')),
+            (NATIONAL_REFERRAL_HOSPITAL, _("National Referral Hospital")),
+            (NURSING_HOME, _('Nursing Home')),
+            (OTHER, _('Other')),
+            (OTHER_HOSPITAL, _('Other Hospital')),
+            (PROVINCIAL_GENERAL_HOSPITAL, _('Provincial General Hospital')),
+            (RADIOLOGY_UNIT, _('Radiology Unit')),
+            (REGIONAL_BLOOD_TRANSFUSION_CENTRE, _("Regional Blood Transfusion Centre"))
+            (SUB_DISTRICT_HOSPITAL, _('Sub-District Hospital')),
+            (TRAINING_INSTITUTION_IN_HEALTH, _('Training Institution in Health (Stand-alone)')),
+            (VCT_CENTRE, _('VCT Centre (Stand-Alone)')),
+        ]
+
+    """
+    created_on = models.DateTimeField(_("Created on"), auto_now_add=True)
+    updated_on = models.DateTimeField(_("Updated on"), auto_now=True)
+    name = models.CharField(_("Name"), max_length=255, blank=False)
+
+    class Meta:
+        verbose_name = _("Facility Type")
+        verbose_name_plural = _("Facility Types")
+
+    def __str__(self):
+        return self.name
+
+
 @python_2_unicode_compatible
 class HealthFacility(models.Model):
 
     """
     This model stores info. abut health facilities
     """
-
+    CDF = 995
     NGO = 996
     OTHER = 997
     NA = 998
@@ -41,55 +183,6 @@ class HealthFacility(models.Model):
         (LEVEL5, _("Level 5")),
         (LEVEL6, _("Level 6")),
         (UNKOWN, _("Not Classified")),
-    ]
-
-    BLOOD_BANK = 1
-    DENTAL_CLINIC = 2
-    DISPENSARY = 3
-    DISTRICT_HEALTH_OFFICE = 4
-    DISTRICT_HOSPITAL = 5
-    EYE_CENTRE = 6
-    EYE_CLINIC = 7
-    HEALTH_CENTRE = 8
-    HEALTH_PROGRAMME = 9
-    HEALTH_PROJECT = 10
-    LABORATORY = 11
-    MATERNITY_HOME = 12
-    MEDICAL_CENTRE = 13
-    MEDICAL_CLINIC = 14
-    MEDICAL_CLINIC = 15
-    NURSING_HOME = 16
-    OTHER_HOSPITAL = 18
-    PROVINCIAL_GENERAL_HOSPITAL = 19
-    RADIOLOGY_UNIT = 20
-    SUB_DISTRICT_HOSPITAL = 21
-    TRAINING_INSTITUTION_IN_HEALTH = 22
-    VCT_CENTRE = 23
-
-    TYPE_CHOICES = [
-        (BLOOD_BANK, _('Blood Bank')),
-        (DENTAL_CLINIC, _('Dental Clinic')),
-        (DISPENSARY, _('Dispensary')),
-        (DISTRICT_HEALTH_OFFICE, _('District Health Office')),
-        (DISTRICT_HOSPITAL, _('District Hospital')),
-        (EYE_CENTRE, _('Eye Centre')),
-        (EYE_CLINIC, _('Eye Clinic')),
-        (HEALTH_CENTRE, _('Health Centre')),
-        (HEALTH_PROGRAMME, _('Health Programme')),
-        (HEALTH_PROJECT, _('Health Project')),
-        (LABORATORY, _('Laboratory (Stand-alone)')),
-        (MATERNITY_HOME, _('Maternity Home')),
-        (MEDICAL_CENTRE, _('Medical Centre')),
-        (MEDICAL_CLINIC, _('Medical Clinic')),
-        (MEDICAL_CLINIC, _('Medical Clinic')),
-        (NURSING_HOME, _('Nursing Home')),
-        (OTHER, _('Other')),
-        (OTHER_HOSPITAL, _('Other Hospital    ')),
-        (PROVINCIAL_GENERAL_HOSPITAL, _('Provincial General Hospital')),
-        (RADIOLOGY_UNIT, _('Radiology Unit')),
-        (SUB_DISTRICT_HOSPITAL, _('Sub-District Hospital')),
-        (TRAINING_INSTITUTION_IN_HEALTH, _('Training Institution in Health (Stand-alone)')),
-        (VCT_CENTRE, _('VCT Centre (Stand-Alone)')),
     ]
 
     AF = 1
@@ -121,57 +214,6 @@ class HealthFacility(models.Model):
         (UNKOWN, _('Unknown')),
     ]
 
-    ACADEMIC = 1
-    ARMED_FORCES = 2
-    CHRISTIAN_HEALTH_ASSOCIATION_OF_KENYA = 3
-    COMMUNITY = 4
-    COMPANY_MEDICAL_SERVICE = 5
-    DEVELOPMENT_FUND = 6
-    HUMANITARIAN_AGENCIES = 7
-    KENYA_EPISCOPAL_CONFERENCE_CATHOLIC_SECRETARIAT = 8
-    LOCAL_AUTHORITY = 9
-    MINISTRY_OF_HEALTH = 10
-    OTHER_FAITH_BASED = 12
-    OTHER_PUBLIC_INSTITUTION = 13
-    PARASTATAL = 14
-    PRIVATE_ENTERPRISE = 15
-    PRIVATE_PRACTICE_CLINICAL_OFFICER = 16
-    PRIVATE_PRACTICE_GENERAL_PRACTITIONER = 17
-    PRIVATE_PRACTICE_MEDICAL_SPECIALIST = 18
-    PRIVATE_PRACTICE_NURSE_MIDWIFE = 19
-    PRIVATE_PRACTICE_UNSPECIFIED = 20
-    STATE_COORPORATION = 21
-    SUPKEM = 22
-    T_FUND = 23
-
-    OWNER_CHOICES = [
-        (ACADEMIC, _('Academic (if registered)')),
-        (ARMED_FORCES, _('Armed Forces')),
-        (CHRISTIAN_HEALTH_ASSOCIATION_OF_KENYA, _('Christian Health Association of Kenya')),
-        (COMMUNITY, _('Community')),
-        (COMPANY_MEDICAL_SERVICE, _('Company Medical Service')),
-        (DEVELOPMENT_FUND, _('Development Fund')),
-        (HUMANITARIAN_AGENCIES, _('Humanitarian Agencies')),
-        (KENYA_EPISCOPAL_CONFERENCE_CATHOLIC_SECRETARIAT,
-         _('Kenya Episcopal Conference-Catholic Secretariat')),
-        (LOCAL_AUTHORITY, _('Local Authority')),
-        (MINISTRY_OF_HEALTH, _('Ministry of Health')),
-        (NGO, _('Non-Governmental Organizations')),
-        (OTHER_FAITH_BASED, _('Other Faith Based')),
-        (OTHER_PUBLIC_INSTITUTION, _('Other Public Institution')),
-        (PARASTATAL, _('Parastatal')),
-        (PRIVATE_ENTERPRISE, _('Private Enterprise (Institution)')),
-        (PRIVATE_PRACTICE_CLINICAL_OFFICER, _('Private Practice - Clinical Officer')),
-        (PRIVATE_PRACTICE_GENERAL_PRACTITIONER, _('Private Practice - General Practitioner')),
-        (PRIVATE_PRACTICE_MEDICAL_SPECIALIST, _('Private Practice - Medical Specialist')),
-        (PRIVATE_PRACTICE_NURSE_MIDWIFE, _('Private Practice - Nurse / Midwife')),
-        (PRIVATE_PRACTICE_UNSPECIFIED, _('Private Practice - Unspecified')),
-        (STATE_COORPORATION, _('State Corporation')),
-        (SUPKEM, _('Supreme Council for Kenya Muslims')),
-        (T_FUND, _('T Fund')),
-        (UNKOWN, _('Unknown')),
-    ]
-
     created_on = models.DateTimeField(_("Created on"), auto_now_add=True)
     updated_on = models.DateTimeField(_("Updated on"), auto_now=True)
     name = models.CharField(_("Facility Name"), max_length=255, blank=False)
@@ -186,8 +228,8 @@ class HealthFacility(models.Model):
     level = models.PositiveIntegerField(_("KEPH Level"), choices=LEVEL_CHOICES, default=UNKOWN)
     facility_class = models.PositiveIntegerField(
         _("Facility Classification"), unique=True, blank=True, null=True, default=None)
-    facility_type = models.PositiveIntegerField(_("Type"), choices=TYPE_CHOICES, default=OTHER)
-    owner = models.PositiveIntegerField(_("Owner"), choices=OWNER_CHOICES, default=UNKOWN)
+    facility_type = models.ForeignKey(FacilityType, verbose_name=_("Type"), on_delete=models.PROTECT)
+    owner = models.ForeignKey(FacilityOwner, verbose_name=_("Owner"), on_delete=models.PROTECT)
     agency = models.PositiveIntegerField(_("Agency"), choices=AGENCY_CHOICES, default=NA)
     status = models.PositiveIntegerField(
         _("Operational Status"), choices=STATUS_CHOICES, default=OPERATIONAL)
@@ -209,11 +251,19 @@ class HealthFacility(models.Model):
     location_description = models.TextField(_("Description of Location"), default="", blank=True)
     nearest_town = models.CharField(_("Nearest Town"), max_length=255, blank=True, default="")
 
+    # this fields are validated real phone numbers
     landline = PhoneNumberField(_('Official Land-line'), max_length=255, blank=True)
     mobile = PhoneNumberField(_('Official Mobile'), max_length=255, blank=True)
     alternate_no = PhoneNumberField(
         _('Official Alternate Phone Number'), max_length=255, blank=True)
     fax = PhoneNumberField(_('Official Fax'), max_length=255, blank=True)
+
+    # these are not validated real phone numbers
+    # they are used when importing data and the provided number fails validation
+    landline_unverified = models.CharField(_('Official Land-line'), max_length=50, blank=True, default="")
+    mobile_unverified = models.CharField(_('Official Mobile Unverified'), max_length=50, blank=True, default="")
+    alternate_no_unverified = models.CharField(_('Official Alternate Phone Number Unverified'), max_length=50, blank=True, default="")
+    fax_unverified = models.CharField(_('Official Fax Unverified'), max_length=50, blank=True, default="")
 
     email = models.EmailField(_("Official Email"), max_length=255, blank=True)
 
