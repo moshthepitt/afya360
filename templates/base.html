@@ -87,11 +87,11 @@
     </footer>
 
     {% compress js %}
-    <script src="{% static 'js/jquery.min.js' %}" async></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}" async></script>
-    <script src="{% static 'js/scripts.js' %}" async></script>   
+    <script src="{% static 'js/jquery.min.js' %}" defer></script>
+    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}" defer></script>
+    <script src="{% static 'js/scripts.js' %}" defer></script>   
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}" async></script>
+    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}" defer></script>
 
     {% block extrajs %}{% endblock %}
     {% endcompress %}
