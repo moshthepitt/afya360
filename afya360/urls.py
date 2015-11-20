@@ -8,6 +8,7 @@ from core.views import HomePageView
 from places.views import ProvinceViewSet, CountyViewSet, ConstituencyViewSet
 from places.views import DistrictViewSet, DivisionViewSet, LocationViewSet
 from places.views import SubLocationViewSet
+from health_facilities.views import HealthFacilityViewSet
 
 router = routers.SimpleRouter()
 router.register(r'provinces', ProvinceViewSet)
@@ -17,6 +18,7 @@ router.register(r'divisions', DivisionViewSet)
 router.register(r'districts', DistrictViewSet)
 router.register(r'locations', LocationViewSet)
 router.register(r'sub-locations', SubLocationViewSet)
+router.register(r'health-facilities', HealthFacilityViewSet)
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),

@@ -11,10 +11,23 @@ from places.models import Division, Location, SubLocation
 
 
 class GeoFacilityManager(models.GeoManager):
-    pass
+
+    def get_queryset(self):
+        return super(GeoFacilityManager, self).get_queryset().select_related(
+            'owner',
+            'facility_type',
+            'county',
+            'province',
+            'district',
+            'division',
+            'location',
+            'sub_location',
+            'constituency'
+        )
 
 
 class FacilityOwner(models.Model):
+
     """
     Choice field converted to model as it was too dynamic
     Previously:
@@ -86,6 +99,7 @@ class FacilityOwner(models.Model):
 
 
 class FacilityType(models.Model):
+
     """
     Choice field converted to model as it was too dynamic
 
@@ -230,7 +244,8 @@ class HealthFacility(models.Model):
     level = models.PositiveIntegerField(_("KEPH Level"), choices=LEVEL_CHOICES, default=UNKOWN)
     facility_class = models.PositiveIntegerField(
         _("Facility Classification"), blank=True, null=True, default=None)
-    facility_type = models.ForeignKey(FacilityType, verbose_name=_("Type"), on_delete=models.PROTECT)
+    facility_type = models.ForeignKey(
+        FacilityType, verbose_name=_("Type"), on_delete=models.PROTECT)
     owner = models.ForeignKey(FacilityOwner, verbose_name=_("Owner"), on_delete=models.PROTECT)
     agency = models.PositiveIntegerField(_("Agency"), choices=AGENCY_CHOICES, default=NA)
     status = models.PositiveIntegerField(
@@ -262,10 +277,14 @@ class HealthFacility(models.Model):
 
     # these are not validated real phone numbers
     # they are used when importing data and the provided number fails validation
-    landline_unverified = models.CharField(_('Official Land-line Unverified'), max_length=50, blank=True, default="")
-    mobile_unverified = models.CharField(_('Official Mobile Unverified'), max_length=50, blank=True, default="")
-    alternate_no_unverified = models.CharField(_('Official Alternate Phone Number Unverified'), max_length=50, blank=True, default="")
-    fax_unverified = models.CharField(_('Official Fax Unverified'), max_length=50, blank=True, default="")
+    landline_unverified = models.CharField(
+        _('Official Land-line Unverified'), max_length=50, blank=True, default="")
+    mobile_unverified = models.CharField(
+        _('Official Mobile Unverified'), max_length=50, blank=True, default="")
+    alternate_no_unverified = models.CharField(
+        _('Official Alternate Phone Number Unverified'), max_length=50, blank=True, default="")
+    fax_unverified = models.CharField(
+        _('Official Fax Unverified'), max_length=50, blank=True, default="")
 
     email = models.EmailField(_("Official Email"), max_length=255, blank=True)
 
@@ -284,12 +303,15 @@ class HealthFacility(models.Model):
     open_weekends = models.NullBooleanField(_("Open Weekends"), default=None)
     anc = models.NullBooleanField(_("ANC"), default=None, help_text=_("Antenatal Care"))
     art = models.NullBooleanField(_("ART"), default=None, help_text=_("Anti-retroviral Therapy"))
-    beoc = models.NullBooleanField(_("BEOC"), default=None, help_text=_("Basic Essential Obstetric Care"))
+    beoc = models.NullBooleanField(
+        _("BEOC"), default=None, help_text=_("Basic Essential Obstetric Care"))
     blood = models.NullBooleanField(_("BLOOD"), default=None, help_text=_("Blood Transfusion"))
     caes_sec = models.NullBooleanField(_("CAES SEC"), default=None, help_text=_(""))
     ceoc = models.NullBooleanField(_("CEOC"), default=None, help_text=_(""))
-    cimci = models.NullBooleanField(_("C-IMCI"), default=None, help_text=_("Community Integrated Management of Childhood Illness"))
-    epi = models.NullBooleanField(_("EPI"), default=None, help_text=_("Expanded Program on Immunization"))
+    cimci = models.NullBooleanField(
+        _("C-IMCI"), default=None, help_text=_("Community Integrated Management of Childhood Illness"))
+    epi = models.NullBooleanField(
+        _("EPI"), default=None, help_text=_("Expanded Program on Immunization"))
     fp = models.NullBooleanField(_("FP"), default=None, help_text=_("Family Planning"))
     growm = models.NullBooleanField(_("GROWM"), default=None, help_text=_(""))
     hbc = models.NullBooleanField(_("HBC"), default=None, help_text=_("Home Based Care"))
@@ -297,8 +319,10 @@ class HealthFacility(models.Model):
     ipd = models.NullBooleanField(_("IPD"), default=None, help_text=_("Inpatient Department"))
     opd = models.NullBooleanField(_("OPD"), default=None, help_text=_("Outpatient Department"))
     outreach = models.NullBooleanField(_("Outreach"), default=None, help_text=_(""))
-    pmtct = models.NullBooleanField(_("PMTCT"), default=None, help_text=_("Prevention of Mother-to-child Transmission of HIV"))
-    rad_xray = models.NullBooleanField(_("RAD/XRAY"), default=None, help_text=_("Radiography / X-Ray"))
+    pmtct = models.NullBooleanField(
+        _("PMTCT"), default=None, help_text=_("Prevention of Mother-to-child Transmission of HIV"))
+    rad_xray = models.NullBooleanField(
+        _("RAD/XRAY"), default=None, help_text=_("Radiography / X-Ray"))
     rhtc_rhdc = models.NullBooleanField(_("RHTC/RHDC"), default=None, help_text=_(""))
     tb_diag = models.NullBooleanField(_("TB Diagnosis"), default=None, help_text=_(""))
     tb_labs = models.NullBooleanField(_("TB Labs"), default=None, help_text=_(""))
