@@ -1,10 +1,12 @@
 from django.db import models
 from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
+from django.utils.encoding import python_2_unicode_compatible
 
 from autoslug import AutoSlugField
 
 
+@python_2_unicode_compatible
 class PlaceModel(models.Model):
 
     """
@@ -28,7 +30,7 @@ class PlaceModel(models.Model):
         from schools.models import School
         return self.school_set.filter(level=School.SECONDARY).count()
 
-    def __unicode__(self):
+    def __str__(self):
         return self.name
 
     class Meta:

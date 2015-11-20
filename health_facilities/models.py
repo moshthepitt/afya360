@@ -79,6 +79,7 @@ class FacilityOwner(models.Model):
     class Meta:
         verbose_name = _("Facility Owner")
         verbose_name_plural = _("Facility Owners")
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -151,6 +152,7 @@ class FacilityType(models.Model):
     class Meta:
         verbose_name = _("Facility Type")
         verbose_name_plural = _("Facility Types")
+        ordering = ['name']
 
     def __str__(self):
         return self.name
@@ -260,7 +262,7 @@ class HealthFacility(models.Model):
 
     # these are not validated real phone numbers
     # they are used when importing data and the provided number fails validation
-    landline_unverified = models.CharField(_('Official Land-line'), max_length=50, blank=True, default="")
+    landline_unverified = models.CharField(_('Official Land-line Unverified'), max_length=50, blank=True, default="")
     mobile_unverified = models.CharField(_('Official Mobile Unverified'), max_length=50, blank=True, default="")
     alternate_no_unverified = models.CharField(_('Official Alternate Phone Number Unverified'), max_length=50, blank=True, default="")
     fax_unverified = models.CharField(_('Official Fax Unverified'), max_length=50, blank=True, default="")
@@ -325,6 +327,7 @@ class HealthFacility(models.Model):
     class Meta:
         verbose_name = _("Health Facility")
         verbose_name_plural = _("Health Facilities")
+        ordering = ['name']
 
     def __str__(self):
         return self.name

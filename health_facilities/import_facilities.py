@@ -33,7 +33,7 @@ def prepare_phone(data):
     try:
         phone = phonenumbers.parse(possible_bumber, "KE")
         if phonenumbers.is_valid_number(phone):
-            return "+254{}{}".format(phone.country_code, phone.national_number)
+            return "+{}{}".format(phone.country_code, phone.national_number)
     except:
         pass
     return ""
