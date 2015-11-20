@@ -188,3 +188,30 @@ def import_health_facilities():
             facility.youth = prepare_null_bool(row[49].strip())
 
             facility.save()
+
+
+def import_coordinates():
+    """
+        Reads a list of facility_code and coordinates
+        Imports coordinates for each facility
+
+        Run:
+            from health_facilities.import_facilities import import_coordinates
+            import_coordinates()
+    """
+    filename = "{}/documentation/data/coordinates.csv".format(settings.BASE_DIR)
+
+    with open(filename, "rb") as ifile:
+        reader = csv.reader(ifile)
+        for row in reader:
+            code = int(row[0])
+            coords = eval(row[1])
+            print code
+            try:
+                facility = HealthFacility.objects.get(facility_code=code)
+            except HealthFacility.DoesNotExist:
+                facility = None
+            else:
+                if facility and coords:
+                    facility.coordinates = Point(coords)
+                    facility.save()
