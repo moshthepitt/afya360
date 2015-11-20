@@ -87,11 +87,18 @@
     </footer>
 
     {% compress js %}
-    <script src="{% static 'js/jquery.min.js' %}" defer></script>
-    <script src="{% static 'bootstrap/js/bootstrap.min.js' %}" defer></script>
-    <script src="{% static 'js/scripts.js' %}" defer></script>   
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}" defer></script>
+
+    <script type="text/javascript" src="{% static 'bower_components/underscore/underscore-min.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'bower_components/angular/angular.min.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'bower_components/angular-route/angular-route.min.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'bower_components/angular-cookies/angular-cookies.min.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'bower_components/ngDialog/js/ngDialog.min.js' %}" defer></script>
+
+    <script type="text/javascript" src="{% static 'js/scripts.js' %}" defer></script>   
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="{% static 'js/ie10-viewport-bug-workaround.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'js/ie10-viewport-bug-workaround.js' %}" defer></script>
 
     {% block extrajs %}{% endblock %}
     {% endcompress %}
