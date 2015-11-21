@@ -26,7 +26,7 @@ urlpatterns = [
     # url(r'^accounts/', include('allauth.urls')),
     # url(r'^page/', include('django.contrib.flatpages.urls')),
 
-    url(r'^$', HomePageView.as_view(), name='home'),
+    url(r'^.*$', HomePageView.as_view(), name='home'),
 ]
 
 if settings.DEBUG:
