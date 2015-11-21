@@ -9,13 +9,13 @@
     .module('afya360.facilities.services')
     .factory('Facilities', Facilities);
 
-  Facilities.$inject = ['$http'];
+  Facilities.$inject = ['$http', 'djResource'];
 
   /**
   * @namespace Facilities
   * @returns {Factory}
   */
-  function Facilities($http) {
+  function Facilities($http, djResource) {
     var Facilities = {
       all: all,
     };
@@ -31,7 +31,10 @@
     * @memberOf afya360.facilities.services.Facilities
     */
     function all() {
-      return $http.get('/api/v1/health-facilities/?format=json');
+      var x = djResource('/api/v1/provinces/?format=json');
+      // console.log(x.query());
+      return x.query({limit:2});
+      // return $http.get('/api/v1/provinces/?format=json');
     }
   }
 })();

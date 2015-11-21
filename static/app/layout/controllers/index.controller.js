@@ -6,20 +6,22 @@
   'use strict';
 
   angular
-    .module('afya360.layout.controllers')
-    .controller('IndexController', IndexController);
+  .module('afya360.layout.controllers')
+  .controller('IndexController', IndexController);
 
-  IndexController.$inject = ['$scope', 'Facilities'];
+  IndexController.$inject = ['$scope', 'Facilities', 'djResource'];
 
   /**
   * @namespace IndexController
   */
-  function IndexController($scope, Facilities) {
+  function IndexController($scope, Facilities, djResource) {
     var vm = this;
 
-    vm.facilities = [];
+    var Animal = djResource('api/v1/provinces/:id/', {'id': "@id"});
+    vm.facilities = Animal.query({limit:2});
+    // vm.facilities = [];
 
-    activate();
+    // activate();
 
     /**
     * @name activate
@@ -27,7 +29,7 @@
     * @memberOf afya360.layout.controllers.IndexController
     */
     function activate() {      
-      Facilities.all().then(facilitiesSuccessFn, facilitiesErrorFn);
+      vm.facilities = Facilities.all(); //.then(facilitiesSuccessFn, facilitiesErrorFn);
 
       /**
       * @name facilitiesSuccessFn

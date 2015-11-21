@@ -19,7 +19,7 @@
     * @memberOf afya360.facilities.directives.Posts
     */
     var directive = {
-      controller: 'PostsController',
+      controller: 'FacilitiesController',
       controllerAs: 'vm',
       restrict: 'E',
       scope: {

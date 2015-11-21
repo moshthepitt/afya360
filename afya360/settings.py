@@ -183,6 +183,12 @@ CACHEOPS = {
     '*.*': ('all', 60 * 10),
 }
 
+# REST_FRAMEWORK
+REST_FRAMEWORK = {
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGINATE_BY': 18
+}
+
 try:
     from local_settings import *
 except ImportError, e:

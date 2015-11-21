@@ -14,10 +14,15 @@
   function config($routeProvider) {
     $routeProvider
     .when('/', {
-      controller: 'IndexController',
+      controller: 'HomeController',
       controllerAs: 'vm',
-      templateUrl: '/static/templates/layout/index.html'
+      templateUrl: '/static/templates/layout/home.html'
     })
+    // .when('/', {
+    //   controller: 'IndexController',
+    //   controllerAs: 'vm',
+    //   templateUrl: '/static/templates/layout/index.html'
+    // })
     .otherwise('/');
   }
 })();

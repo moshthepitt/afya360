@@ -1,5 +1,5 @@
 /**
-* PostsController
+* FacilitiesController
 * @namespace afya360.facilities.controllers
 */
 (function () {
@@ -7,14 +7,14 @@
 
   angular
     .module('afya360.facilities.controllers')
-    .controller('PostsController', PostsController);
+    .controller('FacilitiesController', FacilitiesController);
 
-  PostsController.$inject = ['$scope'];
+  FacilitiesController.$inject = ['$scope'];
 
   /**
-  * @namespace PostsController
+  * @namespace FacilitiesController
   */
-  function PostsController($scope) {
+  function FacilitiesController($scope) {
     var vm = this;
 
     vm.columns = [];
@@ -25,7 +25,7 @@
     /**
     * @name activate
     * @desc Actions to be performed when this controller is instantiated
-    * @memberOf afya360.facilities.controllers.PostsController
+    * @memberOf afya360.facilities.controllers.FacilitiesController
     */
     function activate() {
       $scope.$watchCollection(function () { return $scope.facilities; }, render);
@@ -37,7 +37,7 @@
     * @name calculateNumberOfColumns
     * @desc Calculate number of columns based on screen width
     * @returns {Number} The number of columns containing Posts
-    * @memberOf afya360.facilities.controllers.PostsControllers
+    * @memberOf afya360.facilities.controllers.FacilitiesControllers
     */
     function calculateNumberOfColumns() {
       var width = $(window).width();
@@ -58,7 +58,7 @@
     * @name approximateShortestColumn
     * @desc An algorithm for approximating which column is shortest
     * @returns The index of the shortest column
-    * @memberOf afya360.facilities.controllers.PostsController
+    * @memberOf afya360.facilities.controllers.FacilitiesController
     */
     function approximateShortestColumn() {
       var scores = vm.columns.map(columnMapFn);
@@ -98,7 +98,7 @@
     * @desc Renders Posts into columns of approximately equal height
     * @param {Array} current The current value of `vm.facilities`
     * @param {Array} original The value of `vm.facilities` before it was updated
-    * @memberOf afya360.facilities.controllers.PostsController
+    * @memberOf afya360.facilities.controllers.FacilitiesController
     */
     function render(current, original) {
       if (current !== original) {
