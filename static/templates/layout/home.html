@@ -3,4 +3,5 @@ Animals retrieved from the server so far: ({{ vm.facilities.length }}):
     <li ng-repeat="animal in vm.facilities" class="organism-box">{{animal.name}}</li>
 </ul>
 
-<a href="javascript:void(0)" ng-click="vm.next(vm.offest + 1)" class="btn btn-success">Next</a>
+<a href="javascript:void(0)" ng-click="vm.back()" ng-show="vm.can_go_back" class="btn btn-success">Back</a>
+<a href="javascript:void(0)" ng-click="vm.next()" ng-show="vm.facilities.length" class="btn btn-success">Next</a>

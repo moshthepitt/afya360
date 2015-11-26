@@ -9,13 +9,24 @@
     .module('afya360.facilities.services')
     .factory('Facilities', Facilities);
 
-  Facilities.$inject = ['$http', 'djResource'];
+  Facilities.$inject = ['$http', 'Restangular'];
 
   /**
   * @namespace Facilities
   * @returns {Factory}
   */
-  function Facilities($http, djResource) {
+  function Facilities($http, Restangular) {
+    Restangular.setBaseUrl('/api/v1');
+    Restangular.setDefaultRequestParams('get', {limit: 20});
+
+    Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
+        if (operation === 'getList') {
+            var newResponse = data.results;
+            return newResponse;
+        }
+        return data;
+    });
+
     var Facilities = {
       all: all,
     };
@@ -31,10 +42,8 @@
     * @memberOf afya360.facilities.services.Facilities
     */
     function all() {
-      var x = djResource('/api/v1/provinces/?format=json');
-      // console.log(x.query());
-      return x.query({limit:2});
-      // return $http.get('/api/v1/provinces/?format=json');
+      // return Restangular.all('health-facilities/').getList({offset:0}).$object;
+      return Restangular.all('health-facilities/').getList({offset:0});
     }
   }
 })();

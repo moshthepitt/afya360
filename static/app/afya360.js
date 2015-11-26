@@ -6,7 +6,7 @@
 			'afya360.config',	
 			'afya360.routes',
 			'afya360.layout',
-			// 'afya360.facilities',
+			'afya360.facilities',
 			'restangular'
 		]);
 

@@ -18,16 +18,19 @@
   function HomeController($scope, Restangular) {
     var vm = this; 
     vm.next = next;
+    vm.back = back;
+    vm.can_go_back = false;
 
     Restangular.setBaseUrl('/api/v1');
     Restangular.setDefaultRequestParams('get', {limit: 20});
 
     Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-        if (operation === 'getList') {
-            var newResponse = data.results;
-            return newResponse;
-        }
-        return data;
+      if (operation === 'getList') {        
+        vm.can_go_back = data.previous;        
+        var newResponse = data.results;
+        return newResponse;
+      }
+      return data;
     });
 
     activate();
@@ -38,8 +41,13 @@
     }  
 
     function next() {
-      vm.offset += 1;
+      vm.offset += 20;
+      vm.facilities = Restangular.all('health-facilities/').getList({offset:vm.offset}).$object;  
+    } 
+
+    function back() {
+      vm.offset = vm.offset - 20;
       vm.facilities = Restangular.all('health-facilities/').getList({offset:vm.offset}).$object;
-    }    
+    }   
   }
 })();
