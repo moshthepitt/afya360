@@ -55,6 +55,7 @@ INSTALLED_APPS = (
     'debug_toolbar',
     'compressor',
     'rest_framework',
+    'django_filters',
     # 'cacheops',
     'autoslug',
     'suit_redactor',

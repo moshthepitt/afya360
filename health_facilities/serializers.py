@@ -2,6 +2,10 @@ from rest_framework import serializers
 
 from .models import FacilityOwner, FacilityType, HealthFacility
 
+from places.serializers import ProvinceSerializer, ConstituencySerializer, CountySerializer
+from places.serializers import DistrictSerializer, DivisionSerializer, LocationSerializer
+from places.serializers import SubLocationSerializer
+
 
 class FacilityOwnerSerializer(serializers.ModelSerializer):
 
@@ -24,6 +28,13 @@ class FacilityTypeSerializer(serializers.ModelSerializer):
 class HealthFacilitySerializer(serializers.ModelSerializer):
     owner = FacilityOwnerSerializer(read_only=True, required=False)
     facility_type = FacilityTypeSerializer(read_only=True, required=False)
+    province = ProvinceSerializer(read_only=True, required=False)
+    county = CountySerializer(read_only=True, required=False)
+    constituency = ConstituencySerializer(read_only=True, required=False)
+    district = DistrictSerializer(read_only=True, required=False)
+    division = DivisionSerializer(read_only=True, required=False)
+    location = LocationSerializer(read_only=True, required=False)
+    sub_location = SubLocationSerializer(read_only=True, required=False)
 
     class Meta:
         model = HealthFacility
