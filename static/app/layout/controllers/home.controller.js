@@ -20,13 +20,16 @@
     vm.next = next;
     vm.back = back;
     vm.can_go_back = false;
+    vm.can_go_forward = true;
 
     Restangular.setBaseUrl('/api/v1');
     Restangular.setDefaultRequestParams('get', {limit: 20, format: 'json'});
+    Restangular.setRequestSuffix('/');
 
     Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
       if (operation === 'getList') {        
-        vm.can_go_back = data.previous;        
+        vm.can_go_back = data.previous;     
+        vm.can_go_forward = data.next;   
         var newResponse = data.results;
         return newResponse;
       }

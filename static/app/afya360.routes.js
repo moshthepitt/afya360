@@ -17,6 +17,10 @@
       controller: 'HomeController',
       controllerAs: 'vm',
       templateUrl: '/static/templates/layout/home.html'
+    }).when('/place/:type/:slug/:id', {
+      controller: 'PlaceController',
+      controllerAs: 'vm',
+      templateUrl: '/static/templates/layout/home.html'
     })
     // .when('/', {
     //   controller: 'IndexController',
