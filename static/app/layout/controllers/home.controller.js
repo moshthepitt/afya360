@@ -22,7 +22,7 @@
     vm.can_go_back = false;
 
     Restangular.setBaseUrl('/api/v1');
-    Restangular.setDefaultRequestParams('get', {limit: 20});
+    Restangular.setDefaultRequestParams('get', {limit: 20, format: 'json'});
 
     Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
       if (operation === 'getList') {        
