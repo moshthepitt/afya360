@@ -2,7 +2,9 @@ Place: {{vm.place.name}} <br/>
 
 Animals retrieved from the server so far: ({{ vm.facilities.length }}):
 <ul>
-    <li ng-repeat="animal in vm.facilities" class="organism-box">{{animal.name}}</li>
+    <li ng-repeat="facility in vm.facilities" class="organism-box">
+    	<a href="/health-facility/{{facility.slug}}/{{facility.id}}">{{facility.name}}</a>
+    </li>
 </ul>
 
 <a href="javascript:void(0)" ng-click="vm.back()" ng-show="vm.can_go_back" class="btn btn-success">Back</a>

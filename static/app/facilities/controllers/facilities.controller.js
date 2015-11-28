@@ -1,48 +1,49 @@
 /**
-* FacilitiesController
+* FacilityController
 * @namespace afya360.facilities.controllers
 */
 (function () {
   'use strict';
 
   angular
-    .module('afya360.facilities.controllers')
-    .controller('FacilitiesController', FacilitiesController);
+  .module('afya360.facilities.controllers')
+  .controller('FacilityController', FacilityController)
 
-  FacilitiesController.$inject = ['$scope'];
+  FacilityController.$inject = ['$scope', '$location', '$routeParams', 'Restangular'];
 
   /**
-  * @namespace FacilitiesController
+  * @namespace FacilityController
   */
-  function FacilitiesController($scope) {
-    var vm = this;
+  function FacilityController($scope, $location, $routeParams, Restangular) {
+    var vm = this; 
+    
+    var id = $routeParams.id;    
+
+    Restangular.setBaseUrl('/api/v1');
+    Restangular.setDefaultRequestParams('get', {format: 'json'});
+    Restangular.setRequestSuffix('/');
 
     activate();
 
-
-    /**
-    * @name activate
-    * @desc Actions to be performed when this controller is instantiated
-    * @memberOf afya360.facilities.controllers.FacilitiesController
-    */
     function activate() {
-      $scope.$watchCollection(function () { return $scope.facilities; }, render);
+      Restangular.one('health-facilities', id).get().then(facilitySuccessFn, facilityErrorFn);
+    }  
+
+    /**
+    * @name facilitySuccessFn
+    * @desc Update `facility` for view
+    */
+    function facilitySuccessFn(data, status, headers, config) {
+      vm.facility = data;
     }
 
     /**
-    * @name render
-    * @desc Renders Posts into columns of approximately equal height
-    * @param {Array} current The current value of `vm.facilities`
-    * @param {Array} original The value of `vm.facilities` before it was updated
-    * @memberOf afya360.facilities.controllers.FacilitiesController
+    * @name facilityErrorFn
+    * @desc Redirect to index
     */
-    function render(current, original) {
-      if (current !== original) {        
-          for (var i = 0; i < current.length; ++i) {
-          original.push(current[i]);
-        }
-      } 
+    function facilityErrorFn(data, status, headers, config) {
+      $location.url('/');
+      console.log('That facility does not exist.');
     }
-
   }
 })();

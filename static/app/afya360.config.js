@@ -11,8 +11,5 @@
     $locationProvider.html5Mode(true);
     $locationProvider.hashPrefix('!');
   }
-
-  // function config($resourceProvider) {
-  //   $resourceProvider.defaults.stripTrailingSlashes = false;
-  // }
+  
 })();
