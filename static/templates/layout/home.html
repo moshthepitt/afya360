@@ -1,11 +1,11 @@
 Place: {{vm.place.name}} <br/>
 
-Animals retrieved from the server so far: ({{ vm.facilities.length }}):
+{{vm.facilities.count}} Animals retrieved from the server so far: ({{ vm.facilities.length }}):
 <ul>
     <li ng-repeat="facility in vm.facilities" class="organism-box">
-    	<a href="health-facility/{{facility.slug}}/{{facility.id}}">{{facility.name}}</a>
+    	<a href="/health-facility/{{facility.slug}}/{{facility.id}}">{{facility.name}}</a>
     </li>
 </ul>
 
-<a href="javascript:void(0)" ng-click="vm.back()" ng-show="vm.can_go_back" class="btn btn-success">Back</a>
-<a href="javascript:void(0)" ng-click="vm.next()" ng-show="vm.can_go_forward" class="btn btn-success">Next</a>
+<a href="javascript:void(0)" ng-click="vm.back()" ng-show="vm.facilities.previous" class="btn btn-success">Back</a>
+<a href="javascript:void(0)" ng-click="vm.next()" ng-show="vm.facilities.next" class="btn btn-success">Next</a>

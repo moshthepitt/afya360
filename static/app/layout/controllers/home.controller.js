@@ -8,7 +8,6 @@
   angular
   .module('afya360.layout.controllers')
   .controller('HomeController', HomeController)
-  // .factory('Facility', FacilityFactory)
 
   HomeController.$inject = ['$scope', 'Restangular'];
 
@@ -18,23 +17,9 @@
   function HomeController($scope, Restangular) {
     var vm = this; 
     vm.next = next;
-    vm.back = back;
-    vm.can_go_back = false;
-    vm.can_go_forward = true;
+    vm.back = back;   
 
-    Restangular.setBaseUrl('/api/v1');
     Restangular.setDefaultRequestParams('get', {limit: 20, format: 'json'});
-    Restangular.setRequestSuffix('/');
-
-    Restangular.addResponseInterceptor(function(data, operation, what, url, response, deferred) {
-      if (operation === 'getList') {        
-        vm.can_go_back = data.previous;     
-        vm.can_go_forward = data.next;   
-        var newResponse = data.results;
-        return newResponse;
-      }
-      return data;
-    });
 
     activate();
 

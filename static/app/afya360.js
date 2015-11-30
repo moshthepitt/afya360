@@ -11,7 +11,7 @@
 		]);
 
 	angular
-		.module('afya360.config', []);
+		.module('afya360.config', ['restangular']);
 
 	angular
 		.module('afya360.routes', ['ngRoute']);
