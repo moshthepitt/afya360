@@ -9,12 +9,12 @@
   .module('afya360.layout.controllers')
   .controller('PlaceController', PlaceController)
 
-  PlaceController.$inject = ['$scope', '$location', '$routeParams', 'Restangular'];
+  PlaceController.$inject = ['$scope', '$location', '$routeParams', 'Restangular', 'Meta'];
 
   /**
   * @namespace PlaceController
   */
-  function PlaceController($scope, $location, $routeParams, Restangular) {
+  function PlaceController($scope, $location, $routeParams, Restangular, Meta) {
     var vm = this; 
 
     var place_type = $routeParams.type;
@@ -67,7 +67,7 @@
     function placeSuccessFn(data, status, headers, config) {
       vm.facilities = data;
       vm.offset = 0;
-      vm.place = Restangular.one(place_url_fragments[place_type], place_id).get().$object;
+      Restangular.one(place_url_fragments[place_type], place_id).get().then(singlePlaceSuccessFn, singlePlaceErrorFn);      
     }
 
     /**
@@ -75,6 +75,24 @@
     * @desc Redirect to index
     */
     function placeErrorFn(data, status, headers, config) {
+      $location.url('/');
+      console.log('That place does not exist or does not have facilities.');
+    }
+
+    /**
+    * @name facilitySuccessFn
+    * @desc Update `facility` for view
+    */
+    function singlePlaceSuccessFn(data, status, headers, config) {
+      vm.place = data;
+      Meta.setTitle(vm.place.name);
+    }
+
+    /**
+    * @name facilityErrorFn
+    * @desc Redirect to index
+    */
+    function singlePlaceErrorFn(data, status, headers, config) {
       $location.url('/');
       console.log('That place does not exist.');
     }

@@ -1,6 +1,6 @@
 Place: {{vm.place.name}} <br/>
 
-{{vm.facilities.count}} Animals retrieved from the server so far: ({{ vm.facilities.length }}):
+{{vm.facilities.count}} Facilities retrieved from the server so far: ({{ vm.facilities.length }}):
 <ul>
     <li ng-repeat="facility in vm.facilities" class="organism-box">
     	<a href="/health-facility/{{facility.slug}}/{{facility.id}}">{{facility.name}}</a>

@@ -2,13 +2,13 @@
 {% load staticfiles %}
 {% load compress %}
 <html lang="en" ng-app="afya360">
-  <head>
+  <head ng-controller="MetaController as vm">
     <base href="/">
     <meta charset="utf-8">
     {% block meta_keywords %}<meta name="keywords" content="" />{% endblock %}
     {% block meta_description %}<meta name="description" content="" />{% endblock %}
     {% block other_meta %}{% endblock %}
-    <title>{% block title %}Afya360{% endblock %}</title>
+    <title ng-bind="vm.pageMeta.title()">{% block title %}Afya360{% endblock %}</title>
     <meta name="viewport" content="width=device-width,initial-scale=1.0">
     <link rel="Shortcut Icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
     {% compress css inline %}
@@ -107,7 +107,9 @@
 
     <script type="text/javascript" src="{% static 'app/layout/layout.module.js' %}" defer></script>
     <script type="text/javascript" src="{% static 'app/layout/controllers/home.controller.js' %}" defer></script>    
-    <script type="text/javascript" src="{% static 'app/layout/controllers/place.controller.js' %}" defer></script>    
+    <script type="text/javascript" src="{% static 'app/layout/controllers/place.controller.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'app/layout/controllers/meta.controller.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'app/layout/services/meta.service.js' %}" defer></script>    
 
     <script type="text/javascript" src="{% static 'js/scripts.js' %}" defer></script>   
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->

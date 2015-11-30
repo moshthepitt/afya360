@@ -9,12 +9,12 @@
   .module('afya360.facilities.controllers')
   .controller('FacilityController', FacilityController)
 
-  FacilityController.$inject = ['$scope', '$location', '$routeParams', 'Restangular'];
+  FacilityController.$inject = ['$scope', '$location', '$routeParams', 'Restangular', 'Meta'];
 
   /**
   * @namespace FacilityController
   */
-  function FacilityController($scope, $location, $routeParams, Restangular) {
+  function FacilityController($scope, $location, $routeParams, Restangular, Meta) {
     var vm = this; 
     
     var id = $routeParams.id;    
@@ -35,6 +35,7 @@
     */
     function facilitySuccessFn(data, status, headers, config) {
       vm.facility = data;
+      Meta.setTitle(vm.facility.name);
     }
 
     /**

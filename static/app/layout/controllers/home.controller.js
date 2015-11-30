@@ -9,12 +9,12 @@
   .module('afya360.layout.controllers')
   .controller('HomeController', HomeController)
 
-  HomeController.$inject = ['$scope', 'Restangular'];
+  HomeController.$inject = ['$scope', 'Restangular', 'Meta'];
 
   /**
   * @namespace HomeController
   */
-  function HomeController($scope, Restangular) {
+  function HomeController($scope, Restangular, Meta) {
     var vm = this; 
     vm.next = next;
     vm.back = back;   
@@ -26,6 +26,7 @@
     function activate() {
       vm.facilities = Restangular.all('health-facilities/').getList({offset:0}).$object;
       vm.offset = 0;
+      Meta.setTitle("Afy360 | Buzz");
     }  
 
     function next() {
