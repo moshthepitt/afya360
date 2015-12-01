@@ -27,27 +27,27 @@
 {{ object.town }}
 {{ object.post_code }}
 
-{{ object.get_twenty_four_hour }}
-{{ object.get_open_weekends }}
-{{ object.get_anc }}
-{{ object.get_art }}
-{{ object.get_beoc }}
-{{ object.get_blood }}
-{{ object.get_caes_sec }}
-{{ object.get_ceoc }}
-{{ object.get_cimci }}
-{{ object.get_epi }}
-{{ object.get_fp }}
-{{ object.get_growm }}
-{{ object.get_hbc }}
-{{ object.get_hct }}
-{{ object.get_ipd }}
-{{ object.get_opd }}
-{{ object.get_outreach }}
-{{ object.get_pmtct }}
-{{ object.get_rad_xray }}
-{{ object.get_rhtc_rhdc }}
-{{ object.get_tb_diag }}
-{{ object.get_tb_labs }}
-{{ object.get_tb_treat }}
-{{ object.get_youth }}
+{% if object.get_twenty_four_hour %} {{ object.get_twenty_four_hour }} {% endif %}
+{% if object.get_open_weekends %} {{ object.get_open_weekends }} {% endif %}
+{% if object.get_anc %} {{ object.get_anc }} {% endif %}
+{% if object.get_art %} {{ object.get_art }} {% endif %}
+{% if object.get_beoc %} {{ object.get_beoc }} {% endif %}
+{% if object.get_blood %} {{ object.get_blood }} {% endif %}
+{% if object.get_caes_sec %} {{ object.get_caes_sec }} {% endif %}
+{% if object.get_ceoc %} {{ object.get_ceoc }} {% endif %}
+{% if object.get_cimci %} {{ object.get_cimci }} {% endif %}
+{% if object.get_epi %} {{ object.get_epi }} {% endif %}
+{% if object.get_fp %} {{ object.get_fp }} {% endif %}
+{% if object.get_growm %} {{ object.get_growm }} {% endif %}
+{% if object.get_hbc %} {{ object.get_hbc }} {% endif %}
+{% if object.get_hct %} {{ object.get_hct }} {% endif %}
+{% if object.get_ipd %} {{ object.get_ipd }} {% endif %}
+{% if object.get_opd %} {{ object.get_opd }} {% endif %}
+{% if object.get_outreach %} {{ object.get_outreach }} {% endif %}
+{% if object.get_pmtct %} {{ object.get_pmtct }} {% endif %}
+{% if object.get_rad_xray %} {{ object.get_rad_xray }} {% endif %}
+{% if object.get_rhtc_rhdc %} {{ object.get_rhtc_rhdc }} {% endif %}
+{% if object.get_tb_diag %} {{ object.get_tb_diag }} {% endif %}
+{% if object.get_tb_labs %} {{ object.get_tb_labs }} {% endif %}
+{% if object.get_tb_treat %} {{ object.get_tb_treat }} {% endif %}
+{% if object.get_youth %} {{ object.get_youth }} {% endif %}

@@ -1,6 +1,8 @@
 from rest_framework import serializers
+from drf_haystack.serializers import HaystackSerializer
 
 from .models import FacilityOwner, FacilityType, HealthFacility
+from .search_indexes import HealthFacilityIndex
 
 from places.serializers import ProvinceSerializer, ConstituencySerializer, CountySerializer
 from places.serializers import DistrictSerializer, DivisionSerializer, LocationSerializer
@@ -124,3 +126,33 @@ class HealthFacilitySerializer(serializers.ModelSerializer):
             'sub_location',
             'county',
         )
+
+
+class HealthFacilitySearchSerializer(HaystackSerializer):
+
+    class Meta:
+        # The `index_classes` attribute is a list of which search indexes
+        # we want to include in the search.
+        index_classes = [HealthFacilityIndex]
+
+        # The `fields` contains all the fields we want to include.
+        # NOTE: Make sure you don't confuse these with model attributes. These
+        # fields belong to the search index!
+        fields = [
+            "text",
+            "name",
+            "slug",
+            "id",
+            "county",
+            "province",
+            "district",
+            "division",
+            "location",
+            "sub_location",
+            "constituency",
+            "facility_type",
+            "owner",
+            "level",
+            "agency",
+            "status",
+        ]

@@ -7,6 +7,8 @@ from .models import HealthFacility
 class HealthFacilityIndex(indexes.SearchIndex, indexes.Indexable):
     text = indexes.CharField(document=True, use_template=True)
     name = indexes.CharField(model_attr='name')
+    slug = indexes.CharField(model_attr='slug')
+    id = indexes.IntegerField(model_attr='id', faceted=True)
     county = indexes.IntegerField(model_attr='county__id', faceted=True)
     province = indexes.IntegerField(model_attr='province__id', null=True, faceted=True)
     district = indexes.IntegerField(model_attr='district__id', null=True, faceted=True)
@@ -25,6 +27,9 @@ class HealthFacilityIndex(indexes.SearchIndex, indexes.Indexable):
 
     # def prepare_rating(self, obj):
     #     return None if not obj.average_rating else obj.average_rating
+
+    def prepare_id(self, obj):
+        return obj.pk
 
     def get_model(self):
         return HealthFacility

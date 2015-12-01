@@ -198,7 +198,7 @@ HAYSTACK_CONNECTIONS = {
         'PATH': os.path.join(os.path.dirname(__file__), 'whoosh_index'),
         'STORAGE': 'file',
         'POST_LIMIT': 128 * 1024 * 1024,
-        'INCLUDE_SPELLING': True,
+        # 'INCLUDE_SPELLING': True,
         'BATCH_SIZE': 1000,
     },
 }
