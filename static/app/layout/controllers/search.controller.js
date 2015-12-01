@@ -9,12 +9,12 @@
   .module('afya360.layout.controllers')
   .controller('SearchController', SearchController)
 
-  SearchController.$inject = ['$scope', '$routeParams', 'Restangular', 'Meta'];
+  SearchController.$inject = ['$scope', '$location', '$routeParams', 'Restangular', 'Meta'];
 
   /**
   * @namespace SearchController
   */
-  function SearchController($scope, $routeParams, Restangular, Meta) {
+  function SearchController($scope, $location, $routeParams, Restangular, Meta) {
     var vm = this; 
     vm.next = next;
     vm.back = back; 
