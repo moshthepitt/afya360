@@ -1,13 +1,13 @@
 {{ object.name }}
-{{ object.description }}
+{% if object.description %} {{ object.description }} {% endif %}
 
 {{ object.county.name }}
-{{ object.province.name }}
-{{ object.district.name }}
-{{ object.division.name }}
-{{ object.location.name }}
-{{ object.sub_location.name }}
-{{ object.constituency.name }}
+{% if object.province.name %} {{ object.province.name }} {% endif %}
+{% if object.district.name %} {{ object.district.name }} {% endif %}
+{% if object.division.name %} {{ object.division.name }} {% endif %}
+{% if object.location.name %} {{ object.location.name }} {% endif %}
+{% if object.sub_location.name %} {{ object.sub_location.name }} {% endif %}
+{% if object.constituency.name %} {{ object.constituency.name }} {% endif %}
 {{ object.owner.name }}
 
 {{ object.facility_type.name }}
@@ -15,17 +15,17 @@
 {{ object.get_agency_display }}
 {{ object.get_status_display }}
 
-{{ object.facility_class }}
+{% if object.facility_class %} {{ object.facility_class }} {% endif %}
 
-{{ object.facility_code }}
-{{ object.facility_number }}
-{{ object.hmis }}
-{{ object.plot_number }}
-{{ object.location_description }}
-{{ object.nearest_town }}
-{{ object.address }}
-{{ object.town }}
-{{ object.post_code }}
+{% if object.facility_code %} {{ object.facility_code }} {% endif %}
+{% if object.facility_number %} {{ object.facility_number }} {% endif %}
+{% if object.hmis %} {{ object.hmis }} {% endif %}
+{% if object.plot_number %} {{ object.plot_number }} {% endif %}
+{% if object.location_description %} {{ object.location_description }} {% endif %}
+{% if object.nearest_town %} {{ object.nearest_town }} {% endif %}
+{% if object.address %} {{ object.address }} {% endif %}
+{% if object.town %} {{ object.town }} {% endif %}
+{% if object.post_code %} {{ object.post_code }} {% endif %}
 
 {% if object.get_twenty_four_hour %} {{ object.get_twenty_four_hour }} {% endif %}
 {% if object.get_open_weekends %} {{ object.get_open_weekends }} {% endif %}
