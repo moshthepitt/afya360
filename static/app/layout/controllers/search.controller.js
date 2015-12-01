@@ -9,32 +9,47 @@
   .module('afya360.layout.controllers')
   .controller('SearchController', SearchController)
 
-  SearchController.$inject = ['$scope', 'Restangular', 'Meta'];
+  SearchController.$inject = ['$scope', '$routeParams', 'Restangular', 'Meta'];
 
   /**
   * @namespace SearchController
   */
-  function SearchController($scope, Restangular, Meta) {
+  function SearchController($scope, $routeParams, Restangular, Meta) {
     var vm = this; 
     vm.next = next;
-    vm.back = back;   
+    vm.back = back; 
+
+    var query = $routeParams.q;
+    var request_params = {
+      limit: 20, 
+      format: 'json',
+      offset: 0
+    }
+
+    if (query === undefined || query == null) {
+      // do nothing
+    }  else {
+      request_params['text'] = query;
+    }
 
     Restangular.setDefaultRequestParams('get', {limit: 20, format: 'json'});
 
     activate();
 
     function activate() {
-      Restangular.all('hf-search/').getList({offset:0, text:'abc'}).then(searchSuccessFn, searchErrorFn);      
+      Restangular.all('hf-search/').getList(request_params).then(searchSuccessFn, searchErrorFn);      
     }  
 
     function next() {
       vm.offset += 20;
-      vm.facilities = Restangular.all('hf-search/').getList({offset:vm.offset}).$object;  
+      request_params['offset'] = vm.offset;
+      vm.facilities = Restangular.all('hf-search/').getList(request_params).$object;  
     } 
 
     function back() {
       vm.offset = vm.offset - 20;
-      vm.facilities = Restangular.all('hf-search/').getList({offset:vm.offset}).$object;
+      request_params['offset'] = vm.offset;
+      vm.facilities = Restangular.all('hf-search/').getList(request_params).$object;
     }  
 
     function searchSuccessFn(data, status, headers, config) {
