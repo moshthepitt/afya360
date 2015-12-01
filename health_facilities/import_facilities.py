@@ -215,3 +215,30 @@ def import_coordinates():
                 if facility and coords:
                     facility.coordinates = Point(coords)
                     facility.save()
+
+
+def import_new_coordinates():
+    """
+        Reads a list of facility_code and coordinates
+        Imports coordinates for each facility
+
+        Run:
+            from health_facilities.import_facilities import import_new_coordinates
+            import_new_coordinates()
+    """
+    filename = "{}/documentation/data/coordinates.csv".format(settings.BASE_DIR)
+
+    with open(filename, "rb") as ifile:
+        reader = csv.reader(ifile)
+        for row in reader:
+            code = int(row[0])
+            coords = eval(row[1])
+            try:
+                facility = HealthFacility.objects.get(facility_code=code)
+            except HealthFacility.DoesNotExist:
+                facility = None
+            else:
+                if facility and coords and not facility.coordinates:
+                    print code
+                    facility.coordinates = Point(coords)
+                    facility.save()
