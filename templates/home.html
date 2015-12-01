@@ -4,9 +4,24 @@
   <div id="top" class="jumbotron">
     <div class="container">      
 
-      <h1>The fox jumps over the lazy dog </h1>
-      <h2>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy</h2>
-      <p><a class="btn btn-primary btn-lg">Sign Up Today <span class="glyphicon glyphicon-circle-arrow-right"></span></a></p>
+      <h1>The Kenya Directory for Health Facilities </h1>
+
+      <p>Search and find hospitals, dispensaries, clinics and other health facilities anywhere in Kenya. Quickly access hospital name, information, phone numbers, addresses and more.</p>
+
+      <form role="form" ng-submit="vm.submit()" ng-controller="SearchController as vm">
+        <div class="form-group">
+          <label for="search">Search</label>
+          <input type="text" name="q" id="search" ng-model="vm.q" />
+        </div>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-primary">
+            Submit
+          </button>
+        </div>
+      </form>
+
+      {# <p><a class="btn btn-primary btn-lg">Sign Up Today <span class="glyphicon glyphicon-circle-arrow-right"></span></a></p> #}
       
     </div> <!-- /.container -->
   </div> <!-- /.jumbotron -->
