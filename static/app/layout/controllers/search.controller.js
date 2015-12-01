@@ -18,6 +18,7 @@
     var vm = this; 
     vm.next = next;
     vm.back = back; 
+    vm.submit = submit;
 
     var query = $routeParams.q;
     var request_params = {
@@ -51,6 +52,14 @@
       request_params['offset'] = vm.offset;
       vm.facilities = Restangular.all('hf-search/').getList(request_params).$object;
     }  
+
+    function submit() {
+      if (vm.q === undefined || vm.q == null) {
+        // do nothing
+      }  else {
+        $location.url('/search').search({q: vm.q});
+      }
+    } 
 
     function searchSuccessFn(data, status, headers, config) {
       vm.facilities = data;
