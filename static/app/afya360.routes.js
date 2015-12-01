@@ -28,6 +28,11 @@
       controllerAs: 'vm',
       templateUrl: '/static/templates/facilities/facility.html'
     })
+    .when('/search', {
+      controller: 'SearchController',
+      controllerAs: 'vm',
+      templateUrl: '/static/templates/layout/home.html'
+    })
     .otherwise('/');
   }
 })();
