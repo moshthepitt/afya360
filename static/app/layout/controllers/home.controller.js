@@ -40,12 +40,12 @@
     function homeSuccessFn(data, status, headers, config) {
       vm.facilities = data;
       vm.offset = 0;
-      Meta.setTitle("Afy360 | Buzz");    
+      Meta.setTitle("Afy360 | Kenya Directory of Health Centers");    
     }
 
     function homeErrorFn(data, status, headers, config) {
       $location.url('/');
-      console.log('Errrrrror.');
+      console.log('Error.');
     } 
   }
 })();
