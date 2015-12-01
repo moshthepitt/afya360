@@ -1,0 +1,53 @@
+{{ object.name }}
+{{ object.description }}
+
+{{ object.county.name }}
+{{ object.province.name }}
+{{ object.district.name }}
+{{ object.division.name }}
+{{ object.location.name }}
+{{ object.sub_location.name }}
+{{ object.constituency.name }}
+{{ object.owner.name }}
+
+{{ object.facility_type.name }}
+{{ object.get_level_display }}
+{{ object.get_agency_display }}
+{{ object.get_status_display }}
+
+{{ object.facility_class }}
+
+{{ object.facility_code }}
+{{ object.facility_number }}
+{{ object.hmis }}
+{{ object.plot_number }}
+{{ object.location_description }}
+{{ object.nearest_town }}
+{{ object.address }}
+{{ object.town }}
+{{ object.post_code }}
+
+{{ object.get_twenty_four_hour }}
+{{ object.get_open_weekends }}
+{{ object.get_anc }}
+{{ object.get_art }}
+{{ object.get_beoc }}
+{{ object.get_blood }}
+{{ object.get_caes_sec }}
+{{ object.get_ceoc }}
+{{ object.get_cimci }}
+{{ object.get_epi }}
+{{ object.get_fp }}
+{{ object.get_growm }}
+{{ object.get_hbc }}
+{{ object.get_hct }}
+{{ object.get_ipd }}
+{{ object.get_opd }}
+{{ object.get_outreach }}
+{{ object.get_pmtct }}
+{{ object.get_rad_xray }}
+{{ object.get_rhtc_rhdc }}
+{{ object.get_tb_diag }}
+{{ object.get_tb_labs }}
+{{ object.get_tb_treat }}
+{{ object.get_youth }}

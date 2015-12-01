@@ -25,6 +25,9 @@ class GeoFacilityManager(models.GeoManager):
             'constituency'
         )
 
+    def active(self):
+        return self.get_queryset().filter(active=True)
+
 
 class FacilityOwner(models.Model):
 
@@ -347,6 +350,186 @@ class HealthFacility(models.Model):
         if self.longitude and self.latitude:
             self.coordinates = Point(float(self.longitude), float(self.latitude))
         super(HealthFacility, self).save(*args, **kwargs)
+
+    def meta(self):
+        return self._meta
+
+    def get_twenty_four_hour(self):
+        if self.twenty_four_hour:
+            return "{} {}".format(
+                self.meta().get_field('twenty_four_hour').verbose_name.title(),
+                self.meta().get_field('twenty_four_hour').help_text.title())
+        return None
+
+    def get_open_weekends(self):
+        if self.open_weekends:
+            return "{} {}".format(
+                self.meta().get_field('open_weekends').verbose_name.title(),
+                self.meta().get_field('open_weekends').help_text.title())
+        return None
+
+    def get_anc(self):
+        if self.anc:
+            return "{} {}".format(
+                self.meta().get_field('anc').verbose_name.title(),
+                self.meta().get_field('anc').help_text.title())
+        return None
+
+    def get_art(self):
+        if self.art:
+            return "{} {}".format(
+                self.meta().get_field('art').verbose_name.title(),
+                self.meta().get_field('art').help_text.title())
+        return None
+
+    def get_beoc(self):
+        if self.beoc:
+            return "{} {}".format(
+                self.meta().get_field('beoc').verbose_name.title(),
+                self.meta().get_field('beoc').help_text.title())
+        return None
+
+    def get_blood(self):
+        if self.blood:
+            return "{} {}".format(
+                self.meta().get_field('blood').verbose_name.title(),
+                self.meta().get_field('blood').help_text.title())
+        return None
+
+    def get_caes_sec(self):
+        if self.caes_sec:
+            return "{} {}".format(
+                self.meta().get_field('caes_sec').verbose_name.title(),
+                self.meta().get_field('caes_sec').help_text.title())
+        return None
+
+    def get_ceoc(self):
+        if self.ceoc:
+            return "{} {}".format(
+                self.meta().get_field('ceoc').verbose_name.title(),
+                self.meta().get_field('ceoc').help_text.title())
+        return None
+
+    def get_cimci(self):
+        if self.cimci:
+            return "{} {}".format(
+                self.meta().get_field('cimci').verbose_name.title(),
+
+                self.meta().get_field('cimci').help_text.title())
+        return None
+
+    def get_epi(self):
+        if self.epi:
+            return "{} {}".format(
+                self.meta().get_field('epi').verbose_name.title(),
+
+                self.meta().get_field('epi').help_text.title())
+        return None
+
+    def get_fp(self):
+        if self.fp:
+            return "{} {}".format(
+                self.meta().get_field('fp').verbose_name.title(),
+
+                self.meta().get_field('fp').help_text.title())
+        return None
+
+    def get_growm(self):
+        if self.growm:
+            return "{} {}".format(
+                self.meta().get_field('growm').verbose_name.title(),
+
+                self.meta().get_field('growm').help_text.title())
+        return None
+
+    def get_hbc(self):
+        if self.hbc:
+            return "{} {}".format(
+                self.meta().get_field('hbc').verbose_name.title(),
+
+                self.meta().get_field('hbc').help_text.title())
+        return None
+
+    def get_hct(self):
+        if self.hct:
+            return "{} {}".format(
+                self.meta().get_field('hct').verbose_name.title(),
+
+                self.meta().get_field('hct').help_text.title())
+        return None
+
+    def get_ipd(self):
+        if self.ipd:
+            return "{} {}".format(
+                self.meta().get_field('ipd').verbose_name.title(),
+
+                self.meta().get_field('ipd').help_text.title())
+        return None
+
+    def get_opd(self):
+        if self.opd:
+            return "{} {}".format(
+                self.meta().get_field('opd').verbose_name.title(),
+
+                self.meta().get_field('opd').help_text.title())
+        return None
+
+    def get_outreach(self):
+        if self.outreach:
+            return "{} {}".format(
+                self.meta().get_field('outreach').verbose_name.title(),
+
+                self.meta().get_field('outreach').help_text.title())
+        return None
+
+    def get_pmtct(self):
+        if self.pmtct:
+            return "{} {}".format(
+                self.meta().get_field('pmtct').verbose_name.title(),
+                self.meta().get_field('pmtct').help_text.title())
+        return None
+
+    def get_rad_xray(self):
+        if self.rad_xray:
+            return "{} {}".format(
+                self.meta().get_field('rad_xray').verbose_name.title(),
+                self.meta().get_field('rad_xray').help_text.title())
+        return None
+
+    def get_rhtc_rhdc(self):
+        if self.rhtc_rhdc:
+            return "{} {}".format(
+                self.meta().get_field('rhtc_rhdc').verbose_name.title(),
+                self.meta().get_field('rhtc_rhdc').help_text.title())
+        return None
+
+    def get_tb_diag(self):
+        if self.tb_diag:
+            return "{} {}".format(
+                self.meta().get_field('tb_diag').verbose_name.title(),
+                self.meta().get_field('tb_diag').help_text.title())
+        return None
+
+    def get_tb_labs(self):
+        if self.tb_labs:
+            return "{} {}".format(
+                self.meta().get_field('tb_labs').verbose_name.title(),
+                self.meta().get_field('tb_labs').help_text.title())
+        return None
+
+    def get_tb_treat(self):
+        if self.tb_treat:
+            return "{} {}".format(
+                self.meta().get_field('tb_treat').verbose_name.title(),
+                self.meta().get_field('tb_treat').help_text.title())
+        return None
+
+    def get_youth(self):
+        if self.youth:
+            return "{} {}".format(
+                self.meta().get_field('youth').verbose_name.title(),
+                self.meta().get_field('youth').help_text.title())
+        return None
 
     class Meta:
         verbose_name = _("Health Facility")
