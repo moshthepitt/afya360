@@ -1,25 +1,59 @@
-Place: {{vm.place.name}} <br/>
+<div id="headerwrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-8 col-lg-offset-2">
+        <h3>Show your work with this beautiful theme</h3>
+        <h1>Eyecatching Bootstrap 3 Theme.</h1>
+        <h5>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</h5>
+        <h5>More Lorem Ipsum added here too.</h5> 
 
-{{vm.facilities.count}} Facilities retrieved from the server so far: ({{ vm.facilities.length }}):
-<ul>
-    <li ng-repeat="facility in vm.facilities" class="organism-box">
-    	<a href="/health-facility/{{facility.slug}}/{{facility.id}}">{{facility.name}}</a>
-    </li>
-</ul>
+        <div class="row">
+          <div class="col-lg-8 col-lg-offset-2">
+            <div class="home-buttons">
+              <a href="#" class="btn btn-success btn-lg btn-block">Search</a>
+            </div>
+            <div class="home-buttons">
+              <a href="#" class="btn btn-danger btn-lg btn-block">Nearby</a>
+            </div>      
+          </div>
+        </div>
+      </div>
+    </div><!-- /row -->
+  </div> <!-- /container -->
+</div><!-- /headerwrap -->
 
-<a href="javascript:void(0)" ng-click="vm.back()" ng-show="vm.facilities.previous" class="btn btn-success">Back</a>
-<a href="javascript:void(0)" ng-click="vm.next()" ng-show="vm.facilities.next" class="btn btn-success">Next</a>
+<div id="service">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        Place: {{vm.place.name}} <br/>
+
+        {{vm.facilities.count}} Facilities retrieved from the server so far: ({{ vm.facilities.length }}):
+        <ul>
+            <li ng-repeat="facility in vm.facilities" class="organism-box">
+              <a href="/health-facility/{{facility.slug}}/{{facility.id}}">{{facility.name}}</a>
+            </li>
+        </ul>
+
+        <a href="javascript:void(0)" ng-click="vm.back()" ng-show="vm.facilities.previous" class="btn btn-success">Back</a>
+        <a href="javascript:void(0)" ng-click="vm.next()" ng-show="vm.facilities.next" class="btn btn-success">Next</a>
 
 
-<form role="form" ng-submit="vm.submit()" ng-controller="SearchController as vm">
-  <div class="form-group">
-    <label for="search">Search</label>
-    <input type="text" name="q" id="search" ng-model="vm.q" />
-  </div>
+        <form role="form" ng-submit="vm.submit()" ng-controller="SearchController as vm">
+          <div class="form-group">
+            <label for="search">Search</label>
+            <input type="text" name="q" id="search" ng-model="vm.q" />
+          </div>
 
-  <div class="form-group">
-    <button type="submit" class="btn btn-primary">
-      Submit
-    </button>
-  </div>
-</form>
+          <div class="form-group">
+            <button type="submit" class="btn btn-primary">
+              Submit
+            </button>
+          </div>
+        </form>
+      </div>           
+    </div>
+  </div><!--/container -->
+</div>
+
+

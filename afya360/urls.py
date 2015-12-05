@@ -5,6 +5,7 @@ from django.conf import settings
 from rest_framework import routers
 
 from core.views import HomePageView
+from core.ajax import HomeResources
 from places.views import ProvinceViewSet, CountyViewSet, ConstituencyViewSet
 from places.views import DistrictViewSet, DivisionViewSet, LocationViewSet
 from places.views import SubLocationViewSet
@@ -23,6 +24,7 @@ router.register(r'hf-search', HealthFacilitySearchView, base_name="health-facili
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^api/v1/home-resources/$', HomeResources.as_view(), name="home_resources"),
     url(r'^api/v1/', include(router.urls)),
     # url(r'^accounts/', include('allauth.urls')),
     # url(r'^page/', include('django.contrib.flatpages.urls')),
