@@ -8,6 +8,7 @@
 			'afya360.layout',
 			'afya360.facilities',
 			'restangular',
+			'platypus.tabs',
 		]);
 
 	angular

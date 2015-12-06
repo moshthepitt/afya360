@@ -2,11 +2,20 @@
 	margin-top:10px;
 }
 
-#headerwrap {
-    min-height: 430px;
-}
 
 #service {
     margin-top: 40px;
     margin-bottom: 40px;
+}
+
+#cwrap {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+
+@media (min-width: 768px) {
+	.health-facility-list-item {
+		min-height:220px;
+	}
 }

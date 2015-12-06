@@ -25,35 +25,49 @@
 <div id="service">
   <div class="container">
     <div class="row">
-      <div class="col-md-12">
-        Place: {{vm.place.name}} <br/>
-
-        {{vm.facilities.count}} Facilities retrieved from the server so far: ({{ vm.facilities.length }}):
-        <ul>
-            <li ng-repeat="facility in vm.facilities" class="organism-box">
-              <a href="/health-facility/{{facility.slug}}/{{facility.id}}">{{facility.name}}</a>
-            </li>
-        </ul>
-
-        <a href="javascript:void(0)" ng-click="vm.back()" ng-show="vm.facilities.previous" class="btn btn-success">Back</a>
-        <a href="javascript:void(0)" ng-click="vm.next()" ng-show="vm.facilities.next" class="btn btn-success">Next</a>
-
-
-        <form role="form" ng-submit="vm.submit()" ng-controller="SearchController as vm">
-          <div class="form-group">
-            <label for="search">Search</label>
-            <input type="text" name="q" id="search" ng-model="vm.q" />
+      <div class="col-md-12"><h3>Featured</h3></div>
+      <div class="col-md-6" ng-repeat="facility in vm.facilities">
+        <div class="panel panel-info health-facility-list-item">
+          <div class="panel-heading">
+            <a href="/health-facility/{{facility.slug}}/{{facility.id}}">{{facility.name}}</a>
           </div>
-
-          <div class="form-group">
-            <button type="submit" class="btn btn-primary">
-              Submit
-            </button>
+          <div class="panel-body">
+            <strong>24Hr</strong>: <span ng-show="facility.twenty_four_hour">Yes</span><span ng-hide="facility.twenty_four_hour">No</span><br/>
+            <strong>Open Weekends</strong>: <span ng-show="facility.open_weekends">Yes</span><span ng-hide="facility.open_weekends">No</span><br/>
+            <strong>Status</strong>: {{facility.status}}<br/>
+            <br/>
+            <strong>Location</strong>: {{facility.location_description}}<br/>  
+            <strong>Town</strong>: {{facility.town}}<br/>
           </div>
-        </form>
-      </div>           
+        </div>
+      </div>          
     </div>
   </div><!--/container -->
 </div>
 
-
+<div id="cwrap">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div>
+          <tabs>
+            <pane title="Counties">
+              <ul class="list-group row">
+                <li ng-repeat="county in vm.counties" class="list-group-item col-md-3 col-sm-4 col-xs-6">
+                  <a href="/place/county/{{county.slug}}/{{county.id}}">{{county.name}}</a>
+                </li>
+              </ul>
+            </pane>
+            <pane title="Constituencies">
+              <ul class="list-group row">
+                <li ng-repeat="constituency in vm.constituencies" class="list-group-item col-md-3 col-sm-4 col-xs-6">
+                  <a href="/place/constituency/{{constituency.slug}}/{{constituency.id}}">{{constituency.name}}</a>
+                </li>
+              </ul>
+            </pane>
+          </tabs>
+        </div>
+      </div>
+    </div><!--/row -->
+  </div><!--/container -->
+</div><!--/cwrap -->

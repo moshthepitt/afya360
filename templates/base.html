@@ -16,6 +16,7 @@
 
     {% compress css inline %}
     <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/tabs/tabs.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'solid/css/style.css' %}" />
     <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />   
     {% block extracss %}{% endblock %}
@@ -41,7 +42,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">SOLID.</a>
+          <a class="navbar-brand" href="index.html">AFYA360.</a>
         </div>
         <div class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav">
@@ -110,6 +111,7 @@
     <script type="text/javascript" src="{% static 'bower_components/angular-route/angular-route.min.js' %}" defer></script>
     <script type="text/javascript" src="{% static 'bower_components/angular-cookies/angular-cookies.min.js' %}" defer></script>
     <script type="text/javascript" src="{% static 'bower_components/restangular/dist/restangular.min.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'bower_components/tabs/tabs.js' %}" defer></script>
 
     <script type="text/javascript" src="{% static 'app/afya360.js' %}" defer></script>
     <script type="text/javascript" src="{% static 'app/afya360.config.js' %}" defer></script>
