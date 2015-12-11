@@ -13,9 +13,13 @@
     padding-bottom: 40px;
 }
 
+.navbar-header .navbar-brand {
+    color: #fff!important;
+}
+
 
 @media (min-width: 768px) {
 	.health-facility-list-item {
-		min-height:220px;
+		min-height:240px;
 	}
 }

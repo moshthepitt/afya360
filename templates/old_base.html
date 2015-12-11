@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+{% load compress %}
+<html lang="en" ng-app="afya360">
+  <head ng-controller="MetaController as vm">
+    <base href="/">
+    <meta charset="utf-8">
+    {% block meta_keywords %}<meta name="keywords" content="hospitals, health facilities, dispensaries" />{% endblock %}
+    {% block meta_description %}<meta name="description" content="Search and find hospitals, dispensaries, clinics and other health facilities anywhere in Kenya. Quickly access hospital name, information, phone numbers, addresses and more." />{% endblock %}
+    {% block other_meta %}{% endblock %}
+    <title ng-bind="vm.pageMeta.title()">{% block title %}Afya360{% endblock %}</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <link rel="Shortcut Icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
+    {% compress css inline %}
+    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'lighter/css/lighter.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />   
+    {% block extracss %}{% endblock %}
+    {% endcompress %}
+    
+    {% block extrahead %}{% endblock %}
+
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+  <body>
+
+    <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand nav-link" href="/#top">Afya360</a>
+        </div> <!-- /.navbar-header -->
+
+        <div class="collapse navbar-collapse navbar-ex1-collapse">
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="#about" class="nav-link">About</a></li>
+          </ul>
+        </div> <!-- /.navbar-collapse -->
+      </div> <!-- /.container -->
+    </nav> <!-- /.navbar -->
+
+    {% block all_content %}    
+    {% endblock %}
+
+    <div class="container-alternate">
+      <div class="container">
+        <h3 id="about" class="subhead">About Us</h3>
+        <div class="row about">
+          <div class="col-md-10 col-md-offset-1 text-center">
+            <p>
+              Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam
+              nonummy nibh euismod tincidunt ut laoreet dolore magna.  Ut wisi
+              enim ad minim veniam, quis nostrud exerci tation ullamcorper
+              suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis
+              autem vel eum iriure dolor in hendrerit in vulputate velit esse
+              molestie consequat, vel illum dolore eu feugiat nulla facilisis at
+              vero eros et accumsan.
+            </p>
+            <p>
+              Nam liber tempor cum soluta nobis eleifend option congue nihil
+              imperdiet doming id quod mazim placerat facer possim assum. Typi non
+              habent claritatem insitam; est usus legentis in iis qui facit eorum
+              claritatem. Investigationes demonstraverunt lectores legere me lius
+              quod ii legunt saepius.
+            </p>
+          </div> <!-- /.col-md-10 -->
+        </div> <!-- /.row -->
+      </div> <!-- /.container -->
+    </div> <!-- /.container-alternate -->
+
+    <footer>
+      <div class="container clearfix">
+        <p class="pull-left">
+          &copy; Afya360 {% now "Y" %}
+        </p>
+        <p class="pull-right">
+          site by <a href="http://nickelpro.com">Nickel Pro</a>
+        </p>
+      </div> <!-- /.container -->
+    </footer>
+
+    {% compress js %}
+    <script type="text/javascript" src="{% static 'bower_components/jquery/dist/jquery.min.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'bootstrap/js/bootstrap.min.js' %}" defer></script>
+
+    <script type="text/javascript" src="{% static 'bower_components/underscore/underscore-min.js' %}" defer></script>
+    {%if DEBUG_MODE %}
+    <script type="text/javascript" src="{% static 'bower_components/angular/angular.js' %}" defer></script>
+    {% else %}
+    <script type="text/javascript" src="{% static 'bower_components/angular/angular.min.js' %}" defer></script>
+    {% endif %}
+    <script type="text/javascript" src="{% static 'bower_components/angular-route/angular-route.min.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'bower_components/angular-cookies/angular-cookies.min.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'bower_components/restangular/dist/restangular.min.js' %}" defer></script>
+
+    <script type="text/javascript" src="{% static 'app/afya360.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'app/afya360.config.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'app/afya360.routes.js' %}" defer></script>
+
+    <script type="text/javascript" src="{% static 'app/facilities/facilities.module.js' %}" defer></script>  
+    <script type="text/javascript" src="{% static 'app/facilities/controllers/facilities.controller.js' %}" defer></script>  
+
+    <script type="text/javascript" src="{% static 'app/layout/layout.module.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'app/layout/controllers/home.controller.js' %}" defer></script>    
+    <script type="text/javascript" src="{% static 'app/layout/controllers/place.controller.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'app/layout/controllers/search.controller.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'app/layout/controllers/meta.controller.js' %}" defer></script>
+    <script type="text/javascript" src="{% static 'app/layout/services/meta.service.js' %}" defer></script>    
+
+    <script type="text/javascript" src="{% static 'js/scripts.js' %}" defer></script>   
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <script type="text/javascript" src="{% static 'js/ie10-viewport-bug-workaround.js' %}" defer></script>
+
+    {% block extrajs %}{% endblock %}
+    {% endcompress %}
+
+    {% block extrafooter %}{% endblock %}
+  </body>
+</html>

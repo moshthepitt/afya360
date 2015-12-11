@@ -1,17 +1,49 @@
-<div class="row">
-  <div class="col-sm-12">
-    <div class="well">
-      <div class="facility">
-        <div class="facility__meta">
-          <a href="#">
-            +{{ vm.facility.name }} 
-          </a>
-        </div>
+<div id="blue">
+  <div class="container">
+    <div class="row">
+      <h3>{{ vm.facility.name }}</h3>
+    </div><!-- /row -->
+  </div> <!-- /container -->
+</div><!-- /blue -->
 
-        <div class="facility__content">
-          {{ vm.facility.name }} 
-        </div>
-      </div>
+
+<div class="container mtb">
+  <div class="row">  
+    <!-- SINGLE POST -->
+    <div class="col-lg-8">
+      {{ vm.facility.name }}
+
+
+    </div><!--/col-lg-8 -->
+
+
+    <!-- SIDEBAR -->
+    <div class="col-lg-4">
+      <h4>Search</h4>
+      <div class="hline"></div>
+      <p>
+        <br/>
+        <form role="form" ng-submit="vm.submit()" ng-controller="SearchController as vm">
+          <div class="input-group">
+            <input type="text" name="q" id="search" class="form-control"  ng-model="vm.q" placeholder="Search something">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit">Go!</button>
+            </span>
+          </div><!-- /input-group -->
+        </form>
+      </p>
+
+      <div class="spacing"></div>
+
+      <h4>Categories</h4>
+      <div class="hline"></div>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Wordpress</a> <span class="badge badge-theme pull-right">9</span></p>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Photoshop</a> <span class="badge badge-theme pull-right">3</span></p>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Web Design</a> <span class="badge badge-theme pull-right">11</span></p>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Development</a> <span class="badge badge-theme pull-right">5</span></p>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Tips & Tricks</a> <span class="badge badge-theme pull-right">7</span></p>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Code Snippets</a> <span class="badge badge-theme pull-right">12</span></p>
     </div>
-  </div>
-</div>
+
+  </div><!--/row -->
+</div><!--/container -->

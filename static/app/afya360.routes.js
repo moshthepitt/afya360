@@ -21,7 +21,7 @@
     .when('/place/:type/:slug/:id', {
       controller: 'PlaceController',
       controllerAs: 'vm',
-      templateUrl: '/static/templates/layout/home.html'
+      templateUrl: '/static/templates/layout/place.html'
     })
     .when('/health-facility/:slug/:id', {
       controller: 'FacilityController',
@@ -31,7 +31,7 @@
     .when('/search', {
       controller: 'SearchController',
       controllerAs: 'vm',
-      templateUrl: '/static/templates/layout/home.html'
+      templateUrl: '/static/templates/layout/search.html'
     })
     .otherwise('/');
   }

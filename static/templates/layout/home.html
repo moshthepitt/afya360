@@ -10,7 +10,14 @@
         <div class="row">
           <div class="col-lg-8 col-lg-offset-2">
             <div class="home-buttons">
-              <a href="#" class="btn btn-success btn-lg btn-block">Search</a>
+              <form role="form" ng-submit="vm.submit()" ng-controller="SearchController as vm">
+                <div class="input-group">
+                  <input type="text" name="q" id="search" class="form-control input-lg"  ng-model="vm.q" placeholder="Search something">
+                  <span class="input-group-btn">
+                    <button class="btn btn-success btn-lg" type="submit">Go!</button>
+                  </span>
+                </div><!-- /input-group -->
+              </form>
             </div>
             <div class="home-buttons">
               <a href="#" class="btn btn-danger btn-lg btn-block">Nearby</a>
