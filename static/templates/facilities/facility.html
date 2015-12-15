@@ -10,11 +10,11 @@
 <div class="container mtb">
   <div class="row">  
     <!-- SINGLE POST -->
-    <div class="col-lg-8">
+    <div class="col-lg-8" itemtype itemscope="https://schema.org/MedicalOrganization">
       <div>
-        <p>{{ vm.facility.name }} is a {{vm.facility.facility_type.name}} located in {{vm.facility.county.name}} County ({{vm.facility.constituency.name}} Constituency).  It is currently {{vm.facility.get_status_display}}.</p>
+        <p><span itemprop="name">{{ vm.facility.name }}</span> is a {{vm.facility.facility_type.name}} located in {{vm.facility.county.name}} County ({{vm.facility.constituency.name}} Constituency).  It is currently {{vm.facility.get_status_display}}.</p>
       </div>
-
+      <br/>
       <h4>Contact information</h4>
       <div class="table-responsive">
         <table class="table">
@@ -26,23 +26,31 @@
             <th width="30%">Telephone</th>
             <td>
               <ul class="list-unstyled">
-                <li ng-show="vm.facility.landline">{{vm.facility.landline}}</li>
-                <li ng-show="vm.facility.mobile">{{vm.facility.mobile}}</li>
-                <li ng-show="vm.facility.alternate_no">{{vm.facility.alternate_no}}</li>
+                <li ng-show="vm.facility.landline">
+                  <span itemprop="telephone">{{vm.facility.landline}}</span>
+                </li>
+                <li ng-show="vm.facility.mobile">
+                  <span itemprop="telephone">{{vm.facility.mobile}}</span>
+                </li>
+                <li ng-show="vm.facility.alternate_no">
+                  <span itemprop="telephone">{{vm.facility.alternate_no}}</span>
+                </li>
               </ul>
             </td>
           </tr>
           <tr>
             <th width="30%">Email</th>
-            <td>{{vm.facility.email}}</td>
+            <td>
+              <span itemprop="email">{{vm.facility.email}}</span>
+            </td>
           </tr>
           <tr>
             <th width="30%">Address</th>
             <td>
-              <address>
-                {{vm.facility.address}}<br ng-show="vm.facility.address">
+              <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                <span property="postOfficeBoxNumber">{{vm.facility.address}}</span><br ng-show="vm.facility.address">
                 {{vm.facility.town}}<br ng-show="vm.facility.town">
-                {{vm.facility.post_code}}<br ng-show="vm.facility.post_code">
+                <span property="postalCode">{{vm.facility.post_code}}</span><br ng-show="vm.facility.post_code">
               </address>
             </td>
           </tr>

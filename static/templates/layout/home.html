@@ -33,10 +33,12 @@
   <div class="container">
     <div class="row">
       <div class="col-md-12"><h3>Featured</h3></div>
-      <div class="col-md-6" ng-repeat="facility in vm.facilities">
+      <div class="col-md-6" ng-repeat="facility in vm.facilities" itemtype itemscope="https://schema.org/MedicalOrganization">
         <div class="panel panel-info health-facility-list-item">
           <div class="panel-heading">
-            <a href="/health-facility/{{facility.slug}}/{{facility.id}}">{{facility.name}}</a>
+            <a href="/health-facility/{{facility.slug}}/{{facility.id}}" property="item" typeof="WebPage">
+              <span itemprop="name">{{facility.name}}</span>
+            </a>
           </div>
           <div class="panel-body">
             <strong>24Hr</strong>: <span ng-show="facility.twenty_four_hour">Yes</span><span ng-hide="facility.twenty_four_hour">No</span><br/>
@@ -47,7 +49,7 @@
             <strong>Town</strong>: {{facility.town}}<br/>
           </div>
         </div>
-      </div>          
+      </div>           
     </div>
   </div><!--/container -->
 </div>
