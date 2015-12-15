@@ -19,16 +19,11 @@ class PlaceModel(models.Model):
     def meta(self):
         return self._meta
 
-    def school_count(self):
-        return self.school_set.all().count()
+    def model_name(self):
+        return self.meta().verbose_name
 
-    def primary_school_count(self):
-        from schools.models import School
-        return self.school_set.filter(level=School.PRIMARY).count()
-
-    def secondary_school_count(self):
-        from schools.models import School
-        return self.school_set.filter(level=School.SECONDARY).count()
+    def facility_count(self):
+        return self.healthfacility_set.all().count()
 
     def __str__(self):
         return self.name

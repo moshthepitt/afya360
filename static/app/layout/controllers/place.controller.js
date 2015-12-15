@@ -85,7 +85,7 @@
     */
     function singlePlaceSuccessFn(data, status, headers, config) {
       vm.place = data;
-      Meta.setTitle(vm.place.name);
+      Meta.setTitle(vm.place.name + " " + vm.place.model_name);
     }
 
     /**

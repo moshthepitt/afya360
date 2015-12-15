@@ -11,9 +11,194 @@
   <div class="row">  
     <!-- SINGLE POST -->
     <div class="col-lg-8">
-      {{ vm.facility.name }}
+      <div>
+        <p>{{ vm.facility.name }} is a {{vm.facility.facility_type.name}} located in {{vm.facility.county.name}} County ({{vm.facility.constituency.name}} Constituency).  It is currently {{vm.facility.get_status_display}}.</p>
+      </div>
 
+      <h4>Contact information</h4>
+      <div class="table-responsive">
+        <table class="table">
+          <tr>
+            <th width="30%">Person in charge</th>
+            <td>{{vm.in_charge}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Telephone</th>
+            <td>
+              <ul class="list-unstyled">
+                <li ng-show="vm.facility.landline">{{vm.facility.landline}}</li>
+                <li ng-show="vm.facility.mobile">{{vm.facility.mobile}}</li>
+                <li ng-show="vm.facility.alternate_no">{{vm.facility.alternate_no}}</li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Email</th>
+            <td>{{vm.facility.email}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Address</th>
+            <td>
+              <address>
+                {{vm.facility.address}}<br ng-show="vm.facility.address">
+                {{vm.facility.town}}<br ng-show="vm.facility.town">
+                {{vm.facility.post_code}}<br ng-show="vm.facility.post_code">
+              </address>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Location Description</th>
+            <td>{{facility.location_description}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Plot Number</th>
+            <td>{{facility.plot_number}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Nearest Town</th>
+            <td>{{facility.nearest_town}}</td>
+          </tr>
+        </table>
+      </div>
 
+      <h4>About Facility</h4>
+      <div class="table-responsive">
+        <table class="table">
+          <tr>
+            <th width="30%">Status</th>
+            <td>{{vm.facility.get_status_display}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Services:</th>
+            <td>
+              <ul class="list-unstyled">
+                <li ng-show="vm.facility.anc">{{vm.facility.get_anc}}</li>
+                <li ng-show="vm.facility.art">{{vm.facility.get_art}}</li>
+                <li ng-show="vm.facility.beoc">{{vm.facility.get_beoc}}</li>
+                <li ng-show="vm.facility.blood">{{vm.facility.get_blood}}</li>
+                <li ng-show="vm.facility.caes_sec">{{vm.facility.get_caes_sec}}</li>
+                <li ng-show="vm.facility.ceoc">{{vm.facility.get_ceoc}}</li>
+                <li ng-show="vm.facility.cimci">{{vm.facility.get_cimci}}</li>
+                <li ng-show="vm.facility.epi">{{vm.facility.get_epi}}</li>
+                <li ng-show="vm.facility.fp">{{vm.facility.get_fp}}</li>
+                <li ng-show="vm.facility.growm">{{vm.facility.get_growm}}</li>
+                <li ng-show="vm.facility.hbc">{{vm.facility.get_hbc}}</li>
+                <li ng-show="vm.facility.hct">{{vm.facility.get_hct}}</li>
+                <li ng-show="vm.facility.ipd">{{vm.facility.get_ipd}}</li>
+                <li ng-show="vm.facility.opd">{{vm.facility.get_opd}}</li>
+                <li ng-show="vm.facility.outreach">{{vm.facility.get_outreach}}</li>
+                <li ng-show="vm.facility.pmtct">{{vm.facility.get_pmtct}}</li>
+                <li ng-show="vm.facility.rad_xray">{{vm.facility.get_rad_xray}}</li>
+                <li ng-show="vm.facility.rhtc_rhdc">{{vm.facility.get_rhtc_rhdc}}</li>
+                <li ng-show="vm.facility.tb_diag">{{vm.facility.get_tb_diag}}</li>
+                <li ng-show="vm.facility.tb_labs">{{vm.facility.get_tb_labs}}</li>
+                <li ng-show="vm.facility.tb_treat">{{vm.facility.get_tb_treat}}</li>
+                <li ng-show="vm.facility.youth">{{vm.facility.get_youth}}</li>
+              </ul>
+            </td>
+          </tr>
+          <tr ng--show="vm.facility.cots > 0">
+            <th width="30%">No. of cots</th>
+            <td>{{vm.facility.cots}}</td>
+          </tr>
+          <tr ng--show="vm.facility.beds > 0">
+            <th width="30%">No. of beds</th>
+            <td>{{vm.facility.beds}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Opens Weekends</th>
+            <td>
+              <span ng-show="vm.facility.open_weekends">{{vm.facility.get_open_weekends}}</span>
+              <span ng-hide="vm.facility.open_weekends">No</span>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">24 Hours</th>
+            <td>
+              <span ng-show="vm.facility.twenty_four_hour">{{vm.facility.get_twenty_four_hour}}</span>
+              <span ng-hide="vm.facility.twenty_four_hour">No</span>
+            </td>
+          </tr>
+
+          <tr>
+            <th width="30%">Type</th>
+            <td>{{vm.facility.facility_type.name}}</td>
+          </tr> 
+          <tr>
+            <th width="30%">Owner</th>
+            <td>{{vm.facility.owner.name}}</td>
+          </tr>          
+          <tr>
+            <th width="30%">Agency</th>
+            <td>{{vm.facility.get_agency_display}}</td>
+          </tr>
+          
+        </table>
+      </div>
+
+      <h4>Location</h4>
+      <div class="table-responsive">
+        <table class="table">
+          
+          <tr>
+            <th width="30%">County</th>
+            <td>
+              <a href="/place/county/{{vm.facility.county.slug}}/{{vm.facility.county.id}}">
+                {{vm.facility.county.name}}
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Constituency</th>
+            <td>
+              <a href="/place/constituency/{{vm.facility.constituency.slug}}/{{vm.facility.constituency.id}}">
+                {{vm.facility.constituency.name}}
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Province</th>
+            <td>
+              <a href="/place/province/{{vm.facility.province.slug}}/{{vm.facility.province.id}}">
+                {{vm.facility.province.name}}
+              </a>
+            </td>
+          </tr>          
+          <tr>
+            <th width="30%">District</th>
+            <td>
+              <a href="/place/district/{{vm.facility.district.slug}}/{{vm.facility.district.id}}">
+                {{vm.facility.district.name}}
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Division</th>
+            <td>
+              <a href="/place/division/{{vm.facility.division.slug}}/{{vm.facility.division.id}}">
+                {{vm.facility.division.name}}
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Location</th>
+            <td>
+              <a href="/place/location/{{vm.facility.location.slug}}/{{vm.facility.location.id}}">
+                {{vm.facility.location.name}}
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Sub Location</th>
+            <td>
+              <a href="/place/sub_location/{{vm.facility.sub_location.slug}}/{{vm.facility.sub_location.id}}">
+                {{vm.facility.sub_location.name}}
+              </a>
+            </td>
+          </tr>
+          
+        </table>
+      </div>
     </div><!--/col-lg-8 -->
 
 
