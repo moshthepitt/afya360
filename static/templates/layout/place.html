@@ -1,0 +1,83 @@
+<div id="blue">
+  <div class="container">
+    <div class="row">
+      <h3>{{vm.place.name}}</h3>
+    </div><!-- /row -->
+  </div> <!-- /container -->
+</div><!-- /blue -->
+
+
+<div class="container mtb">
+  <div class="row">  
+    <!-- SINGLE POST -->
+    <div class="col-lg-8">
+      
+
+      <div class="row">
+        <div class="col-md-12"><h3>Health Facilities in {{vm.place.name}}</h3></div>
+        <div class="col-md-6" ng-repeat="facility in vm.facilities">
+          <div class="panel panel-info health-facility-list-item">
+            <div class="panel-heading">
+              <a href="/health-facility/{{facility.slug}}/{{facility.id}}">{{facility.name}}</a>
+            </div>
+            <div class="panel-body">
+              <strong>24Hr</strong>: <span ng-show="facility.twenty_four_hour">Yes</span><span ng-hide="facility.twenty_four_hour">No</span><br/>
+              <strong>Open Weekends</strong>: <span ng-show="facility.open_weekends">Yes</span><span ng-hide="facility.open_weekends">No</span><br/>
+              <strong>Status</strong>: {{facility.status}}<br/>
+              <br/>
+              <strong>Location</strong>: {{facility.location_description}}<br/>  
+              <strong>Town</strong>: {{facility.town}}<br/>
+            </div>
+          </div>
+        </div> 
+        <div class="col-md-12">
+          <nav>
+            <ul class="pagination">
+              <li ng-show="vm.facilities.previous">
+                <a href="javascript:void(0)" ng-click="vm.back()" aria-label="Previous">
+                  <span aria-hidden="true">&laquo;</span>
+                </a>
+              </li>
+              <li ng-show="vm.facilities.next">
+                <a href="javascript:void(0)" ng-click="vm.next()" aria-label="Next">
+                  <span aria-hidden="true">&raquo;</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </div>
+
+    </div><!--/col-lg-8 -->
+
+
+    <!-- SIDEBAR -->
+    <div class="col-lg-4">
+      <h4>Search</h4>
+      <div class="hline"></div>
+      <p>
+        <br/>
+        <form role="form" ng-submit="vm.submit()" ng-controller="SearchController as vm">
+          <div class="input-group">
+            <input type="text" name="q" id="search" class="form-control"  ng-model="vm.q" placeholder="Search something">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit">Go!</button>
+            </span>
+          </div><!-- /input-group -->
+        </form>
+      </p>
+
+      <div class="spacing"></div>
+
+      <h4>Categories</h4>
+      <div class="hline"></div>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Wordpress</a> <span class="badge badge-theme pull-right">9</span></p>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Photoshop</a> <span class="badge badge-theme pull-right">3</span></p>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Web Design</a> <span class="badge badge-theme pull-right">11</span></p>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Development</a> <span class="badge badge-theme pull-right">5</span></p>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Tips & Tricks</a> <span class="badge badge-theme pull-right">7</span></p>
+      <p><a href="#"><i class="fa fa-angle-right"></i> Code Snippets</a> <span class="badge badge-theme pull-right">12</span></p>
+    </div>
+
+  </div><!--/row -->
+</div><!--/container -->

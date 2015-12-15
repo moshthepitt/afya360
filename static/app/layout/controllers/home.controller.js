@@ -15,31 +15,18 @@
   * @namespace HomeController
   */
   function HomeController($scope, $location, Restangular, Meta) {
-    var vm = this; 
-    vm.next = next;
-    vm.back = back;   
-
-    Restangular.setDefaultRequestParams('get', {limit: 20, format: 'json'});
+    var vm = this;   
 
     activate();
 
     function activate() {
-      Restangular.all('health-facilities/').getList({offset:0}).then(homeSuccessFn, homeErrorFn);
+      Restangular.one('home-resources').get().then(homeSuccessFn, homeErrorFn);
     }  
 
-    function next() {
-      vm.offset += 20;
-      vm.facilities = Restangular.all('health-facilities/').getList({offset:vm.offset}).$object;  
-    } 
-
-    function back() {
-      vm.offset = vm.offset - 20;
-      vm.facilities = Restangular.all('health-facilities/').getList({offset:vm.offset}).$object;
-    }   
-
     function homeSuccessFn(data, status, headers, config) {
-      vm.facilities = data;
-      vm.offset = 0;
+      vm.facilities = data.facilities;
+      vm.counties = data.counties;
+      vm.constituencies = data.constituencies;
       Meta.setTitle("Afy360 | Kenya Directory of Health Centers");    
     }
 
