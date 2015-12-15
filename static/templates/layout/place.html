@@ -14,6 +14,8 @@
       
 
       <div class="row">
+      <div class="col-md-12"><p> {{vm.place.name}} {{vm.place.model_name}} has <strong>{{vm.place.facility_count}}</strong> health facilities.</p></div>
+
         <div class="col-md-12"><h3>Health Facilities in {{vm.place.name}} {{vm.place.model_name}}</h3></div>
         <div class="col-md-6" ng-repeat="facility in vm.facilities">
           <div class="panel panel-info health-facility-list-item">
