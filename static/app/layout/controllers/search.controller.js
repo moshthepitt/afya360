@@ -20,6 +20,9 @@
     vm.back = back; 
     vm.submit = submit;
 
+    Meta.setLoading(false);
+    Meta.setTitle("Afy360 | Search");
+
     var query = $routeParams.q;
     var request_params = {
       limit: 20, 
@@ -63,8 +66,8 @@
 
     function searchSuccessFn(data, status, headers, config) {
       vm.facilities = data;
-      vm.offset = 0;
-      Meta.setTitle("Afy360 | Search");     
+      vm.offset = 0;       
+      Meta.setLoading(true);    
     }
 
     function searchErrorFn(data, status, headers, config) {

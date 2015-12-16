@@ -18,6 +18,7 @@
     var vm = this; 
     
     var id = $routeParams.id;    
+    Meta.setLoading(false);
 
     Restangular.setBaseUrl('/api/v1');
     Restangular.setDefaultRequestParams('get', {format: 'json'});
@@ -25,7 +26,7 @@
 
     activate();
 
-    function activate() {
+    function activate() {      
       Restangular.one('health-facilities', id).get().then(facilitySuccessFn, facilityErrorFn);
     }  
 
@@ -36,6 +37,7 @@
     function facilitySuccessFn(data, status, headers, config) {
       vm.facility = data;
       Meta.setTitle(vm.facility.name);
+      Meta.setLoading(true);
     }
 
     /**

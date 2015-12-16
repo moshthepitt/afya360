@@ -18,7 +18,9 @@
     var vm = this; 
 
     var place_type = $routeParams.type;
-    var place_id = $routeParams.id;    
+    var place_id = $routeParams.id;  
+
+    Meta.setLoading(false);  
 
     var place_url_fragments = {
       province: 'provinces/',
@@ -66,7 +68,7 @@
     */
     function placeSuccessFn(data, status, headers, config) {
       vm.facilities = data;
-      vm.offset = 0;
+      vm.offset = 0;      
       Restangular.one(place_url_fragments[place_type], place_id).get().then(singlePlaceSuccessFn, singlePlaceErrorFn);      
     }
 
@@ -85,6 +87,7 @@
     */
     function singlePlaceSuccessFn(data, status, headers, config) {
       vm.place = data;
+      Meta.setLoading(true);
       Meta.setTitle(vm.place.name + " " + vm.place.model_name);
     }
 
