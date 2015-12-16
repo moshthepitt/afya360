@@ -168,6 +168,7 @@ class HealthFacilitySearchSerializer(HaystackSerializer):
         # fields belong to the search index!
         fields = [
             "text",
+            "rendered",
             "name",
             "slug",
             "id",

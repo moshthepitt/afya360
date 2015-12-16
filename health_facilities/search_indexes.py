@@ -21,9 +21,9 @@ class HealthFacilityIndex(indexes.SearchIndex, indexes.Indexable):
     level = indexes.IntegerField(model_attr='level', faceted=True)
     agency = indexes.IntegerField(model_attr='agency', faceted=True)
     status = indexes.IntegerField(model_attr='status', faceted=True)
+    rendered = indexes.CharField(use_template=True, indexed=False)
     # rating = indexes.DecimalField(model_attr='average_rating', null=True, faceted=True)
     # reviews = indexes.IntegerField(model_attr='review_count')
-    # rendered = indexes.CharField(use_template=True, indexed=False)
 
     # def prepare_rating(self, obj):
     #     return None if not obj.average_rating else obj.average_rating

@@ -1,0 +1,15 @@
+<div class="panel panel-info health-facility-list-item">
+  <div class="panel-heading">
+    <a href="/health-facility/{{object.slug}}/{{object.id}}" property="item" typeof="WebPage">
+      <span itemprop="name">{{object.name}}</span>
+    </a>
+  </div>
+  <div class="panel-body">
+    <strong>24Hr</strong>: {{object.twenty_four_hour|yesno:"Yes,No"}}<br/>
+    <strong>Open Weekends</strong>: {{object.open_weekends|yesno:"Yes,No"}}<br/>
+    <strong>Status</strong>: {{object.get_status_display}}<br/>
+    <br/>
+    <strong>Location</strong>: {{object.location_description}}<br/>  
+    <strong>Town</strong>: {{object.town}}<br/>
+  </div>
+</div>
