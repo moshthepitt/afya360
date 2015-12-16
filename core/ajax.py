@@ -12,7 +12,7 @@ class HomeResources(APIView):
 
     def get(self, request, format=None):
         """
-        Return a list of all users.
+        Return a list of home page resources
         """
         data = {}
         facilities = HealthFacility.objects.order_by('?')[:8]
