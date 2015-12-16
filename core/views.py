@@ -1,9 +1,7 @@
 from django.views.generic.base import TemplateView
 
-from .mixins import CachePageMixin
 
-
-class HomePageView(CachePageMixin, TemplateView):
+class HomePageView(TemplateView):
 
     template_name = "home.html"
 

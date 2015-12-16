@@ -30,6 +30,7 @@
       vm.counties = data.counties;
       vm.constituencies = data.constituencies;      
       Meta.setLoading(true);
+      Meta.setTitle("Afy360 | Kenya Directory of Health Centers"); 
     }
 
     function homeErrorFn(data, status, headers, config) {

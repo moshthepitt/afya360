@@ -7,8 +7,10 @@ from health_facilities.serializers import HealthFacilitySerializer
 from places.models import County, Constituency
 from places.serializers import ConstituencySerializer, CountySerializer
 
+from .mixins import CachePageMixin
 
-class HomeResources(APIView):
+
+class HomeResources(CachePageMixin, APIView):
 
     def get(self, request, format=None):
         """

@@ -21,7 +21,7 @@
     vm.submit = submit;
 
     Meta.setLoading(false);
-    Meta.setTitle("Afy360 | Search");
+    Meta.setTitle("Afy360 | Kenya Directory of Health Centers"); 
 
     var query = $routeParams.q;
     var request_params = {
@@ -67,6 +67,7 @@
     function searchSuccessFn(data, status, headers, config) {
       vm.facilities = data;
       vm.offset = 0;       
+      Meta.setTitle("Afy360 | Search");
       Meta.setLoading(true);    
     }
 
