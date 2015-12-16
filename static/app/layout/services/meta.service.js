@@ -6,7 +6,7 @@
     .factory('Meta', Meta);
 
   function Meta(){
-  	var title = "Afy360 | Kenya Directory of Health Centers";
+  	var title = "Afy360 | Kenya Directory of Health Facilities";
     var doneLoading = false;
 
   	return {

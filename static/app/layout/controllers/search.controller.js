@@ -21,7 +21,6 @@
     vm.submit = submit;
 
     Meta.setLoading(false);
-    Meta.setTitle("Afy360 | Kenya Directory of Health Centers"); 
 
     var query = $routeParams.q;
     var request_params = {

@@ -16,21 +16,30 @@
   */
   function HomeController($scope, $location, Restangular, Meta) {
     var vm = this;   
+    vm.submit = submit;
 
     Meta.setLoading(false);
-    Meta.setTitle("Afy360 | Kenya Directory of Health Centers"); 
+    Meta.setTitle("Afya360 | Kenya Directory of Health Facilities"); 
     activate();
 
     function activate() {
       Restangular.one('home-resources').get().then(homeSuccessFn, homeErrorFn);
     }  
 
+    function submit() {
+      if (vm.q === undefined || vm.q == null) {
+        // do nothing
+      }  else {
+        $location.url('/search').search({q: vm.q});
+      }
+    } 
+
     function homeSuccessFn(data, status, headers, config) {
       vm.facilities = data.facilities;
       vm.counties = data.counties;
       vm.constituencies = data.constituencies;      
       Meta.setLoading(true);
-      Meta.setTitle("Afy360 | Kenya Directory of Health Centers"); 
+      Meta.setTitle("Afya360 | Kenya Directory of Health Facilities"); 
     }
 
     function homeErrorFn(data, status, headers, config) {
