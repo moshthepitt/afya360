@@ -88,7 +88,7 @@
     function singlePlaceSuccessFn(data, status, headers, config) {
       vm.place = data;
       Meta.setLoading(true);
-      Meta.setTitle(vm.place.name + " " + vm.place.model_name);
+      Meta.setTitle(vm.place.name + " " + vm.place.model_name + " | Afya360");
     }
 
     /**

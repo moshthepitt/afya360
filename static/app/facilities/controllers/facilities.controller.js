@@ -36,7 +36,7 @@
     */
     function facilitySuccessFn(data, status, headers, config) {
       vm.facility = data;
-      Meta.setTitle(vm.facility.name);
+      Meta.setTitle(vm.facility.name + " | Afya360");
       Meta.setLoading(true);
     }
 
