@@ -1,0 +1,235 @@
+<section >
+<div id="blue" class="ng-scope">
+  <div class="container">
+    <div class="row">
+      <h3 class="ng-binding">Chemasis Maternity Home</h3>
+    </div><!-- /row -->
+  </div> <!-- /container -->
+</div><!-- /blue -->
+<div class="container mtb ng-scope">
+  <div class="row">  
+    <!-- SINGLE POST -->
+    <div class="col-lg-8" itemtype="" itemscope="https://schema.org/MedicalOrganization">
+      <div>
+        <p class="ng-binding"><span itemprop="name" class="ng-binding">Chemasis Maternity Home</span> is a Maternity Home located in NAKURU County (SUBUKIA Constituency).  It is currently Operational.</p>
+      </div>
+      <br>
+      <h4>Contact information</h4>
+      <div class="table-responsive">
+        <table class="table">
+          <tbody><tr>
+            <th width="30%">Person in charge</th>
+            <td class="ng-binding"></td>
+          </tr>
+          <tr>
+            <th width="30%">Telephone</th>
+            <td>
+              <ul class="list-unstyled">
+                <li ng-show="vm.facility.landline" class="ng-hide">
+                  <span itemprop="telephone" class="ng-binding"></span>
+                </li>
+                <li ng-show="vm.facility.mobile" class="ng-hide">
+                  <span itemprop="telephone" class="ng-binding"></span>
+                </li>
+                <li ng-show="vm.facility.alternate_no" class="ng-hide">
+                  <span itemprop="telephone" class="ng-binding"></span>
+                </li>
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Email</th>
+            <td>
+              <span itemprop="email" class="ng-binding"></span>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Address</th>
+            <td>
+              <address itemprop="address" itemscope="" itemtype="http://schema.org/PostalAddress" class="ng-binding">
+                <span property="postOfficeBoxNumber" class="ng-binding"></span><br ng-show="vm.facility.address" class="ng-hide">
+                <br ng-show="vm.facility.town" class="ng-hide">
+                <span property="postalCode" class="ng-binding"></span><br ng-show="vm.facility.post_code" class="ng-hide">
+              </address>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Location Description</th>
+            <td class="ng-binding"></td>
+          </tr>
+          <tr>
+            <th width="30%">Plot Number</th>
+            <td class="ng-binding"></td>
+          </tr>
+          <tr>
+            <th width="30%">Nearest Town</th>
+            <td class="ng-binding"></td>
+          </tr>
+        </tbody></table>
+      </div>
+
+      <h4>About Facility</h4>
+      <div class="table-responsive">
+        <table class="table">
+          <tbody><tr>
+            <th width="30%">Status</th>
+            <td class="ng-binding">Operational</td>
+          </tr>
+          <tr>
+            <th width="30%">Services:</th>
+            <td>
+              <ul class="list-unstyled">
+                <li ng-show="vm.facility.anc" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.art" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.beoc" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.blood" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.caes_sec" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.ceoc" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.cimci" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.epi" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.fp" class="ng-binding">FP Family Planning</li>
+                <li ng-show="vm.facility.growm" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.hbc" class="ng-binding">HBC Home Based Care</li>
+                <li ng-show="vm.facility.hct" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.ipd" class="ng-binding">IPD Inpatient Department</li>
+                <li ng-show="vm.facility.opd" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.outreach" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.pmtct" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.rad_xray" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.rhtc_rhdc" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.tb_diag" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.tb_labs" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.tb_treat" class="ng-binding ng-hide"></li>
+                <li ng-show="vm.facility.youth" class="ng-binding ng-hide"></li>
+              </ul>
+            </td>
+          </tr>
+          <tr ng--show="vm.facility.cots > 0" class="">
+            <th width="30%">No. of cots</th>
+            <td class="ng-binding">2</td>
+          </tr>
+          <tr ng--show="vm.facility.beds > 0" class="">
+            <th width="30%">No. of beds</th>
+            <td class="ng-binding">10</td>
+          </tr>
+          <tr>
+            <th width="30%">Opens Weekends</th>
+            <td>
+              <span ng-show="vm.facility.open_weekends" class="ng-binding">Open Weekends </span>
+              <span ng-hide="vm.facility.open_weekends" class="ng-hide">No</span>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">24 Hours</th>
+            <td>
+              <span ng-show="vm.facility.twenty_four_hour" class="ng-binding">Open 24 Hours </span>
+              <span ng-hide="vm.facility.twenty_four_hour" class="ng-hide">No</span>
+            </td>
+          </tr>
+
+          <tr>
+            <th width="30%">Type</th>
+            <td class="ng-binding">Maternity Home</td>
+          </tr> 
+          <tr>
+            <th width="30%">Owner</th>
+            <td class="ng-binding">Private Practice - Nurse / Midwife</td>
+          </tr>          
+          <tr>
+            <th width="30%">Agency</th>
+            <td class="ng-binding">NA</td>
+          </tr>
+          
+        </tbody></table>
+      </div>
+
+      <h4>Location</h4>
+      <div class="table-responsive">
+        <table class="table">
+          
+          <tbody><tr>
+            <th width="30%">County</th>
+            <td>
+              <a href="/place/county/nakuru/6" class="ng-binding">
+                NAKURU
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Constituency</th>
+            <td>
+              <a href="/place/constituency/subukia/81" class="ng-binding">
+                SUBUKIA
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Province</th>
+            <td>
+              <a href="/place/province/rift-valley/3" class="ng-binding">
+                RIFT VALLEY
+              </a>
+            </td>
+          </tr>          
+          <tr>
+            <th width="30%">District</th>
+            <td>
+              <a href="/place/district/subukia/130" class="ng-binding">
+                SUBUKIA
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Division</th>
+            <td>
+              <a href="/place/division/subukia/347" class="ng-binding">
+                SUBUKIA
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Location</th>
+            <td>
+              <a href="/place/location/subukia/741" class="ng-binding">
+                SUBUKIA
+              </a>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Sub Location</th>
+            <td>
+              <a href="/place/sub_location/subukia-west/822" class="ng-binding">
+                SUBUKIA WEST
+              </a>
+            </td>
+          </tr>
+          
+        </tbody></table>
+      </div>
+    </div><!--/col-lg-8 -->
+
+
+    <!-- SIDEBAR -->
+    <div class="col-lg-4">
+      <h4>Search</h4>
+      <div class="hline"></div>
+      <p>
+        <br>
+        </p><form role="form" ng-submit="vm.submit()" ng-controller="SearchController as vm" class="ng-pristine ng-valid ng-scope">
+          <div class="input-group">
+            <input type="text" name="q" id="search" class="form-control ng-pristine ng-untouched ng-valid" ng-model="vm.q" placeholder="Search anything">
+            <span class="input-group-btn">
+              <button class="btn btn-primary" type="submit">Go!</button>
+            </span>
+          </div><!-- /input-group -->
+        </form>
+      <p></p>
+
+      <div class="spacing"></div>
+
+      
+    </div>
+
+  </div><!--/row -->
+</div><!--/container -->
+</section>

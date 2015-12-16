@@ -15,11 +15,15 @@
     <link rel="Shortcut Icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
 
     {% compress css inline %}
-    <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'bower_components/tabs/tabs.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'solid/css/style.css' %}" />
-    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />   
-    {% block extracss %}{% endblock %}
+        {% if DEBUG_MODE %}
+            <link rel="stylesheet" type="text/css" href="{% static 'bootstrap/css/bootstrap.css' %}" />
+            <link rel="stylesheet" type="text/css" href="{% static 'bower_components/tabs/tabs.css' %}" />
+            <link rel="stylesheet" type="text/css" href="{% static 'solid/css/style.css' %}" />
+            <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
+        {% else %}
+            <link rel="stylesheet" type="text/css" href="{% static 'computed_components/combined.css' %}" /> 
+        {% endif %}
+        {% block extracss %}{% endblock %}
     {% endcompress %}
 
     {% block extrahead %}{% endblock %}
