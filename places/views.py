@@ -1,4 +1,5 @@
 from rest_framework import permissions, viewsets
+from rest_framework_extensions.cache.mixins import CacheResponseMixin
 
 from .models import Province, County, District, Division
 from .models import Constituency, Location, SubLocation
@@ -8,7 +9,7 @@ from .serializers import DistrictSerializer, DivisionSerializer, LocationSeriali
 from .serializers import SubLocationSerializer
 
 
-class ProvinceViewSet(viewsets.ModelViewSet):
+class ProvinceViewSet(CacheResponseMixin, viewsets.ModelViewSet):
     queryset = Province.objects.order_by('name')
     serializer_class = ProvinceSerializer
 
@@ -18,7 +19,7 @@ class ProvinceViewSet(viewsets.ModelViewSet):
         return (permissions.IsAuthenticated(),)
 
 
-class CountyViewSet(viewsets.ModelViewSet):
+class CountyViewSet(CacheResponseMixin, viewsets.ModelViewSet):
     queryset = County.objects.order_by('name')
     serializer_class = CountySerializer
 
@@ -28,7 +29,7 @@ class CountyViewSet(viewsets.ModelViewSet):
         return (permissions.IsAuthenticated(),)
 
 
-class DistrictViewSet(viewsets.ModelViewSet):
+class DistrictViewSet(CacheResponseMixin, viewsets.ModelViewSet):
     queryset = District.objects.order_by('name')
     serializer_class = DistrictSerializer
 
@@ -38,7 +39,7 @@ class DistrictViewSet(viewsets.ModelViewSet):
         return (permissions.IsAuthenticated(),)
 
 
-class DivisionViewSet(viewsets.ModelViewSet):
+class DivisionViewSet(CacheResponseMixin, viewsets.ModelViewSet):
     queryset = Division.objects.order_by('name')
     serializer_class = DivisionSerializer
 
@@ -48,7 +49,7 @@ class DivisionViewSet(viewsets.ModelViewSet):
         return (permissions.IsAuthenticated(),)
 
 
-class LocationViewSet(viewsets.ModelViewSet):
+class LocationViewSet(CacheResponseMixin, viewsets.ModelViewSet):
     queryset = Location.objects.order_by('name')
     serializer_class = LocationSerializer
 
@@ -58,7 +59,7 @@ class LocationViewSet(viewsets.ModelViewSet):
         return (permissions.IsAuthenticated(),)
 
 
-class SubLocationViewSet(viewsets.ModelViewSet):
+class SubLocationViewSet(CacheResponseMixin, viewsets.ModelViewSet):
     queryset = SubLocation.objects.order_by('name')
     serializer_class = SubLocationSerializer
 
@@ -68,7 +69,7 @@ class SubLocationViewSet(viewsets.ModelViewSet):
         return (permissions.IsAuthenticated(),)
 
 
-class ConstituencyViewSet(viewsets.ModelViewSet):
+class ConstituencyViewSet(CacheResponseMixin, viewsets.ModelViewSet):
     queryset = Constituency.objects.order_by('name')
     serializer_class = ConstituencySerializer
 

@@ -1,12 +1,13 @@
 from rest_framework import permissions, viewsets, filters
 from drf_haystack.viewsets import HaystackViewSet
+from rest_framework_extensions.cache.mixins import CacheResponseMixin
 
 from .models import HealthFacility
 from .serializers import HealthFacilitySerializer, HealthFacilitySearchSerializer
 from .filters import HealthFacilityFilter
 
 
-class HealthFacilityViewSet(viewsets.ModelViewSet):
+class HealthFacilityViewSet(CacheResponseMixin, viewsets.ModelViewSet):
     queryset = HealthFacility.objects.order_by('name')
     serializer_class = HealthFacilitySerializer
     filter_backends = (filters.DjangoFilterBackend,)
