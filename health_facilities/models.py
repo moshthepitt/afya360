@@ -531,6 +531,16 @@ class HealthFacility(models.Model):
                 self.meta().get_field('youth').help_text)
         return None
 
+    def get_latitude(self):
+        if self.coordinates:
+            return self.coordinates.y
+        return None
+
+    def get_longitude(self):
+        if self.coordinates:
+            return self.coordinates.x
+        return None
+
     class Meta:
         verbose_name = _("Health Facility")
         verbose_name_plural = _("Health Facilities")

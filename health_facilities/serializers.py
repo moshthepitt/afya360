@@ -110,6 +110,8 @@ class HealthFacilitySerializer(serializers.ModelSerializer):
             'active',
             'coordinates',
             # computed fields
+            'get_latitude',
+            'get_longitude',
             'get_level_display',
             'get_agency_display',
             'get_status_display',

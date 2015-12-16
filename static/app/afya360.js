@@ -9,7 +9,8 @@
 			'afya360.facilities',
 			'restangular',
 			'platypus.tabs',
-			'ngSanitize'
+			'ngSanitize',
+			'ngMap'
 		]);
 
 	angular

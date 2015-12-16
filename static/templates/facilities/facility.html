@@ -11,6 +11,17 @@
   <div class="row">  
     <!-- SINGLE POST -->
     <div class="col-lg-8" itemtype itemscope="https://schema.org/MedicalOrganization">
+      <div map-lazy-load="https://maps.google.com/maps/api/js">
+        <ng-map center="{{vm.facility.get_latitude}},{{vm.facility.get_longitude}}" zoom="12">
+          <directions
+            draggable="true"
+            travel-mode="DRIVING"
+            panel="directions-panel"
+            origin="current-location"
+            destination="{{vm.facility.get_latitude}},{{vm.facility.get_longitude}}">
+          </directions>
+        </ng-map>
+      </div>
       <div>
         <p><span itemprop="name">{{ vm.facility.name }}</span> is a {{vm.facility.facility_type.name}} located in {{vm.facility.county.name}} County ({{vm.facility.constituency.name}} Constituency).  It is currently {{vm.facility.get_status_display}}.</p>
       </div>
@@ -209,9 +220,16 @@
       </div>
     </div><!--/col-lg-8 -->
 
-
     <!-- SIDEBAR -->
     <div class="col-lg-4">
+      <div ng-show="vm.facility.coordinates">
+      <h4>Directions to {{ vm.facility.name }}</h4>
+      <div class="hline"></div>
+      <div id="directions-panel"></div>
+
+      <div class="spacing"></div>    
+      </div>  
+
       <h4>Search</h4>
       <div class="hline"></div>
       <p>
