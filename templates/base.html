@@ -7,6 +7,7 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="theme-color" content="#00b3fe">
     
     {% block meta_keywords %}<meta name="keywords" content="hospitals, health facilities, dispensaries" />{% endblock %}
     {% block meta_description %}<meta name="description" content="Search and find hospitals, dispensaries, clinics and other health facilities anywhere in Kenya. Quickly access hospital name, information, phone numbers, addresses and more." />{% endblock %}
@@ -22,6 +23,14 @@
             <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}" />
         {% else %}
             <link rel="stylesheet" type="text/css" href="{% static 'computed_components/combined.css' %}" /> 
+            <style>
+                .navbar-collapse.in {
+                    overflow-y: auto;
+                }
+                .collapse.in {
+                    display: block;
+                }
+            </style>
         {% endif %}
         {% block extracss %}{% endblock %}
     {% endcompress %}

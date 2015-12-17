@@ -18,6 +18,7 @@ body {
   margin: 0;
 }
 
+nav,
 section {
   display: block;
 }
@@ -962,6 +963,48 @@ input[type="checkbox"]:focus {
   border-color: #e7e7e7;
 }
 
+.pagination {
+  display: inline-block;
+  padding-left: 0;
+  margin: 20px 0;
+  border-radius: 4px;
+}
+
+.pagination > li {
+  display: inline;
+}
+
+.pagination > li > a {
+  position: relative;
+  float: left;
+  padding: 6px 12px;
+  margin-left: -1px;
+  line-height: 1.42857143;
+  color: #337ab7;
+  text-decoration: none;
+  background-color: #fff;
+  border: 1px solid #ddd;
+}
+
+.pagination > li:first-child > a {
+  margin-left: 0;
+  border-top-left-radius: 4px;
+  border-bottom-left-radius: 4px;
+}
+
+.pagination > li:last-child > a {
+  border-top-right-radius: 4px;
+  border-bottom-right-radius: 4px;
+}
+
+.pagination > li > a:hover,
+.pagination > li > a:focus {
+  z-index: 3;
+  color: #23527c;
+  background-color: #eee;
+  border-color: #ddd;
+}
+
 .list-group {
   padding-left: 0;
   margin-bottom: 20px;
@@ -1532,333 +1575,3 @@ PAGE CONFIGURATIONS
     opacity: 1;
   }
 }
-
-/*** uncss> filename: http://127.0.0.1:8000/static/debug_toolbar/css/toolbar.css ***/
-
-/* http://www.positioniseverything.net/easyclearing.html */
-
-/* Hides from IE-mac \*/
-
-/* end hide from IE-mac */
-
-/* Debug Toolbar CSS Reset, adapted from Eric Meyer's CSS Reset */
-
-#djDebug {
-  color: #000;
-  background: #FFF;
-}
-
-#djDebug,
-#djDebug div,
-#djDebug span,
-#djDebug h3,
-#djDebug a,
-#djDebug code,
-#djDebug img,
-#djDebug small,
-#djDebug ul,
-#djDebug li {
-  margin: 0;
-  padding: 0;
-  min-width: 0;
-  width: auto;
-  border: 0;
-  outline: 0;
-  font-size: 12px;
-  line-height: 1.5em;
-  color: #000;
-  vertical-align: baseline;
-  background-color: transparent;
-  font-family: sans-serif;
-  text-align: left;
-  text-shadow: none;
-  -webkit-transition: none;
-  -moz-transition: none;
-  -o-transition: none;
-  transition: none;
-}
-
-#djDebug #djDebugToolbar {
-  background-color: #111;
-  width: 200px;
-  z-index: 100000000;
-  position: fixed;
-  top: 0;
-  bottom: 0;
-  right: 0;
-  opacity: 0.9;
-  overflow-y: auto;
-}
-
-#djDebug #djDebugToolbar small {
-  color: #999;
-}
-
-#djDebug #djDebugToolbar ul {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-#djDebug #djDebugToolbar li {
-  border-bottom: 1px solid #222;
-  color: #fff;
-  display: block;
-  font-weight: bold;
-  float: none;
-  margin: 0;
-  padding: 0;
-  position: relative;
-  width: auto;
-}
-
-#djDebug #djDebugToolbar input[type=checkbox] {
-  float: right;
-  margin: 10px;
-}
-
-#djDebug #djDebugToolbar li>a,
-#djDebug #djDebugToolbar li>div.djdt-contentless {
-  font-weight: normal;
-  font-style: normal;
-  text-decoration: none;
-  display: block;
-  font-size: 16px;
-  padding: 10px 10px 5px 25px;
-  color: #fff;
-}
-
-#djDebug #djDebugToolbar li>div.djdt-disabled {
-  font-style: italic;
-  color: #999;
-}
-
-#djDebug #djDebugToolbar li a:hover {
-  color: #111;
-  background-color: #ffc;
-}
-
-#djDebug #djDebugToolbar li small {
-  font-size: 12px;
-  color: #999;
-  font-style: normal;
-  text-decoration: none;
-  font-variant: small-caps;
-}
-
-#djDebug #djDebugToolbarHandle {
-  position: fixed;
-  background-color: #fff;
-  border: 1px solid #111;
-  top: 30px;
-  right: 0;
-  z-index: 100000000;
-  opacity: 0.75;
-}
-
-#djDebug #djShowToolBarButton {
-  display: block;
-  height: 75px;
-  width: 30px;
-  border-right: none;
-  border-bottom: 4px solid #fff;
-  border-top: 4px solid #fff;
-  border-left: 4px solid #fff;
-  color: #fff;
-  font-size: 10px;
-  font-weight: bold;
-  text-decoration: none;
-  text-align: center;
-  text-indent: -999999px;
-  background: #000 no-repeat left center;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACgAAABLCAIAAACN/FLOAAADOUlEQVR4Ae2WUWhSXxzHp5v+y4mGGkkEETIfIhyEUThaD0XlGg7qZTJdpGOzQSiVC9uWlCxsMmvW0k2WBDVJMzJWBAaG6ORfGZMexAd9EXzxwWFI9qB24K7DZUNRdlSC++H35P1yPpff/Z1zbCMgICAg2AECgUClUmk0msHBQRqN1jyxxWIp/6Wrq6s5UkKsVCrP1wCfz0csrpGlpaXWiFdXV1sjdrvdiMW5XG6jBoxG47801YTYbDZj1mKxyOPx2loLmUzmcDhcLpdKpTbDJxQKbTZbLBYrlUqw/+l02uVySSSShijpdDrYneWqhEIh0AOUVtDPcDhcroFkMslgMJCJTSZTuWasVisaK4vFyufzZRw+n89gMMjlcqlUqtfrvV4v/pMXCgU2m41ArFAo8EemWCzenhGJRGDE8LcnArHD4YArqtXqSjGZTAZjdrsdgRjMKlyRyWRWilEoFHDCYLFAIIBADHYt3K/Vk6lUCktGo1EE4kQigS2XzWbHqpLJZLBkPB5HIAavX66TSCSCQBwMBusV+/1+BGKPx1Ov2Ol0IhDrdLr1OtFqtTv3EjBYnWwuY0ux9jHI7eTGiu2Bm9/Ki9tr7deTl9+nhq6fIZFITRXDmns73hoxqJP9ggaKw78XPm88wirw04IXz6yMNFB8Z3kY//v+Q5x3yRns0fP/dc0TA/SOy9ijVz/06MXg+43q+0emL3T38LY8mn9/DRPPelSN+0NP2sOhgx1MoXbAHw/w9koUPYrJvqOn+Ih9h4UHb9uGXsfufi3Z4Ch9TM8aXaO9km6UJgiN/t8D9xjQVKlnoQnQA5RW0E9H+BYUVCkw2J2MXcjEatOlWqxY6axDyG6FYP4xfumnPs1Vw0Cf/MQ56TEw4WbvOP6TrxUWmOxOBGIwqHDRQG5eJD6yPSMQ8cCIwdiAsgeBGB4LoKTq05VifbLjMDZllyMQg1mFK9KZuyvFOijtX4qbDQenGwIx2LVwv1ZPfkgZsaQzOo1A7E1sHv3+7MOLY71V6lNmDku+id9DIAavD1tdY72ITCIQLwcn6hUv+m8gEIOrpl7xfecIAvEVnXhlfbquGtaebSMgICAgaBR/AF2yboPNdvDUAAAAAElFTkSuQmCC");
-  opacity: 0.5;
-}
-
-#djDebug #djShowToolBarButton:hover {
-  background-color: #111;
-  border-top-color: #FFE761;
-  border-left-color: #FFE761;
-  border-bottom-color: #FFE761;
-  cursor: move;
-  opacity: 1.0;
-}
-
-#djDebug code {
-  display: block;
-  font-family: Consolas, Monaco, "Bitstream Vera Sans Mono", "Lucida Console", monospace;
-  font-size: 12px;
-  white-space: pre;
-  overflow: auto;
-}
-
-#djDebug .djdt-panelContent {
-  display: none;
-  position: fixed;
-  margin: 0;
-  top: 0;
-  right: 200px;
-  bottom: 0;
-  left: 0px;
-  background-color: #eee;
-  color: #666;
-  z-index: 100000000;
-}
-
-#djDebug .djdt-panelContent > div {
-  border-bottom: 1px solid #ddd;
-}
-
-#djDebug .djDebugPanelTitle {
-  position: absolute;
-  background-color: #ffc;
-  color: #666;
-  padding-left: 20px;
-  top: 0;
-  right: 0;
-  left: 0;
-  height: 50px;
-}
-
-#djDebug .djDebugPanelTitle code {
-  display: inline;
-  font-size: inherit;
-}
-
-#djDebug .djDebugPanelContent {
-  position: absolute;
-  top: 50px;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  height: auto;
-  padding: 5px 0 0 20px;
-}
-
-#djDebug .djDebugPanelContent .djdt-loader {
-  display: block;
-  margin: 80px auto;
-}
-
-#djDebug .djDebugPanelContent .djdt-scroll {
-  height: 100%;
-  overflow: auto;
-  display: block;
-  padding: 0 10px 0 0;
-}
-
-#djDebug h3 {
-  font-size: 24px;
-  font-weight: normal;
-  line-height: 50px;
-}
-
-/*
-#djDebug .djdt-panelContent p a:hover, #djDebug .djdt-panelContent dd a:hover {
-	color:#111;
-	background-color:#ffc;
-}
-
-#djDebug .djdt-panelContent p {
-	padding:0 5px;
-}
-
-#djDebug .djdt-panelContent p, #djDebug .djdt-panelContent table, #djDebug .djdt-panelContent ol, #djDebug .djdt-panelContent ul, #djDebug .djdt-panelContent dl {
-	margin:5px 0 15px;
-	background-color:#fff;
-}
-#djDebug .djdt-panelContent table {
-	clear:both;
-	border:0;
-	padding:0;
-	margin:0;
-	border-collapse:collapse;
-	border-spacing:0;
-}
-
-#djDebug .djdt-panelContent table a {
-	color:#000;
-	padding:2px 4px;
-}
-#djDebug .djdt-panelContent table a:hover {
-	background-color:#ffc;
-}
-
-#djDebug .djdt-panelContent table th {
-	background-color:#333;
-	font-weight:bold;
-	color:#fff;
-	padding:3px 7px 3px;
-	text-align:left;
-	cursor:pointer;
-}
-#djDebug .djdt-panelContent table td {
-	padding:5px 10px;
-	font-size:14px;
-	background-color:#fff;
-	color:#000;
-	vertical-align:top;
-	border:0;
-}
-#djDebug .djdt-panelContent table tr.djDebugOdd td {
-  background-color:#eee;
-}
-*/
-
-#djDebug .djdt-panelContent .djDebugClose {
-  display: block;
-  position: absolute;
-  top: 4px;
-  right: 15px;
-  height: 40px;
-  width: 40px;
-  background: no-repeat center center;
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAQAAACQTsNJAAABuUlEQVR4Ab2WXeoaMRTFZxHz6pObcA0DeXUHhXktFl8LXYAPXYBLKhQGBOFqW3XS8YOW6vjHmnp6wWZyHU1maqHnQDAf/Ehu7twYhUQxdUixO/wr8ts3oeg9TQjCEx5R7SGvKCd4nPNsIyShD4QGf6QkBBkQWnrgg4zqS2fm01kbze3M3GFGjyBvCdLFqYRUySM1zLAOUXJ6dZAACcoPBOHkFpK5qY1BQBt5sExC0gAijEkriMuLfI9m8SqXNxbSd+QSbVSCnPtXyNjdCCoZ7PANF7C4/Y4tznASNzW+QqaP9lFcj4cLW4PY+vFepsSQ2Hbnp5vw2ShB231Cau72EkfUs53lC4R+YQkSXsBAiFdXc72IkupmDODDfKkhwKtdygUgHAuXw7gEIN7jCIQNsfc43sDuqlgsbC57A+u94q82nFVscv8Vy2Rbi72csGKQ+RPignvytGuZbPW0P6KNjvdpz97aIf3jLz/ArfuKXz9dCt7IojR9qihNAuUx33vL454grOqF+t2/F2rPk/H5pzaa2+Ynw3lIaOlh6BlVlDUCMlLND3pKhRdQUPof/1o4x9Qlxe6G/+T8BlqvQqkd4EyZAAAAAElFTkSuQmCC");
-}
-
-#djDebug .djdt-panelContent .djDebugClose:hover {
-  background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACIAAAAiCAYAAAA6RwvCAAACiUlEQVR4Ad2Yz2oTURSH+xCz7cqX6DMUZtudCxExigq2WhcKYtGFVLrwAboSKoVGxT+tJWpTa2lLTDsm6SSTjtZoIq0prf+2Hu8PcmHInJvJPYwuPPDBMDPn8DE5c+fcDEgjDENHMahwOwx2zg1IsE1wFXcVvoIM+J173L8hckrRUpAlLeSmITKsKNoKMHioJRUZU1DKjNmKTCUWDWpUL21RJbcAcIxz/chM9StyvVeh8rOHtH7nJi2dOc6Ba7gnSWY8ScQ1JVdfv6C1yQlegAH3+su5XjLDvUTKXNK77H0Ul4Bck0jZJJLhEry5GV1ULvNg1iSTiYlw64SfX0ShNEAtfp3pEhnhjJmekIJapqcyEhWZZt4OtuDqlXPUWHxKYXaGli+c1Ocpf/4E1Wfv0afcPK1dG+VyTW/TdFQk6Pdp7BfWSMdhtQIZSFDbe0s6DiqezVMJtIjTfXGnuv3b9Iib+RxF47C2Te3SJkUDsqZ81GZkHIgMdV+ora8YC62MnqbvH0Iyxa/WZ3pz+awxH7UZkSH9YaMolZfPdaJZZvd9XOJLU0sYQW1ucROJoCcOyh51x1G9ip4Ri1j9NLoxDaEbWPDTWDbrx/lHsZ740dilSKChBc1q+fp+3SyQjp/NBnoi1sB4KpLXl13QSo/n2GKFW1fpaKdG+8UNSEQbmPY2VulbWKfi5A0uFzUTFzR+ib/NFJSBWolLvKYd++i9WkhNxF9i35Y29/W9KB8DxDPJJU4EBP9wMPJFoyLmCetRUc8gPK5JRDOhIBOlJ9nE4Rn3yIdnwXYi2Crq7QSOU99OaGBNKTMu3XK63GQvADXcNDbhGcWeQAA5mf/ybwkOR3FM4XbAsSOt9wcLTn8FNtAKkQAAAABJRU5ErkJggg==");
-}
-
-/* Error */
-
-/* Generic */
-
-/* Keyword */
-
-/* Operator */
-
-/* Name */
-
-/* Literal.Number.Integer */
-
-/* Literal */
-
-/* Other */
-
-/* Punctuation */
-
-/* Literal.Number */
-
-/* Literal.String */
-
-/* Text.Whitespace */
-
-/* Literal.Number.Integer.Long */
-
-/* Name.Attribute */
-
-/* Name.Tag */
-
-/* Name.Variable */
-
-/* Literal.String.Double */
-
-/* Comment.Preproc */
-
-@media print {
-  #djDebug {
-    display: none !important;
-  }
-}
-
