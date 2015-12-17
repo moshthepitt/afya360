@@ -309,27 +309,27 @@ class HealthFacility(models.Model):
     beoc = models.NullBooleanField(
         _("BEOC"), default=None, help_text=_("Basic Essential Obstetric Care"))
     blood = models.NullBooleanField(_("BLOOD"), default=None, help_text=_("Blood Transfusion"))
-    caes_sec = models.NullBooleanField(_("CAES SEC"), default=None, help_text=_(""))
-    ceoc = models.NullBooleanField(_("CEOC"), default=None, help_text=_(""))
+    caes_sec = models.NullBooleanField(_("CAES SEC"), default=None, help_text=_("Caesaraen Section"))
+    ceoc = models.NullBooleanField(_("CEOC"), default=None, help_text=_("Comprehensive Emergency Obstetric Care"))
     cimci = models.NullBooleanField(
         _("C-IMCI"), default=None, help_text=_("Community Integrated Management of Childhood Illness"))
     epi = models.NullBooleanField(
         _("EPI"), default=None, help_text=_("Expanded Program on Immunization"))
     fp = models.NullBooleanField(_("FP"), default=None, help_text=_("Family Planning"))
-    growm = models.NullBooleanField(_("GROWM"), default=None, help_text=_(""))
+    growm = models.NullBooleanField(_("GROWM"), default=None, help_text=_("Growth Monitoring and Promotion"))
     hbc = models.NullBooleanField(_("HBC"), default=None, help_text=_("Home Based Care"))
-    hct = models.NullBooleanField(_("HCT"), default=None, help_text=_(""))
+    hct = models.NullBooleanField(_("HCT"), default=None, help_text=_("HIV Counselling and Testing"))
     ipd = models.NullBooleanField(_("IPD"), default=None, help_text=_("Inpatient Department"))
     opd = models.NullBooleanField(_("OPD"), default=None, help_text=_("Outpatient Department"))
-    outreach = models.NullBooleanField(_("Outreach"), default=None, help_text=_(""))
+    outreach = models.NullBooleanField(_("Outreach"), default=None, help_text=_("Outreach services in the Community"))
     pmtct = models.NullBooleanField(
         _("PMTCT"), default=None, help_text=_("Prevention of Mother-to-child Transmission of HIV"))
     rad_xray = models.NullBooleanField(
-        _("RAD/XRAY"), default=None, help_text=_("Radiography / X-Ray"))
-    rhtc_rhdc = models.NullBooleanField(_("RHTC/RHDC"), default=None, help_text=_(""))
-    tb_diag = models.NullBooleanField(_("TB Diagnosis"), default=None, help_text=_(""))
-    tb_labs = models.NullBooleanField(_("TB Labs"), default=None, help_text=_(""))
-    tb_treat = models.NullBooleanField(_("TB Treatment"), default=None, help_text=_(""))
+        _("RAD/XRAY"), default=None, help_text=_("Radioology Services (e.g. X-ray, MRI, Ultrascan etc)"))
+    rhtc_rhdc = models.NullBooleanField(_("RHTC/RHDC"), default=None, help_text=_("Rural Health Training or Demonstration Centre"))
+    tb_diag = models.NullBooleanField(_("TB Diagnosis"), default=None, help_text=_("Tuberculosis Diagnosis"))
+    tb_labs = models.NullBooleanField(_("TB Labs"), default=None, help_text=_("Tuberculosis Labs"))
+    tb_treat = models.NullBooleanField(_("TB Treatment"), default=None, help_text=_("Tuberculosis Treatment"))
     youth = models.NullBooleanField(_("Youth"), default=None, help_text=_("Youth Friendly Service"))
 
     active = models.BooleanField(_("Active"), default=True)
