@@ -36,7 +36,7 @@ class Province(PlaceModel):
     slug = AutoSlugField(populate_from='name', unique=True)
 
     def get_absolute_url(self):
-        return "/place/provice/{0}/{1}/".format(self.slug, self.pk)
+        return "/place/province/{0}/{1}/".format(self.slug, self.pk)
 
     class Meta:
         ordering = ['name']

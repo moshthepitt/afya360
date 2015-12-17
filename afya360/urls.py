@@ -6,6 +6,9 @@ from rest_framework import routers
 
 from core.views import HomePageView
 from core.ajax import HomeResources
+
+from core.sitemaps import sitemaps
+
 from places.views import ProvinceViewSet, CountyViewSet, ConstituencyViewSet
 from places.views import DistrictViewSet, DivisionViewSet, LocationViewSet
 from places.views import SubLocationViewSet
@@ -22,6 +25,11 @@ router.register(r'sub-locations', SubLocationViewSet)
 router.register(r'health-facilities', HealthFacilityViewSet)
 router.register(r'hf-search', HealthFacilitySearchView, base_name="health-facilities-search")
 
+sitemap_urls = [
+    url(r'^sitemap\.xml$', 'fastsitemaps.views.index', {'sitemaps': sitemaps}),
+    url(r'^sitemap-(?P<section>.+)\.xml$', 'fastsitemaps.views.sitemap', {'sitemaps': sitemaps}),
+]
+
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
     url(r'^api/v1/home-resources/$', HomeResources.as_view(), name="home_resources"),
@@ -31,6 +39,8 @@ urlpatterns = [
 
     url(r'^.*$', HomePageView.as_view(), name='home'),
 ]
+
+urlpatterns = sitemap_urls + urlpatterns
 
 if settings.DEBUG:
     # static files (images, css, javascript, etc.)
