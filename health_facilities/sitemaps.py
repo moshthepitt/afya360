@@ -15,7 +15,7 @@ class HealthFacilitySitemap(Sitemap):
         return obj.updated_on
 
 
-def health_facility_sitemaps(chunk=2000):
+def health_facility_sitemaps(chunk=1000):
     """
     next we'll attemtp to generate a number of sitemaps in chunks using Paginator and GenericSitemap
     """
