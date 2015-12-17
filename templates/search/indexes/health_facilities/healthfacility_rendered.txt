@@ -10,6 +10,6 @@
     <strong>Status</strong>: {{object.get_status_display}}<br/>
     <br/>
     <strong>Location</strong>: {{object.location_description}}<br/>  
-    <strong>Town</strong>: {{object.town}}<br/>
+    <strong>Nearest Town</strong>: {{object.nearest_town}}<br/>
   </div>
 </div>
