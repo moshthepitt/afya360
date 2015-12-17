@@ -36,7 +36,7 @@ class Province(PlaceModel):
     slug = AutoSlugField(populate_from='name', unique=True)
 
     def get_absolute_url(self):
-        return reverse('place:province', args=[self.slug])
+        return "/place/provice/{0}/{1}/".format(self.slug, self.pk)
 
     class Meta:
         ordering = ['name']
@@ -48,7 +48,7 @@ class County(PlaceModel):
     slug = AutoSlugField(populate_from='name', unique=True)
 
     def get_absolute_url(self):
-        return reverse('place:county', args=[self.slug])
+        return "/place/county/{0}/{1}/".format(self.slug, self.pk)
 
     class Meta:
         ordering = ['name']
@@ -61,7 +61,7 @@ class District(PlaceModel):
     slug = AutoSlugField(populate_from='name', unique_with='province__name')
 
     def get_absolute_url(self):
-        return reverse('place:district', kwargs={'slug': self.slug, 'province_slug': self.province.slug})
+        return "/place/district/{0}/{1}/".format(self.slug, self.pk)
 
     class Meta:
         ordering = ['name']
@@ -74,7 +74,7 @@ class Division(PlaceModel):
     slug = AutoSlugField(populate_from='name', unique_with='district__name')
 
     def get_absolute_url(self):
-        return reverse('place:division', kwargs={'slug': self.slug, 'district_slug': self.district.slug})
+        return "/place/division/{0}/{1}/".format(self.slug, self.pk)
 
     class Meta:
         ordering = ['name']
@@ -87,7 +87,7 @@ class Location(PlaceModel):
     slug = AutoSlugField(populate_from='name', unique_with='division__name')
 
     def get_absolute_url(self):
-        return reverse('place:location', kwargs={'slug': self.slug, 'division_slug': self.division.slug})
+        return "/place/location/{0}/{1}/".format(self.slug, self.pk)
 
     class Meta:
         ordering = ['name']
@@ -100,7 +100,7 @@ class SubLocation(PlaceModel):
     slug = AutoSlugField(populate_from='name', unique_with='location__name')
 
     def get_absolute_url(self):
-        return reverse('place:sub_location', kwargs={'slug': self.slug, 'location_slug': self.location.slug})
+        return "/place/sub_location/{0}/{1}/".format(self.slug, self.pk)
 
     class Meta:
         ordering = ['name']
@@ -113,7 +113,7 @@ class Constituency(PlaceModel):
     slug = AutoSlugField(populate_from='name', unique_with='county__name')
 
     def get_absolute_url(self):
-        return reverse('place:constituency', kwargs={'slug': self.slug, 'county_slug': self.county.slug})
+        return "/place/constituency/{0}/{1}/".format(self.slug, self.pk)
 
     class Meta:
         ordering = ['name']

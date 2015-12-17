@@ -541,6 +541,9 @@ class HealthFacility(models.Model):
             return self.coordinates.x
         return None
 
+    def get_absolute_url(self):
+        return "/health-facility/{0}/{1}/".format(self.slug, self.pk)
+
     class Meta:
         verbose_name = _("Health Facility")
         verbose_name_plural = _("Health Facilities")
