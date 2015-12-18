@@ -46,8 +46,20 @@
     function next() {
       vm.offset += 20;
       request_params['offset'] = vm.offset;
-      vm.facilities = Restangular.all('hf-search/').getList(request_params).$object;  
+      // vm.facilities = Restangular.all('hf-search/').getList(request_params).$object;  
+      // Restangular.all('hf-search/').getList(request_params).then(function(resultThreads){
+      //   console.log(resultThreads);
+      //   // vm.facilities.push(resultThreads);
+      // });
+
+      Restangular.all('hf-search/').getList(request_params).then(xsearchSuccessFn, searchErrorFn);
+
     } 
+
+    function xsearchSuccessFn(data, status, headers, config) {
+      console.log(data);
+      // vm.facilities.push(data);
+    }
 
     function back() {
       vm.offset = vm.offset - 20;

@@ -16,6 +16,7 @@
   */
   function FacilityController($scope, $location, $routeParams, Restangular, Meta) {
     var vm = this; 
+    vm.submit = submit;
     
     var id = $routeParams.id;    
     Meta.setLoading(false);
@@ -30,20 +31,20 @@
       Restangular.one('health-facilities', id).get().then(facilitySuccessFn, facilityErrorFn);
     }  
 
-    /**
-    * @name facilitySuccessFn
-    * @desc Update `facility` for view
-    */
+    function submit() {
+      if (vm.q === undefined || vm.q == null) {
+        // do nothing
+      }  else {
+        $location.url('/search').search({q: vm.q});
+      }
+    } 
+
     function facilitySuccessFn(data, status, headers, config) {
       vm.facility = data;
       Meta.setTitle(vm.facility.name + " | Afya360");
       Meta.setLoading(true);
     }
 
-    /**
-    * @name facilityErrorFn
-    * @desc Redirect to index
-    */
     function facilityErrorFn(data, status, headers, config) {
       $location.url('/');
       console.log('That facility does not exist.');

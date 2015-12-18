@@ -16,6 +16,7 @@
   */
   function PlaceController($scope, $location, $routeParams, Restangular, Meta) {
     var vm = this; 
+    vm.submit = submit;
 
     var place_type = $routeParams.type;
     var place_id = $routeParams.id;  
@@ -50,6 +51,14 @@
       Restangular.all('health-facilities/').getList(request_params).then(placeSuccessFn, placeErrorFn);
     }  
 
+    function submit() {
+      if (vm.q === undefined || vm.q == null) {
+        // do nothing
+      }  else {
+        $location.url('/search').search({q: vm.q});
+      }
+    } 
+
     function next() {
       vm.offset += 20;
       request_params['offset'] = vm.offset;
@@ -62,39 +71,23 @@
       vm.facilities = Restangular.all('health-facilities/').getList(request_params).$object;
     }   
 
-    /**
-    * @name placeSuccessFn
-    * @desc Update `place` for view
-    */
     function placeSuccessFn(data, status, headers, config) {
       vm.facilities = data;
       vm.offset = 0;      
       Restangular.one(place_url_fragments[place_type], place_id).get().then(singlePlaceSuccessFn, singlePlaceErrorFn);      
     }
 
-    /**
-    * @name placeErrorFn
-    * @desc Redirect to index
-    */
     function placeErrorFn(data, status, headers, config) {
       $location.url('/');
       console.log('That place does not exist or does not have facilities.');
     }
 
-    /**
-    * @name facilitySuccessFn
-    * @desc Update `facility` for view
-    */
     function singlePlaceSuccessFn(data, status, headers, config) {
       vm.place = data;
       Meta.setLoading(true);
       Meta.setTitle(vm.place.name + " " + vm.place.model_name + " | Afya360");
     }
 
-    /**
-    * @name facilityErrorFn
-    * @desc Redirect to index
-    */
     function singlePlaceErrorFn(data, status, headers, config) {
       $location.url('/');
       console.log('That place does not exist.');
