@@ -17,7 +17,6 @@
   function SearchController($scope, $location, $routeParams, Restangular, Meta) {
     var vm = this; 
     vm.next = next;
-    vm.back = back; 
     vm.submit = submit;
 
     Meta.setLoading(false);
@@ -46,26 +45,9 @@
     function next() {
       vm.offset += 20;
       request_params['offset'] = vm.offset;
-      vm.facilities = Restangular.all('hf-search/').getList(request_params).$object;  
-      // Restangular.all('hf-search/').getList(request_params).then(function(resultThreads){
-      //   console.log(resultThreads);
-      //   // vm.facilities.push(resultThreads);
-      // });
-
-      // Restangular.all('hf-search/').getList(request_params).then(xsearchSuccessFn, searchErrorFn);
-
-    } 
-
-    // function xsearchSuccessFn(data, status, headers, config) {
-    //   console.log(data);
-    //   // vm.facilities.push(data);
-    // }
-
-    function back() {
-      vm.offset = vm.offset - 20;
-      request_params['offset'] = vm.offset;
-      vm.facilities = Restangular.all('hf-search/').getList(request_params).$object;
-    }  
+      Meta.setLoading(false); 
+      Restangular.all('hf-search/').getList(request_params).then(navSuccessFn, navErrorFn);      
+    }   
 
     function submit() {
       if (vm.q === undefined || vm.q == null) {
@@ -73,6 +55,16 @@
       }  else {
         $location.url('/search').search({q: vm.q});
       }
+    } 
+
+    function navSuccessFn(data, status, headers, config) {
+      vm.facilities = vm.facilities.concat(data);   
+      vm.facilities.next = data.next;
+      Meta.setLoading(true);
+    }
+
+    function navErrorFn(data, status, headers, config) {
+      console.log('That place does not exist or does not have facilities.');
     } 
 
     function searchSuccessFn(data, status, headers, config) {

@@ -34,7 +34,6 @@
     }
 
     vm.next = next;
-    vm.back = back;
 
     Restangular.setDefaultRequestParams('get', {limit: 20, format: 'json'});
 
@@ -61,15 +60,20 @@
 
     function next() {
       vm.offset += 20;
-      request_params['offset'] = vm.offset;
-      vm.facilities = Restangular.all('health-facilities/').getList(request_params).$object;  
+      request_params['offset'] = vm.offset; 
+      Meta.setLoading(false);
+      Restangular.all('health-facilities/').getList(request_params).then(navSuccessFn, navErrorFn);
     } 
 
-    function back() {
-      vm.offset = vm.offset - 20;
-      request_params['offset'] = vm.offset;
-      vm.facilities = Restangular.all('health-facilities/').getList(request_params).$object;
-    }   
+    function navSuccessFn(data, status, headers, config) {
+      vm.facilities = vm.facilities.concat(data);   
+      vm.facilities.next = data.next;
+      Meta.setLoading(true);
+    }
+
+    function navErrorFn(data, status, headers, config) {
+      console.log('That place does not exist or does not have facilities.');
+    } 
 
     function placeSuccessFn(data, status, headers, config) {
       vm.facilities = data;
