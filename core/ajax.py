@@ -17,7 +17,8 @@ class HomeResources(CachePageMixin, APIView):
         Return a list of home page resources
         """
         data = {}
-        facilities = HealthFacility.objects.order_by('?')[:8]
+        facilities = HealthFacility.objects.exclude(twenty_four_hour=False).exclude(
+            location_description="").exclude(nearest_town='').order_by('?')[:8]
         facilities = [HealthFacilitySerializer(x).data for x in facilities]
         counties = County.objects.all()
         constituencies = Constituency.objects.all()
