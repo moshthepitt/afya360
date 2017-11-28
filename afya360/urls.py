@@ -12,7 +12,7 @@ from core.sitemaps import sitemaps
 from places.views import ProvinceViewSet, CountyViewSet, ConstituencyViewSet
 from places.views import DistrictViewSet, DivisionViewSet, LocationViewSet
 from places.views import SubLocationViewSet
-from health_facilities.views import HealthFacilityViewSet
+from health_facilities.views import HealthFacilityViewSet, HealthFacilityView
 from health_facilities.views import HealthFacilitySearchView
 
 router = routers.SimpleRouter()
@@ -42,6 +42,9 @@ urlpatterns = [
     # url(r'^page/', include('django.contrib.flatpages.urls')),
 
     url(r'^new/$', HomePage.as_view(), name='home'),
+    url(r'^new/health-facility/(?P<slug>[-\w]+)/(?P<pk>\d+)/$',
+        HealthFacilityView.as_view(),
+        name='health_facility'),
 
     url(r'^.*$', AngularView.as_view(), name='ng_home'),
 ]

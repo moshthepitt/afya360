@@ -13,7 +13,7 @@
     {% block meta_keywords %}<meta name="keywords" content="hospitals, health facilities, dispensaries" />{% endblock %}
     {% block meta_description %}<meta name="description" content="Search and find hospitals, dispensaries, clinics and other health facilities anywhere in Kenya. Quickly access hospital name, information, phone numbers, addresses and more." />{% endblock %}
     {% block other_meta %}{% endblock %}
-    <title>{% block title %}Afya360{% endblock %}</title>
+    <title>{% block title %}{% block page_title %}{% endblock %} | {{ site.name }}{% endblock %}</title>
     <link rel="Shortcut Icon" href="{% static 'img/favicon.ico' %}" type="image/x-icon" />
 
     {% compress css inline %}

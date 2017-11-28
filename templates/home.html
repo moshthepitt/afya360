@@ -35,7 +35,7 @@
 	      <div class="col-md-6" itemtype itemscope="https://schema.org/MedicalOrganization">
 	        <div class="panel panel-info health-facility-list-item">
 	          <div class="panel-heading">
-	            <a href="/health-facility/{{facility.slug}}/{{facility.id}}" property="item" typeof="WebPage">
+	            <a href="{% url 'health_facility' facility.slug facility.id %}" property="item" typeof="WebPage">
 	              <span itemprop="name">{{facility.name}}</span>
 	            </a>
 	          </div>
