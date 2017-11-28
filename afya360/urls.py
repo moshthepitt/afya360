@@ -4,7 +4,7 @@ from django.conf import settings
 
 from rest_framework import routers
 
-from core.views import AngularView
+from core.views import AngularView, HomePage
 from core.ajax import AngularResources
 
 from core.sitemaps import sitemaps
@@ -41,7 +41,9 @@ urlpatterns = [
     # url(r'^accounts/', include('allauth.urls')),
     # url(r'^page/', include('django.contrib.flatpages.urls')),
 
-    url(r'^.*$', AngularView.as_view(), name='home'),
+    url(r'^new/$', HomePage.as_view(), name='home'),
+
+    url(r'^.*$', AngularView.as_view(), name='ng_home'),
 ]
 
 urlpatterns = sitemap_urls + urlpatterns

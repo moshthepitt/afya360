@@ -1,6 +1,6 @@
-{% extends "base.html" %}
+{% extends "angular/base.html" %}
 
-{% block all_content %} 
+{% block all_content %}
 	<div id="mothership" class="mothership">
 		<div ng-controller="MetaController as vm">
 		  <div class="preloader-mask" ng-hide="vm.pageMeta.doneLoading()">
@@ -18,8 +18,8 @@
 		      <div class="sk-circle11 sk-circle"></div>
 		      <div class="sk-circle12 sk-circle"></div>
 		    </div>
-		  </div> 
+		  </div>
 		</div>
-		<section class="ng-view" autoscroll="true"></section>  
+		<section class="ng-view" autoscroll="true"></section>
 	</div>
 {% endblock %}
