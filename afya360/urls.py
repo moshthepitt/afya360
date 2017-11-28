@@ -4,15 +4,16 @@ from django.conf import settings
 
 from rest_framework import routers
 
-from core.views import HomePageView
-from core.ajax import HomeResources
+from core.views import AngularView
+from core.ajax import AngularResources
 
 from core.sitemaps import sitemaps
 
 from places.views import ProvinceViewSet, CountyViewSet, ConstituencyViewSet
 from places.views import DistrictViewSet, DivisionViewSet, LocationViewSet
 from places.views import SubLocationViewSet
-from health_facilities.views import HealthFacilityViewSet, HealthFacilitySearchView
+from health_facilities.views import HealthFacilityViewSet
+from health_facilities.views import HealthFacilitySearchView
 
 router = routers.SimpleRouter()
 router.register(r'provinces', ProvinceViewSet)
@@ -23,21 +24,24 @@ router.register(r'districts', DistrictViewSet)
 router.register(r'locations', LocationViewSet)
 router.register(r'sub-locations', SubLocationViewSet)
 router.register(r'health-facilities', HealthFacilityViewSet)
-router.register(r'hf-search', HealthFacilitySearchView, base_name="health-facilities-search")
+router.register(r'hf-search', HealthFacilitySearchView,
+                base_name="health-facilities-search")
 
 sitemap_urls = [
     url(r'^sitemap\.xml$', 'fastsitemaps.views.index', {'sitemaps': sitemaps}),
-    url(r'^sitemap-(?P<section>.+)\.xml$', 'fastsitemaps.views.sitemap', {'sitemaps': sitemaps}),
+    url(r'^sitemap-(?P<section>.+)\.xml$', 'fastsitemaps.views.sitemap',
+        {'sitemaps': sitemaps}),
 ]
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^api/v1/home-resources/$', HomeResources.as_view(), name="home_resources"),
+    url(r'^api/v1/home-resources/$', AngularResources.as_view(),
+        name="home_resources"),
     url(r'^api/v1/', include(router.urls)),
     # url(r'^accounts/', include('allauth.urls')),
     # url(r'^page/', include('django.contrib.flatpages.urls')),
 
-    url(r'^.*$', HomePageView.as_view(), name='home'),
+    url(r'^.*$', AngularView.as_view(), name='home'),
 ]
 
 urlpatterns = sitemap_urls + urlpatterns
@@ -45,5 +49,6 @@ urlpatterns = sitemap_urls + urlpatterns
 if settings.DEBUG:
     # static files (images, css, javascript, etc.)
     urlpatterns += [
-        url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT})
+        url(r'^media/(?P<path>.*)$', 'django.views.static.serve',
+            {'document_root': settings.MEDIA_ROOT})
     ]
