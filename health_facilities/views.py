@@ -3,10 +3,10 @@ from django.views.generic.detail import DetailView
 from rest_framework import permissions, viewsets, filters
 from drf_haystack.viewsets import HaystackViewSet
 
-from .models import HealthFacility
-from .serializers import HealthFacilitySerializer
-from .serializers import HealthFacilitySearchSerializer
-from .filters import HealthFacilityFilter
+from health_facilities.models import HealthFacility
+from health_facilities.serializers import HealthFacilitySerializer
+from health_facilities.serializers import HealthFacilitySearchSerializer
+from health_facilities.filters import HealthFacilityFilter
 
 
 class HealthFacilityViewSet(viewsets.ModelViewSet):

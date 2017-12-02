@@ -32,23 +32,7 @@
 	    <div class="row">
 	      <div class="col-md-12"><h3>Featured</h3></div>
 	      {% for facility in facilities %}
-	      <div class="col-md-6" itemtype itemscope="https://schema.org/MedicalOrganization">
-	        <div class="panel panel-info health-facility-list-item">
-	          <div class="panel-heading">
-	            <a href="{% url 'health_facility' facility.slug facility.id %}" property="item" typeof="WebPage">
-	              <span itemprop="name">{{facility.name}}</span>
-	            </a>
-	          </div>
-	          <div class="panel-body">
-	            <strong>24Hr</strong>: <span>Yes</span><span>No</span><br/>
-	            <strong>Open Weekends</strong>: <span>Yes</span><span>No</span><br/>
-	            <strong>Status</strong>: {{facility.get_status_display}}<br/>
-	            <br/>
-	            <strong>Location</strong>: {{facility.location_description}}<br/>
-	            <strong>Nearest Town</strong>: {{facility.nearest_town}}<br/>
-	          </div>
-	        </div>
-	      </div>
+	      	{% include "health_facilities/list_item.html" %}
 	      {% endfor %}
 	    </div>
 	  </div><!--/container -->

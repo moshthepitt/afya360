@@ -185,57 +185,71 @@
           <tr>
             <th width="30%">County</th>
             <td>
-              <a href="/place/county/{{object.county.slug}}/{{object.county.id}}">
+              {% if object.county %}
+              <a href="{% url 'places:county' object.county.slug object.county.id %}">
                 {{object.county.name}}
               </a>
+              {% endif %}
             </td>
           </tr>
           <tr>
             <th width="30%">Constituency</th>
             <td>
-              <a href="/place/constituency/{{object.constituency.slug}}/{{object.constituency.id}}">
+              {% if object.constituency %}
+              <a href="{% url 'places:constituency' object.constituency.slug object.constituency.id %}">
                 {{object.constituency.name}}
               </a>
+              {% endif %}
             </td>
           </tr>
           <tr>
             <th width="30%">Province</th>
             <td>
-              <a href="/place/province/{{object.province.slug}}/{{object.province.id}}">
+              {% if object.province %}
+              <a href="{% url 'places:province' object.province.slug object.province.id %}">
                 {{object.province.name}}
               </a>
+              {% endif %}
             </td>
           </tr>
           <tr>
             <th width="30%">District</th>
             <td>
-              <a href="/place/district/{{object.district.slug}}/{{object.district.id}}">
+              {% if object.district %}
+              <a href="{% url 'places:district' object.district.slug object.district.id %}">
                 {{object.district.name}}
               </a>
+              {% endif %}
             </td>
           </tr>
           <tr>
             <th width="30%">Division</th>
             <td>
-              <a href="/place/division/{{object.division.slug}}/{{object.division.id}}">
+              {% if object.division %}
+              <a href="{% url 'places:division' object.division.slug object.division.id %}">
                 {{object.division.name}}
               </a>
+              {% endif %}
             </td>
           </tr>
           <tr>
             <th width="30%">Location</th>
             <td>
-              <a href="/place/location/{{object.location.slug}}/{{object.location.id}}">
+              {% if object.location %}
+              <a href="{% url 'places:location' object.location.slug object.location.id %}">
                 {{object.location.name}}
               </a>
+              {% endif %}
             </td>
           </tr>
           <tr>
             <th width="30%">Sub Location</th>
             <td>
-              <a href="/place/sub_location/{{object.sub_location.slug}}/{{object.sub_location.id}}">
+              {% if object.sub_location %}
+              <a href="{% url 'places:sub_location' object.sub_location.slug object.sub_location.id %}">
                 {{object.sub_location.name}}
               </a>
+              {% endif %}
             </td>
           </tr>
 
@@ -261,24 +275,7 @@
 
         <div class="spacing"></div>
       </div>
-
-      <h4>Search</h4>
-      <div class="hline"></div>
-      <p>
-        <br/>
-        <form role="form" ng-submit="vm.submit()">
-          <div class="input-group">
-            <input type="text" name="q" id="search" class="form-control"  ng-model="vm.q" placeholder="Search anything">
-            <span class="input-group-btn">
-              <button class="btn btn-primary" type="submit">Go!</button>
-            </span>
-          </div><!-- /input-group -->
-        </form>
-      </p>
-
-      <div class="spacing"></div>
-
-
+      {% include "snippets/sidebar.html" %}
     </div>
 
   </div><!--/row -->

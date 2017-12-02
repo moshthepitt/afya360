@@ -9,9 +9,9 @@ from core.ajax import AngularResources
 
 from core.sitemaps import sitemaps
 
-from places.views import ProvinceViewSet, CountyViewSet, ConstituencyViewSet
-from places.views import DistrictViewSet, DivisionViewSet, LocationViewSet
-from places.views import SubLocationViewSet
+from places.viewsets import ProvinceViewSet, CountyViewSet, ConstituencyViewSet
+from places.viewsets import DistrictViewSet, DivisionViewSet, LocationViewSet
+from places.viewsets import SubLocationViewSet
 from health_facilities.views import HealthFacilityViewSet, HealthFacilityView
 from health_facilities.views import HealthFacilitySearchView
 
@@ -45,6 +45,7 @@ urlpatterns = [
     url(r'^new/health-facility/(?P<slug>[-\w]+)/(?P<pk>\d+)/$',
         HealthFacilityView.as_view(),
         name='health_facility'),
+    url(r'^new/place/', include('places.urls', namespace='places')),
 
     url(r'^.*$', AngularView.as_view(), name='ng_home'),
 ]
