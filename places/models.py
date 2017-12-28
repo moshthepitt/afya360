@@ -1,5 +1,4 @@
 from django.db import models
-from django.core.urlresolvers import reverse
 from django.utils.translation import ugettext_lazy as _
 from django.utils.encoding import python_2_unicode_compatible
 
@@ -57,7 +56,8 @@ class County(PlaceModel):
 
 
 class District(PlaceModel):
-    province = models.ForeignKey(Province, verbose_name=_("Province"))
+    province = models.ForeignKey(Province, verbose_name=_("Province"),
+                                 on_delete=models.PROTECT)
     slug = AutoSlugField(populate_from='name', unique_with='province__name')
 
     def get_absolute_url(self):
@@ -70,7 +70,8 @@ class District(PlaceModel):
 
 
 class Division(PlaceModel):
-    district = models.ForeignKey(District, verbose_name=_("District"))
+    district = models.ForeignKey(District, verbose_name=_("District"),
+                                 on_delete=models.PROTECT)
     slug = AutoSlugField(populate_from='name', unique_with='district__name')
 
     def get_absolute_url(self):
@@ -83,7 +84,8 @@ class Division(PlaceModel):
 
 
 class Location(PlaceModel):
-    division = models.ForeignKey(Division, verbose_name=_("Division"))
+    division = models.ForeignKey(Division, verbose_name=_("Division"),
+                                 on_delete=models.PROTECT)
     slug = AutoSlugField(populate_from='name', unique_with='division__name')
 
     def get_absolute_url(self):
@@ -96,7 +98,8 @@ class Location(PlaceModel):
 
 
 class SubLocation(PlaceModel):
-    location = models.ForeignKey(Location, verbose_name=_("Location"))
+    location = models.ForeignKey(Location, verbose_name=_("Location"),
+                                 on_delete=models.PROTECT)
     slug = AutoSlugField(populate_from='name', unique_with='location__name')
 
     def get_absolute_url(self):
@@ -109,7 +112,8 @@ class SubLocation(PlaceModel):
 
 
 class Constituency(PlaceModel):
-    county = models.ForeignKey(County, verbose_name=_("County"))
+    county = models.ForeignKey(County, verbose_name=_("County"),
+                               on_delete=models.PROTECT)
     slug = AutoSlugField(populate_from='name', unique_with='county__name')
 
     def get_absolute_url(self):
