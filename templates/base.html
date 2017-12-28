@@ -3,7 +3,7 @@
 {% load compress %}
 <html lang="en">
   <head>
-    <base href="/">
+    <base href="{% url 'home' %}">
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -65,11 +65,11 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="index.html">AFYA360.</a>
+          <a class="navbar-brand" href="{% url 'home' %}">AFYA360.</a>
         </div>
         <div class="navbar-collapse collapse navbar-right">
           <ul class="nav navbar-nav">
-            <li class="active"><a href="index.html">HOME</a></li>
+            <li class="active"><a href="{% url 'home' %}">HOME</a></li>
             <li><a href="#about">ABOUT</a></li>
           </ul>
         </div><!--/.nav-collapse -->

@@ -59,7 +59,6 @@ INSTALLED_APPS = (
     'haystack',
     # 'cacheops',
     'autoslug',
-    'suit_redactor',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -194,7 +193,8 @@ CACHEOPS = {
 
 # REST_FRAMEWORK
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.LimitOffsetPagination',
     'PAGINATE_BY': 18
 }
 
@@ -214,6 +214,6 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 20
 INTERNAL_IPS = ('197.237.83.95', '127.0.0.1', '10.0.2.2')
 
 try:
-    from local_settings import *
-except ImportError, e:
+    from local_settings import *  # noqa
+except ImportError as e:
     pass

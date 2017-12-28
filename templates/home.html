@@ -43,26 +43,35 @@
 	    <div class="row">
 	      <div class="col-lg-12">
 	        <div>
-	          <tabs>
-	            <pane title="Counties">
-	              <ul class="list-group row">
-	              	{% for county in counties %}
-	                <li class="list-group-item col-md-3 col-sm-4 col-xs-6">
-	                  <a href="/place/county/{{county.slug}}/{{county.id}}">{{county.name}}</a>
-	                </li>
-	                {% endfor %}
-	              </ul>
-	            </pane>
-	            <pane title="Constituencies">
-	              <ul class="list-group row">
-	              	{% for constituency in constituencies %}
-	                <li class="list-group-item col-md-3 col-sm-4 col-xs-6">
-	                  <a href="/place/constituency/{{constituency.slug}}/{{constituency.id}}">{{constituency.name}}</a>
-	                </li>
-	                {% endfor %}
-	              </ul>
-	            </pane>
-	          </tabs>
+	        	<ul class="nav nav-tabs" role="tablist">
+	        	   <li role="presentation" class="active"><a href="#counties" aria-controls="Counties" role="tab" data-toggle="tab">Counties</a></li>
+	        	   <li role="presentation"><a href="#constituencies" aria-controls="Constituencies" role="tab" data-toggle="tab">Constituencies</a></li>
+	        	 </ul>
+
+	        	<div class="tab-content">
+	        	  <div role="tabpanel" class="tab-pane fade in active" id="counties">
+	        	  	<pane title="Counties">
+	        	  	  <ul class="list-group row">
+	        	  	  	{% for county in counties %}
+	        	  	    <li class="list-group-item col-md-3 col-sm-4 col-xs-6">
+	        	  	      <a href="{% url 'places:county' county.slug county.id %}">{{county.name}}</a>
+	        	  	    </li>
+	        	  	    {% endfor %}
+	        	  	  </ul>
+	        	  	</pane>
+	        	  </div>
+	        	  <div role="tabpanel" class="tab-pane fade" id="constituencies">
+	        	  	<pane title="Constituencies">
+	        	  	  <ul class="list-group row">
+	        	  	  	{% for constituency in constituencies %}
+	        	  	    <li class="list-group-item col-md-3 col-sm-4 col-xs-6">
+	        	  	      <a href="{% url 'places:constituency' constituency.slug constituency.id %}">{{constituency.name}}</a>
+	        	  	    </li>
+	        	  	    {% endfor %}
+	        	  	  </ul>
+	        	  	</pane>
+	        	  </div>
+	        	</div>
 	        </div>
 	      </div>
 	    </div><!--/row -->

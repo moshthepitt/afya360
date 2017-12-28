@@ -29,15 +29,23 @@
           {% endfor %}
 
           <div class="col-md-12">
-            <nav>
-              <ul class="pagination">
-                <li ng-show="vm.facilities.next">
-                  <a href="javascript:void(0)" ng-click="vm.next()" aria-label="Next">
-                    <span aria-hidden="true">&raquo; Load More</span>
-                  </a>
-                </li>
-              </ul>
-            </nav>
+            <div id="pagination">
+              <span class="step-links">
+                  {% if facilities.has_previous %}
+                      <a href="?page=1">&laquo; first</a>
+                      <a href="?page={{ facilities.previous_page_number }}">previous</a>
+                  {% endif %}
+
+                  <span class="current">
+                      Page {{ facilities.number }} of {{ facilities.paginator.num_pages }}.
+                  </span>
+
+                  {% if facilities.has_next %}
+                      <a href="?page={{ facilities.next_page_number }}">next</a>
+                      <a href="?page={{ facilities.paginator.num_pages }}">last &raquo;</a>
+                  {% endif %}
+              </span>
+            </div>
           </div>
         </div>
 
