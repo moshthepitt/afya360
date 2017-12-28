@@ -14,11 +14,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Constituency',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('created_on', models.DateTimeField(auto_now_add=True, verbose_name='Created on')),
-                ('updated_on', models.DateTimeField(auto_now=True, verbose_name='Updated on')),
-                ('name', models.CharField(max_length=255, verbose_name='Name')),
-                ('slug', autoslug.fields.AutoSlugField(populate_from=b'name', unique_with=(b'county__name',), editable=False)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False,
+                                        auto_created=True, primary_key=True)),
+                ('created_on', models.DateTimeField(
+                    auto_now_add=True, verbose_name='Created on')),
+                ('updated_on', models.DateTimeField(
+                    auto_now=True, verbose_name='Updated on')),
+                ('name', models.CharField(max_length=255,
+                                          verbose_name='Name')),
+                ('slug', autoslug.fields.AutoSlugField(
+                    populate_from=b'name', unique_with=(b'county__name',),
+                    editable=False)),
             ],
             options={
                 'ordering': ['name'],
@@ -29,11 +35,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='County',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('created_on', models.DateTimeField(auto_now_add=True, verbose_name='Created on')),
-                ('updated_on', models.DateTimeField(auto_now=True, verbose_name='Updated on')),
-                ('name', models.CharField(max_length=255, verbose_name='Name')),
-                ('slug', autoslug.fields.AutoSlugField(populate_from=b'name', unique=True, editable=False)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False,
+                                        auto_created=True, primary_key=True)),
+                ('created_on', models.DateTimeField(
+                    auto_now_add=True, verbose_name='Created on')),
+                ('updated_on', models.DateTimeField(
+                    auto_now=True, verbose_name='Updated on')),
+                ('name', models.CharField(max_length=255,
+                                          verbose_name='Name')),
+                ('slug', autoslug.fields.AutoSlugField(
+                    populate_from=b'name', unique_with=(b'county__name',),
+                    editable=False)),
             ],
             options={
                 'ordering': ['name'],
@@ -44,11 +56,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='District',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('created_on', models.DateTimeField(auto_now_add=True, verbose_name='Created on')),
-                ('updated_on', models.DateTimeField(auto_now=True, verbose_name='Updated on')),
-                ('name', models.CharField(max_length=255, verbose_name='Name')),
-                ('slug', autoslug.fields.AutoSlugField(populate_from=b'name', unique_with=(b'province__name',), editable=False)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False,
+                                        auto_created=True, primary_key=True)),
+                ('created_on', models.DateTimeField(
+                    auto_now_add=True, verbose_name='Created on')),
+                ('updated_on', models.DateTimeField(
+                    auto_now=True, verbose_name='Updated on')),
+                ('name', models.CharField(max_length=255,
+                                          verbose_name='Name')),
+                ('slug', autoslug.fields.AutoSlugField(
+                    populate_from=b'name', unique_with=(b'province__name',),
+                    editable=False)),
             ],
             options={
                 'ordering': ['name'],
@@ -59,12 +77,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Division',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('created_on', models.DateTimeField(auto_now_add=True, verbose_name='Created on')),
-                ('updated_on', models.DateTimeField(auto_now=True, verbose_name='Updated on')),
-                ('name', models.CharField(max_length=255, verbose_name='Name')),
-                ('slug', autoslug.fields.AutoSlugField(populate_from=b'name', unique_with=(b'district__name',), editable=False)),
-                ('district', models.ForeignKey(verbose_name='District', to='places.District')),
+                ('id', models.AutoField(verbose_name='ID', serialize=False,
+                                        auto_created=True, primary_key=True)),
+                ('created_on', models.DateTimeField(
+                    auto_now_add=True, verbose_name='Created on')),
+                ('updated_on', models.DateTimeField(
+                    auto_now=True, verbose_name='Updated on')),
+                ('name', models.CharField(max_length=255,
+                                          verbose_name='Name')),
+                ('slug', autoslug.fields.AutoSlugField(
+                    populate_from=b'name', unique_with=(b'district__name',),
+                    editable=False)),
+                ('district', models.ForeignKey(verbose_name='District',
+                                               to='places.District',
+                                               on_delete=models.PROTECT)),
             ],
             options={
                 'ordering': ['name'],
@@ -75,12 +101,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Location',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('created_on', models.DateTimeField(auto_now_add=True, verbose_name='Created on')),
-                ('updated_on', models.DateTimeField(auto_now=True, verbose_name='Updated on')),
-                ('name', models.CharField(max_length=255, verbose_name='Name')),
-                ('slug', autoslug.fields.AutoSlugField(populate_from=b'name', unique_with=(b'division__name',), editable=False)),
-                ('division', models.ForeignKey(verbose_name='Division', to='places.Division')),
+                ('id', models.AutoField(verbose_name='ID', serialize=False,
+                                        auto_created=True, primary_key=True)),
+                ('created_on', models.DateTimeField(
+                    auto_now_add=True, verbose_name='Created on')),
+                ('updated_on', models.DateTimeField(
+                    auto_now=True, verbose_name='Updated on')),
+                ('name', models.CharField(max_length=255,
+                                          verbose_name='Name')),
+                ('slug', autoslug.fields.AutoSlugField(
+                    populate_from=b'name', unique_with=(b'division__name',),
+                    editable=False)),
+                ('division', models.ForeignKey(verbose_name='Division',
+                                               to='places.Division',
+                                               on_delete=models.PROTECT)),
             ],
             options={
                 'ordering': ['name'],
@@ -91,11 +125,17 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Province',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('created_on', models.DateTimeField(auto_now_add=True, verbose_name='Created on')),
-                ('updated_on', models.DateTimeField(auto_now=True, verbose_name='Updated on')),
-                ('name', models.CharField(max_length=255, verbose_name='Name')),
-                ('slug', autoslug.fields.AutoSlugField(populate_from=b'name', unique=True, editable=False)),
+                ('id', models.AutoField(verbose_name='ID', serialize=False,
+                                        auto_created=True, primary_key=True)),
+                ('created_on', models.DateTimeField(
+                    auto_now_add=True, verbose_name='Created on')),
+                ('updated_on', models.DateTimeField(
+                    auto_now=True, verbose_name='Updated on')),
+                ('name', models.CharField(max_length=255,
+                                          verbose_name='Name')),
+                ('slug', autoslug.fields.AutoSlugField(
+                    populate_from=b'name', unique_with=(b'county__name',),
+                    editable=False)),
             ],
             options={
                 'ordering': ['name'],
@@ -106,12 +146,20 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='SubLocation',
             fields=[
-                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('created_on', models.DateTimeField(auto_now_add=True, verbose_name='Created on')),
-                ('updated_on', models.DateTimeField(auto_now=True, verbose_name='Updated on')),
-                ('name', models.CharField(max_length=255, verbose_name='Name')),
-                ('slug', autoslug.fields.AutoSlugField(populate_from=b'name', unique_with=(b'location__name',), editable=False)),
-                ('location', models.ForeignKey(verbose_name='Location', to='places.Location')),
+                ('id', models.AutoField(verbose_name='ID', serialize=False,
+                                        auto_created=True, primary_key=True)),
+                ('created_on', models.DateTimeField(
+                    auto_now_add=True, verbose_name='Created on')),
+                ('updated_on', models.DateTimeField(
+                    auto_now=True, verbose_name='Updated on')),
+                ('name', models.CharField(max_length=255,
+                                          verbose_name='Name')),
+                ('slug', autoslug.fields.AutoSlugField(
+                    populate_from=b'name', unique_with=(b'location__name',),
+                    editable=False)),
+                ('location', models.ForeignKey(verbose_name='Location',
+                                               to='places.Location',
+                                               on_delete=models.PROTECT)),
             ],
             options={
                 'ordering': ['name'],
@@ -122,11 +170,15 @@ class Migration(migrations.Migration):
         migrations.AddField(
             model_name='district',
             name='province',
-            field=models.ForeignKey(verbose_name='Province', to='places.Province'),
+            field=models.ForeignKey(verbose_name='Province',
+                                    to='places.Province',
+                                    on_delete=models.PROTECT),
         ),
         migrations.AddField(
             model_name='constituency',
             name='county',
-            field=models.ForeignKey(verbose_name='County', to='places.County'),
+            field=models.ForeignKey(verbose_name='County',
+                                    to='places.County',
+                                    on_delete=models.PROTECT),
         ),
     ]

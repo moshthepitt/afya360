@@ -2,7 +2,8 @@ from django.contrib.sitemaps import GenericSitemap
 
 from health_facilities.sitemaps import health_facility_sitemaps
 
-from places.models import Province, County, District, Division, Location, SubLocation
+from places.models import Province, County, District, Division, Location
+from places.models import SubLocation
 from places.models import Constituency
 
 province_dict = {
@@ -41,13 +42,19 @@ constituency_dict = {
 }
 
 sitemaps = {
-    'province': GenericSitemap(province_dict, priority=0.6, changefreq='monthly'),
+    'province': GenericSitemap(province_dict, priority=0.6,
+                               changefreq='monthly'),
     'county': GenericSitemap(county_dict, priority=0.6, changefreq='monthly'),
-    'district': GenericSitemap(district_dict, priority=0.6, changefreq='monthly'),
-    'division': GenericSitemap(division_dict, priority=0.6, changefreq='monthly'),
-    'location': GenericSitemap(location_dict, priority=0.6, changefreq='monthly'),
-    'sub_location': GenericSitemap(sub_location_dict, priority=0.6, changefreq='monthly'),
-    'constituency': GenericSitemap(constituency_dict, priority=0.6, changefreq='monthly'),
+    'district': GenericSitemap(district_dict, priority=0.6,
+                               changefreq='monthly'),
+    'division': GenericSitemap(division_dict, priority=0.6,
+                               changefreq='monthly'),
+    'location': GenericSitemap(location_dict, priority=0.6,
+                               changefreq='monthly'),
+    'sub_location': GenericSitemap(sub_location_dict, priority=0.6,
+                                   changefreq='monthly'),
+    'constituency': GenericSitemap(constituency_dict, priority=0.6,
+                                   changefreq='monthly'),
 }
 
 sitemaps = sitemaps.copy()
