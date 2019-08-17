@@ -11,7 +11,7 @@ https://docs.djangoproject.com/en/dev/ref/settings/
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-BASE_DIR = os.path.dirname(os.path.dirname(__file__))
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/dev/howto/deployment/checklist/
@@ -27,7 +27,6 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = (
-    'suit',
     # django
     'django.contrib.admin',
     'django.contrib.auth',
@@ -59,20 +58,21 @@ INSTALLED_APPS = (
     'haystack',
     # 'cacheops',
     'autoslug',
-    'suit_redactor',
 )
 
-MIDDLEWARE_CLASSES = (
+MIDDLEWARE = [
+    'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
-    'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    # custom
     'django.contrib.flatpages.middleware.FlatpageFallbackMiddleware',
-    # third party
-)
+    'debug_toolbar.middleware.DebugToolbarMiddleware'
+]
 
 
 ROOT_URLCONF = 'afya360.urls'
@@ -99,37 +99,54 @@ TEMPLATES = [
         'DIRS': [
             os.path.join(BASE_DIR, 'templates'),
         ],
+        'APP_DIRS': False,
         'OPTIONS': {
             'context_processors': [
-                # default
-                'django.contrib.auth.context_processors.auth',
                 'django.template.context_processors.debug',
-                'django.template.context_processors.i18n',
-                'django.template.context_processors.media',
-                'django.template.context_processors.static',
-                'django.template.context_processors.tz',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 # custom
-                'django.template.context_processors.request',
                 "core.context_processors.site_processor",
-                "core.context_processors.debug_processor",
+                "core.context_processors.debug_processor"
             ],
             'loaders': [
-                ('django.template.loaders.cached.Loader', [
-                    'django.template.loaders.filesystem.Loader',
-                    'django.template.loaders.app_directories.Loader',
-                    'django.template.loaders.eggs.Loader',
-                ]),
+                'django.template.loaders.filesystem.Loader',
+                'django.template.loaders.app_directories.Loader',
+                'django.template.loaders.eggs.Loader',
             ],
-            # 'loaders': [
-            #     'django.template.loaders.filesystem.Loader',
-            #     'django.template.loaders.app_directories.Loader',
-            #     'django.template.loaders.eggs.Loader',
-            # ],
-            'debug': False,
         },
     },
 ]
+
+# Password validation
+# https://docs.djangoproject.com/en/1.9/ref/settings/#auth-password-validators
+
+AUTH_PASSWORD_VALIDATORS = [
+    {
+        'NAME':
+        'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',  # noqa
+    },
+    {
+        'NAME':
+        'django.contrib.auth.password_validation.MinimumLengthValidator',
+    },
+    {
+        'NAME':
+        'django.contrib.auth.password_validation.CommonPasswordValidator',
+    },
+    {
+        'NAME':
+        'django.contrib.auth.password_validation.NumericPasswordValidator',
+    },
+]
+
+# STATIC FILES
+STATIC_URL = '/static/'
+
+STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, "static"),
+)
 
 STATICFILES_FINDERS = (
     'django.contrib.staticfiles.finders.FileSystemFinder',
@@ -137,6 +154,9 @@ STATICFILES_FINDERS = (
     # other finders..
     'compressor.finders.CompressorFinder',
 )
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 AUTHENTICATION_BACKENDS = (
     # Needed to login by username in Django admin, regardless of `allauth`
@@ -156,13 +176,6 @@ SOCIALACCOUNT_PROVIDERS = {
         'SCOPE': ['email', 'public_profile', 'user_friends'],
         'METHOD': 'js_sdk'  # instead of 'oauth2'
     }
-}
-
-# Suit
-SUIT_CONFIG = {
-    'ADMIN_NAME': 'Django Template',
-    'SEARCH_URL': '',
-
 }
 
 # crispy forms
@@ -194,7 +207,8 @@ CACHEOPS = {
 
 # REST_FRAMEWORK
 REST_FRAMEWORK = {
-    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'DEFAULT_PAGINATION_CLASS':
+        'rest_framework.pagination.LimitOffsetPagination',
     'PAGINATE_BY': 18
 }
 
@@ -214,6 +228,6 @@ HAYSTACK_SEARCH_RESULTS_PER_PAGE = 20
 INTERNAL_IPS = ('197.237.83.95', '127.0.0.1', '10.0.2.2')
 
 try:
-    from local_settings import *
-except ImportError, e:
+    from .local_settings import *  # noqa
+except ImportError as e:
     pass

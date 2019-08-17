@@ -12,11 +12,12 @@ class UserProfile(models.Model):
     """
     created_on = models.DateTimeField(_("Created on"), auto_now_add=True)
     updated_on = models.DateTimeField(_("Updated on"), auto_now=True)
-    user = models.OneToOneField(User, verbose_name=_("User"))
+    user = models.OneToOneField(User, verbose_name=_("User"),
+                                on_delete=models.CASCADE)
 
     def __unicode__(self):
         return _("{user}'s profile").format(user=self.user)
 
 
 # S I G N A L S
-from users import signals
+from users import signals  # noqa

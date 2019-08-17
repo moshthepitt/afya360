@@ -1,0 +1,283 @@
+{% extends "base.html" %}
+
+{% block page_title %}{{object.name}}{% endblock %}
+
+{% block all_content %}
+  <div id="blue">
+    <div class="container">
+      <div class="row">
+        <h3>{{ object.name }}</h3>
+      </div><!-- /row -->
+    </div> <!-- /container -->
+  </div><!-- /blue -->
+
+
+  <div class="container mtb">
+    <div class="row">
+      <!-- SINGLE POST -->
+      <div class="col-lg-8" itemtype itemscope="https://schema.org/MedicalOrganization">
+
+        <div map-lazy-load="https://maps.google.com/maps/api/js">
+          <ng-map center="{{object.get_latitude}},{{object.get_longitude}}" zoom="12">
+            <directions
+            draggable="true"
+            travel-mode="{{travelMode}}"
+            panel="directions-panel"
+            origin="current-location"
+            destination="{{object.get_latitude}},{{object.get_longitude}}">
+          </directions>
+        </ng-map>
+      </div>
+
+      <div>
+        <p><span itemprop="name">{{ object.name }}</span> is a {{object.facility_type.name}} located in {{object.county.name}} County ({{object.constituency.name}} Constituency).  It is currently {{object.get_status_display}}.</p>
+      </div>
+      <br/>
+      <h4>Contact information</h4>
+      <div class="table-responsive">
+        <table class="table">
+          <tr>
+            <th width="30%">Person in charge</th>
+            <td>{{object.in_charge}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Telephone</th>
+            <td>
+              <ul class="list-unstyled">
+                {% if object.landline %}
+                <li>
+                  <span itemprop="telephone">{{object.landline}}</span>
+                </li>
+                {% endif %}
+                {% if object.mobile %}
+                <li>
+                  <span itemprop="telephone">{{object.mobile}}</span>
+                </li>
+                {% endif %}
+                {% if object.alternate_no %}
+                <li>
+                  <span itemprop="telephone">{{object.alternate_no}}</span>
+                </li>
+                {% endif %}
+              </ul>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Email</th>
+            <td>
+              <span itemprop="email">{{object.email}}</span>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Address</th>
+            <td>
+              <address itemprop="address" itemscope itemtype="http://schema.org/PostalAddress">
+                <span property="postOfficeBoxNumber">{{object.address}}</span>{% if object.address %}<br>{% endif %}
+                {{object.town}} {% if object.town %}<br>{% endif %}
+                <span property="postalCode">{{object.post_code}}</span>{% if object.post_code %}<br>{% endif %}
+              </address>
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Location Description</th>
+            <td>{{facility.location_description}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Plot Number</th>
+            <td>{{facility.plot_number}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Nearest Town</th>
+            <td>{{facility.nearest_town}}</td>
+          </tr>
+        </table>
+      </div>
+
+      <h4>About Facility</h4>
+      <div class="table-responsive">
+        <table class="table">
+          <tr>
+            <th width="30%">Status</th>
+            <td>{{object.get_status_display}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Services:</th>
+            <td>
+              <ul class="list-unstyled">
+                {% if object.get_anc %} <li>{{object.get_anc}}</li> {% endif %}
+                {% if object.get_art %} <li>{{object.get_art}}</li> {% endif %}
+                {% if object.get_beoc %} <li>{{object.get_beoc}}</li> {% endif %}
+                {% if object.get_blood %} <li>{{object.get_blood}}</li> {% endif %}
+                {% if object.get_caes_sec %} <li>{{object.get_caes_sec}}</li> {% endif %}
+                {% if object.get_ceoc %} <li>{{object.get_ceoc}}</li> {% endif %}
+                {% if object.get_cimci %} <li>{{object.get_cimci}}</li> {% endif %}
+                {% if object.get_epi %} <li>{{object.get_epi}}</li> {% endif %}
+                {% if object.get_fp %} <li>{{object.get_fp}}</li> {% endif %}
+                {% if object.get_growm %} <li>{{object.get_growm}}</li> {% endif %}
+                {% if object.get_hbc %} <li>{{object.get_hbc}}</li> {% endif %}
+                {% if object.get_hct %} <li>{{object.get_hct}}</li> {% endif %}
+                {% if object.get_ipd %} <li>{{object.get_ipd}}</li> {% endif %}
+                {% if object.get_opd %} <li>{{object.get_opd}}</li> {% endif %}
+                {% if object.get_outreach %} <li>{{object.get_outreach}}</li> {% endif %}
+                {% if object.get_pmtct %} <li>{{object.get_pmtct}}</li> {% endif %}
+                {% if object.get_rad_xray %} <li>{{object.get_rad_xray}}</li> {% endif %}
+                {% if object.get_rhtc_rhdc %} <li>{{object.get_rhtc_rhdc}}</li> {% endif %}
+                {% if object.get_tb_diag %} <li>{{object.get_tb_diag}}</li> {% endif %}
+                {% if object.get_tb_labs %} <li>{{object.get_tb_labs}}</li> {% endif %}
+                {% if object.get_tb_treat %} <li>{{object.get_tb_treat}}</li> {% endif %}
+                {% if object.get_youth %} <li>{{object.get_youth}}</li> {% endif %}
+              </ul>
+            </td>
+          </tr>
+          {% if object.cots > 0 %}
+          <tr>
+            <th width="30%">No. of cots</th>
+            <td>{{object.cots}}</td>
+          </tr>
+          {% endif %}
+          {% if object.beds > 0 %}
+          <tr>
+            <th width="30%">No. of beds</th>
+            <td>{{object.beds}}</td>
+          </tr>
+          {% endif %}
+          <tr>
+            <th width="30%">Opens Weekends</th>
+            <td>
+              {% if object.get_open_weekends %}
+                <span>{{object.get_open_weekends}}</span>
+              {% else %}
+                <span>No</span>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">24 Hours</th>
+            <td>
+              {% if object.get_twenty_four_hour %}
+                <span>{{object.get_twenty_four_hour}}</span>
+              {% else %}
+                <span>No</span>
+              {% endif %}
+            </td>
+          </tr>
+
+          <tr>
+            <th width="30%">Type</th>
+            <td>{{object.facility_type.name}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Owner</th>
+            <td>{{object.owner.name}}</td>
+          </tr>
+          <tr>
+            <th width="30%">Agency</th>
+            <td>{{object.get_agency_display}}</td>
+          </tr>
+
+        </table>
+      </div>
+
+      <h4>Location</h4>
+      <div class="table-responsive">
+        <table class="table">
+
+          <tr>
+            <th width="30%">County</th>
+            <td>
+              {% if object.county %}
+              <a href="{% url 'places:county' object.county.slug object.county.id %}">
+                {{object.county.name}}
+              </a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Constituency</th>
+            <td>
+              {% if object.constituency %}
+              <a href="{% url 'places:constituency' object.constituency.slug object.constituency.id %}">
+                {{object.constituency.name}}
+              </a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Province</th>
+            <td>
+              {% if object.province %}
+              <a href="{% url 'places:province' object.province.slug object.province.id %}">
+                {{object.province.name}}
+              </a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">District</th>
+            <td>
+              {% if object.district %}
+              <a href="{% url 'places:district' object.district.slug object.district.id %}">
+                {{object.district.name}}
+              </a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Division</th>
+            <td>
+              {% if object.division %}
+              <a href="{% url 'places:division' object.division.slug object.division.id %}">
+                {{object.division.name}}
+              </a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Location</th>
+            <td>
+              {% if object.location %}
+              <a href="{% url 'places:location' object.location.slug object.location.id %}">
+                {{object.location.name}}
+              </a>
+              {% endif %}
+            </td>
+          </tr>
+          <tr>
+            <th width="30%">Sub Location</th>
+            <td>
+              {% if object.sub_location %}
+              <a href="{% url 'places:sub_location' object.sub_location.slug object.sub_location.id %}">
+                {{object.sub_location.name}}
+              </a>
+              {% endif %}
+            </td>
+          </tr>
+
+        </table>
+      </div>
+    </div><!--/col-lg-8 -->
+
+    <!-- SIDEBAR -->
+    <div class="col-lg-4">
+      <div ng-show="object.coordinates">
+        <h4>Directions to {{ object.name }}</h4>
+        <div class="hline"></div>
+        <br/>
+        <div class="form-group">
+          <label for="travel-mode">Select Mode of travel</label>
+          <select id="travel-mode" ng-model="travelMode" ng-init="travelMode='DRIVING'" class="form-control input-lg">
+            <option value="DRIVING">Driving</option>
+            <option value="WALKING">Walking</option>
+            <option value="TRANSIT">Transit</option>
+          </select>
+        </div>
+        <div id="directions-panel"></div>
+
+        <div class="spacing"></div>
+      </div>
+      {% include "snippets/sidebar.html" %}
+    </div>
+
+  </div><!--/row -->
+  </div><!--/container -->
+{% endblock %}

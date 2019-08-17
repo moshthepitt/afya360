@@ -1,25 +1,80 @@
 {% extends "base.html" %}
 
-{% block all_content %} 
-	<div id="mothership" class="mothership">
-		<div ng-controller="MetaController as vm">
-		  <div class="preloader-mask" ng-hide="vm.pageMeta.doneLoading()">
-		    <div class="sk-fading-circle">
-		      <div class="sk-circle1 sk-circle"></div>
-		      <div class="sk-circle2 sk-circle"></div>
-		      <div class="sk-circle3 sk-circle"></div>
-		      <div class="sk-circle4 sk-circle"></div>
-		      <div class="sk-circle5 sk-circle"></div>
-		      <div class="sk-circle6 sk-circle"></div>
-		      <div class="sk-circle7 sk-circle"></div>
-		      <div class="sk-circle8 sk-circle"></div>
-		      <div class="sk-circle9 sk-circle"></div>
-		      <div class="sk-circle10 sk-circle"></div>
-		      <div class="sk-circle11 sk-circle"></div>
-		      <div class="sk-circle12 sk-circle"></div>
-		    </div>
-		  </div> 
-		</div>
-		<section class="ng-view" autoscroll="true"></section>  
+{% block all_content %}
+	<div id="headerwrap">
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-lg-8 col-lg-offset-2">
+	        <h1>Kenya Directory of Health Facilities</h1>
+	        <h3>Search and find hospitals, dispensaries, clinics and other health facilities anywhere in Kenya. Quickly access hospital name, information, phone numbers, addresses, directions and more</h3>
+
+	        <div class="row">
+	          <div class="col-lg-8 col-lg-offset-2">
+	            <div class="home-buttons">
+	              <form role="form">
+	                <div class="input-group">
+	                  <input type="text" name="q" id="search" class="form-control input-lg" placeholder="Search anything">
+	                  <span class="input-group-btn">
+	                    <button class="btn btn-success btn-lg" type="submit">Go!</button>
+	                  </span>
+	                </div><!-- /input-group -->
+	              </form>
+	            </div>
+	          </div>
+	        </div>
+	      </div>
+	    </div><!-- /row -->
+	  </div> <!-- /container -->
+	</div><!-- /headerwrap -->
+
+	<div id="service">
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-md-12"><h3>Featured</h3></div>
+	      {% for facility in facilities %}
+	      	{% include "health_facilities/list_item.html" %}
+	      {% endfor %}
+	    </div>
+	  </div><!--/container -->
 	</div>
+
+	<div id="cwrap">
+	  <div class="container">
+	    <div class="row">
+	      <div class="col-lg-12">
+	        <div>
+	        	<ul class="nav nav-tabs" role="tablist">
+	        	   <li role="presentation" class="active"><a href="#counties" aria-controls="Counties" role="tab" data-toggle="tab">Counties</a></li>
+	        	   <li role="presentation"><a href="#constituencies" aria-controls="Constituencies" role="tab" data-toggle="tab">Constituencies</a></li>
+	        	 </ul>
+
+	        	<div class="tab-content">
+	        	  <div role="tabpanel" class="tab-pane fade in active" id="counties">
+	        	  	<pane title="Counties">
+	        	  	  <ul class="list-group row">
+	        	  	  	{% for county in counties %}
+	        	  	    <li class="list-group-item col-md-3 col-sm-4 col-xs-6">
+	        	  	      <a href="{% url 'places:county' county.slug county.id %}">{{county.name}}</a>
+	        	  	    </li>
+	        	  	    {% endfor %}
+	        	  	  </ul>
+	        	  	</pane>
+	        	  </div>
+	        	  <div role="tabpanel" class="tab-pane fade" id="constituencies">
+	        	  	<pane title="Constituencies">
+	        	  	  <ul class="list-group row">
+	        	  	  	{% for constituency in constituencies %}
+	        	  	    <li class="list-group-item col-md-3 col-sm-4 col-xs-6">
+	        	  	      <a href="{% url 'places:constituency' constituency.slug constituency.id %}">{{constituency.name}}</a>
+	        	  	    </li>
+	        	  	    {% endfor %}
+	        	  	  </ul>
+	        	  	</pane>
+	        	  </div>
+	        	</div>
+	        </div>
+	      </div>
+	    </div><!--/row -->
+	  </div><!--/container -->
+	</div><!--/cwrap -->
 {% endblock %}

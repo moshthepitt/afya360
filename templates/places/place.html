@@ -1,0 +1,62 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+
+{% block page_title %} {{object.name}} {{object.meta.verbose_name}} {% trans "Health Facilities" %}  {% endblock %}
+
+{% block all_content %}
+  <div id="blue">
+    <div class="container">
+      <div class="row">
+        <h3>{{object.name}} {{object.model_name}}</h3>
+      </div><!-- /row -->
+    </div> <!-- /container -->
+  </div><!-- /blue -->
+
+
+  <div class="container mtb">
+    <div class="row">
+      <!-- SINGLE POST -->
+      <div class="col-lg-8">
+
+
+        <div class="row">
+          <div class="col-md-12"><p> {{object.name}} {{object.meta.verbose_name}} has <strong>{{object.facility_count}}</strong> health facilities.</p></div>
+          <div class="col-md-12"><h3>Health Facilities in {{object.name}} {{object.meta.verbose_name}}</h3></div>
+
+          {% for facility in facilities %}
+            {% include "health_facilities/list_item.html" %}
+          {% endfor %}
+
+          <div class="col-md-12">
+            <div id="pagination">
+              <span class="step-links">
+                  {% if facilities.has_previous %}
+                      <a href="?page=1">&laquo; first</a>
+                      <a href="?page={{ facilities.previous_page_number }}">previous</a>
+                  {% endif %}
+
+                  <span class="current">
+                      Page {{ facilities.number }} of {{ facilities.paginator.num_pages }}.
+                  </span>
+
+                  {% if facilities.has_next %}
+                      <a href="?page={{ facilities.next_page_number }}">next</a>
+                      <a href="?page={{ facilities.paginator.num_pages }}">last &raquo;</a>
+                  {% endif %}
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div><!--/col-lg-8 -->
+
+
+      <!-- SIDEBAR -->
+      <div class="col-lg-4">
+        {% include "snippets/sidebar.html" %}
+      </div>
+
+    </div><!--/row -->
+  </div><!--/container -->
+{% endblock %}
